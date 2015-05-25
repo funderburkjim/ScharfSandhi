@@ -1,0 +1,48 @@
+Consonants
+11111	uk-kuuk-Kuuk-guuk-Guuk-cuuk-Cuuk-juuk-Juuk-wuuk-Wuuk-quuk-Quuk-tuuk-Tuuk-duuk-Duuk-puuk-Puuk-buuk-Buuk-nuuk-muuk-yuuk-vuuk-ruuk-luuk-Suuk-zuuk-suuk-huuk-auuk-Auuk-iuuk-Iuuk . 
+22222	uK-kuuK-KuuK-guuK-GuuK-cuuK-CuuK-juuK-JuuK-wuuK-WuuK-quuK-QuuK-tuuK-TuuK-duuK-DuuK-puuK-PuuK-buuK-BuuK-nuuK-muuK-yuuK-vuuK-ruuK-luuK-SuuK-zuuK-suuK-huuK-auuK-AuuK-iuuK-IuuK . 
+33333	ug-kuug-Kuug-guug-Guug-cuug-Cuug-juug-Juug-wuug-Wuug-quug-Quug-tuug-Tuug-duug-Duug-puug-Puug-buug-Buug-nuug-muug-yuug-vuug-ruug-luug-Suug-zuug-suug-huug-auug-Auug-iuug-Iuug . 
+44444	uG-kuuG-KuuG-guuG-GuuG-cuuG-CuuG-juuG-JuuG-wuuG-WuuG-quuG-QuuG-tuuG-TuuG-duuG-DuuG-puuG-PuuG-buuG-BuuG-nuuG-muuG-yuuG-vuuG-ruuG-luuG-SuuG-zuuG-suuG-huuG-auuG-AuuG-iuuG-IuuG . 
+uN-kuuN-KuuN-guuN-GuuN-cuuN-CuuN-juuN-JuuN-wuuN-WuuN-quuN-QuuN-tuuN-TuuN-duuN-DuuN-puuN-PuuN-buuN-BuuN-nuuN-muuN-yuuN-vuuN-ruuN-luuN-SuuN-zuuN-suuN-huuN-auuN-AuuN-iuuN-IuuN . 
+uc-kuuc-Kuuc-guuc-Guuc-cuuc-Cuuc-juuc-Juuc-wuuc-Wuuc-quuc-Quuc-tuuc-Tuuc-duuc-Duuc-puuc-Puuc-buuc-Buuc-nuuc-muuc-yuuc-vuuc-ruuc-luuc-Suuc-zuuc-suuc-huuc-auuc-Auuc-iuuc-Iuuc . 
+uC-kuuC-KuuC-guuC-GuuC-cuuC-CuuC-juuC-JuuC-wuuC-WuuC-quuC-QuuC-tuuC-TuuC-duuC-DuuC-puuC-PuuC-buuC-BuuC-nuuC-muuC-yuuC-vuuC-ruuC-luuC-SuuC-zuuC-suuC-huuC-auuC-AuuC-iuuC-IuuC . 
+uj-kuuj-Kuuj-guuj-Guuj-cuuj-Cuuj-juuj-Juuj-wuuj-Wuuj-quuj-Quuj-tuuj-Tuuj-duuj-Duuj-puuj-Puuj-buuj-Buuj-nuuj-muuj-yuuj-vuuj-ruuj-luuj-Suuj-zuuj-suuj-huuj-auuj-Auuj-iuuj-Iuuj . 
+uJ-kuuJ-KuuJ-guuJ-GuuJ-cuuJ-CuuJ-juuJ-JuuJ-wuuJ-WuuJ-quuJ-QuuJ-tuuJ-TuuJ-duuJ-DuuJ-puuJ-PuuJ-buuJ-BuuJ-nuuJ-muuJ-yuuJ-vuuJ-ruuJ-luuJ-SuuJ-zuuJ-suuJ-huuJ-auuJ-AuuJ-iuuJ-IuuJ . 
+uY-kuuY-KuuY-guuY-GuuY-cuuY-CuuY-juuY-JuuY-wuuY-WuuY-quuY-QuuY-tuuY-TuuY-duuY-DuuY-puuY-PuuY-buuY-BuuY-nuuY-muuY-yuuY-vuuY-ruuY-luuY-SuuY-zuuY-suuY-huuY-auuY-AuuY-iuuY-IuuY . 
+uw-kuuw-Kuuw-guuw-Guuw-cuuw-Cuuw-juuw-Juuw-wuuw-Wuuw-quuw-Quuw-tuuw-Tuuw-duuw-Duuw-puuw-Puuw-buuw-Buuw-nuuw-muuw-yuuw-vuuw-ruuw-luuw-Suuw-zuuw-suuw-huuw-auuw-Auuw-iuuw-Iuuw . 
+uW-kuuW-KuuW-guuW-GuuW-cuuW-CuuW-juuW-JuuW-wuuW-WuuW-quuW-QuuW-tuuW-TuuW-duuW-DuuW-puuW-PuuW-buuW-BuuW-nuuW-muuW-yuuW-vuuW-ruuW-luuW-SuuW-zuuW-suuW-huuW-auuW-AuuW-iuuW-IuuW . 
+uq-kuuq-Kuuq-guuq-Guuq-cuuq-Cuuq-juuq-Juuq-wuuq-Wuuq-quuq-Quuq-tuuq-Tuuq-duuq-Duuq-puuq-Puuq-buuq-Buuq-nuuq-muuq-yuuq-vuuq-ruuq-luuq-Suuq-zuuq-suuq-huuq-auuq-Auuq-iuuq-Iuuq . 
+uQ-kuuQ-KuuQ-guuQ-GuuQ-cuuQ-CuuQ-juuQ-JuuQ-wuuQ-WuuQ-quuQ-QuuQ-tuuQ-TuuQ-duuQ-DuuQ-puuQ-PuuQ-buuQ-BuuQ-nuuQ-muuQ-yuuQ-vuuQ-ruuQ-luuQ-SuuQ-zuuQ-suuQ-huuQ-auuQ-AuuQ-iuuQ-IuuQ . 
+uR-kuuR-KuuR-guuR-GuuR-cuuR-CuuR-juuR-JuuR-wuuR-WuuR-quuR-QuuR-tuuR-TuuR-duuR-DuuR-puuR-PuuR-buuR-BuuR-nuuR-muuR-yuuR-vuuR-ruuR-luuR-SuuR-zuuR-suuR-huuR-auuR-AuuR-iuuR-IuuR . 
+ut-kuut-Kuut-guut-Guut-cuut-Cuut-juut-Juut-wuut-Wuut-quut-Quut-tuut-Tuut-duut-Duut-puut-Puut-buut-Buut-nuut-muut-yuut-vuut-ruut-luut-Suut-zuut-suut-huut-auut-Auut-iuut-Iuut . 
+uT-kuuT-KuuT-guuT-GuuT-cuuT-CuuT-juuT-JuuT-wuuT-WuuT-quuT-QuuT-tuuT-TuuT-duuT-DuuT-puuT-PuuT-buuT-BuuT-nuuT-muuT-yuuT-vuuT-ruuT-luuT-SuuT-zuuT-suuT-huuT-auuT-AuuT-iuuT-IuuT . 
+ud-kuud-Kuud-guud-Guud-cuud-Cuud-juud-Juud-wuud-Wuud-quud-Quud-tuud-Tuud-duud-Duud-puud-Puud-buud-Buud-nuud-muud-yuud-vuud-ruud-luud-Suud-zuud-suud-huud-auud-Auud-iuud-Iuud . 
+uD-kuuD-KuuD-guuD-GuuD-cuuD-CuuD-juuD-JuuD-wuuD-WuuD-quuD-QuuD-tuuD-TuuD-duuD-DuuD-puuD-PuuD-buuD-BuuD-nuuD-muuD-yuuD-vuuD-ruuD-luuD-SuuD-zuuD-suuD-huuD-auuD-AuuD-iuuD-IuuD . 
+un-kuun-Kuun-guun-Guun-cuun-Cuun-juun-Juun-wuun-Wuun-quun-Quun-tuun-Tuun-duun-Duun-puun-Puun-buun-Buun-nuun-muun-yuun-vuun-ruun-luun-Suun-zuun-suun-huun-auun-Auun-iuun-Iuun . 
+up-kuup-Kuup-guup-Guup-cuup-Cuup-juup-Juup-wuup-Wuup-quup-Quup-tuup-Tuup-duup-Duup-puup-Puup-buup-Buup-nuup-muup-yuup-vuup-ruup-luup-Suup-zuup-suup-huup-auup-Auup-iuup-Iuup . 
+uP-kuuP-KuuP-guuP-GuuP-cuuP-CuuP-juuP-JuuP-wuuP-WuuP-quuP-QuuP-tuuP-TuuP-duuP-DuuP-puuP-PuuP-buuP-BuuP-nuuP-muuP-yuuP-vuuP-ruuP-luuP-SuuP-zuuP-suuP-huuP-auuP-AuuP-iuuP-IuuP . 
+ub-kuub-Kuub-guub-Guub-cuub-Cuub-juub-Juub-wuub-Wuub-quub-Quub-tuub-Tuub-duub-Duub-puub-Puub-buub-Buub-nuub-muub-yuub-vuub-ruub-luub-Suub-zuub-suub-huub-auub-Auub-iuub-Iuub . 
+uB-kuuB-KuuB-guuB-GuuB-cuuB-CuuB-juuB-JuuB-wuuB-WuuB-quuB-QuuB-tuuB-TuuB-duuB-DuuB-puuB-PuuB-buuB-BuuB-nuuB-muuB-yuuB-vuuB-ruuB-luuB-SuuB-zuuB-suuB-huuB-auuB-AuuB-iuuB-IuuB . 
+um-kuum-Kuum-guum-Guum-cuum-Cuum-juum-Juum-wuum-Wuum-quum-Quum-tuum-Tuum-duum-Duum-puum-Puum-buum-Buum-nuum-muum-yuum-vuum-ruum-luum-Suum-zuum-suum-huum-auum-Auum-iuum-Iuum . 
+uH-kuuH-KuuH-guuH-GuuH-cuuH-CuuH-juuH-JuuH-wuuH-WuuH-quuH-QuuH-tuuH-TuuH-duuH-DuuH-puuH-PuuH-buuH-BuuH-nuuH-muuH-yuuH-vuuH-ruuH-luuH-SuuH-zuuH-suuH-huuH-auuH-AuuH-iuuH-IuuH . 
+ur-kuur-Kuur-guur-Guur-cuur-Cuur-juur-Juur-wuur-Wuur-quur-Quur-tuur-Tuur-duur-Duur-puur-Puur-buur-Buur-nuur-muur-yuur-vuur-ruur-luur-Suur-zuur-suur-huur-auur-Auur-iuur-Iuur . 
+uAH-kuuAH-KuuAH-guuAH-GuuAH-cuuAH-CuuAH-juuAH-JuuAH-wuuAH-WuuAH-quuAH-QuuAH-tuuAH-TuuAH-duuAH-DuuAH-puuAH-PuuAH-buuAH-BuuAH-nuuAH-muuAH-yuuAH-vuuAH-ruuAH-luuAH-SuuAH-zuuAH-suuAH-huuAH-auuAH-AuuAH-iuuAH-IuuAH . 
+uaH-kuuaH-KuuaH-guuaH-GuuaH-cuuaH-CuuaH-juuaH-JuuaH-wuuaH-WuuaH-quuaH-QuuaH-tuuaH-TuuaH-duuaH-DuuaH-puuaH-PuuaH-buuaH-BuuaH-nuuaH-muuaH-yuuaH-vuuaH-ruuaH-luuaH-SuuaH-zuuaH-suuaH-huuaH-auuaH-AuuaH-iuuaH-IuuaH . 
+uS-kuuS-KuuS-guuS-GuuS-cuuS-CuuS-juuS-JuuS-wuuS-WuuS-quuS-QuuS-tuuS-TuuS-duuS-DuuS-puuS-PuuS-buuS-BuuS-nuuS-muuS-yuuS-vuuS-ruuS-luuS-SuuS-zuuS-suuS-huuS-auuS-AuuS-iuuS-IuuS . 
+uz-kuuz-Kuuz-guuz-Guuz-cuuz-Cuuz-juuz-Juuz-wuuz-Wuuz-quuz-Quuz-tuuz-Tuuz-duuz-Duuz-puuz-Puuz-buuz-Buuz-nuuz-muuz-yuuz-vuuz-ruuz-luuz-Suuz-zuuz-suuz-huuz-auuz-Auuz-iuuz-Iuuz . 
+us-kuus-Kuus-guus-Guus-cuus-Cuus-juus-Juus-wuus-Wuus-quus-Quus-tuus-Tuus-duus-Duus-puus-Puus-buus-Buus-nuus-muus-yuus-vuus-ruus-luus-Suus-zuus-suus-huus-auus-Auus-iuus-Iuus . 
+Vowels
+ka-akka-Akka-ikka-Ikka-ukka-Ukka-fkka-Fkka-xkka-Xkka-ekka-okka-Ekka-Okka-kkka . 
+kA-akkA-AkkA-ikkA-IkkA-ukkA-UkkA-fkkA-FkkA-xkkA-XkkA-ekkA-okkA-EkkA-OkkA-kkkA . 
+ki-akki-Akki-ikki-Ikki-ukki-Ukki-fkki-Fkki-xkki-Xkki-ekki-okki-Ekki-Okki-kkki . 
+kI-akkI-AkkI-ikkI-IkkI-ukkI-UkkI-fkkI-FkkI-xkkI-XkkI-ekkI-okkI-EkkI-OkkI-kkkI . 
+ku-akku-Akku-ikku-Ikku-ukku-Ukku-fkku-Fkku-xkku-Xkku-ekku-okku-Ekku-Okku-kkku . 
+kU-akkU-AkkU-ikkU-IkkU-ukkU-UkkU-fkkU-FkkU-xkkU-XkkU-ekkU-okkU-EkkU-OkkU-kkkU . 
+kf-akkf-Akkf-ikkf-Ikkf-ukkf-Ukkf-fkkf-Fkkf-xkkf-Xkkf-ekkf-okkf-Ekkf-Okkf-kkkf . 
+kF-akkF-AkkF-ikkF-IkkF-ukkF-UkkF-fkkF-FkkF-xkkF-XkkF-ekkF-okkF-EkkF-OkkF-kkkF . 
+kx-akkx-Akkx-ikkx-Ikkx-ukkx-Ukkx-fkkx-Fkkx-xkkx-Xkkx-ekkx-okkx-Ekkx-Okkx-kkkx . 
+kX-akkX-AkkX-ikkX-IkkX-ukkX-UkkX-fkkX-FkkX-xkkX-XkkX-ekkX-okkX-EkkX-OkkX-kkkX . 
+ke-akke-Akke-ikke-Ikke-ukke-Ukke-fkke-Fkke-xkke-Xkke-ekke-okke-Ekke-Okke-kkke . 
+ko-akko-Akko-ikko-Ikko-ukko-Ukko-fkko-Fkko-xkko-Xkko-ekko-okko-Ekko-Okko-kkko . 
+kE-akkE-AkkE-ikkE-IkkE-ukkE-UkkE-fkkE-FkkE-xkkE-XkkE-ekkE-okkE-EkkE-OkkE-kkkE . 
+kO-akkO-AkkO-ikkO-IkkO-ukkO-UkkO-fkkO-FkkO-xkkO-XkkO-ekkO-okkO-EkkO-OkkO-kkkO . 

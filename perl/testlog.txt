@@ -1,0 +1,76 @@
+Problem at line 2
+   input:punar .
+ options:E
+computed:punar .
+standard:punaH .
+========================================Problem at line 10
+   input:mAtar .
+ options:E
+computed:mAtar .
+standard:mAtaH .
+========================================Test Results:
+Input: ../testfiles/TestIn.txt
+Standard: ../testfiles/TestOut.txt
+14 input lines were ok out of 16 total lines
+Problem at line 0
+   input:Ayan agacCat
+ options:E1
+computed:Ayan agacCat
+standard:Ayann agacCat
+========================================Problem at line 1
+   input:Ayan iti
+ options:E1
+computed:Ayan iti
+standard:Ayann iti
+========================================Problem at line 2
+   input:Ayan upagacCati
+ options:E1
+computed:Ayan upagacCati
+standard:Ayann upagacCati
+========================================Problem at line 3
+   input:Ayan fzayaH
+ options:E1
+computed:Ayan fzayaH
+standard:Ayann fzayaH
+========================================Problem at line 4
+   input:Ayan xkArAH
+ options:E1
+computed:Ayan xkArAH
+standard:Ayann xkArAH
+========================================Problem at line 5
+   input:Ayan AgacCati
+ options:E1
+computed:Ayan AgacCati
+standard:Ayann AgacCati
+========================================Problem at line 6
+   input:Ayan ISvarAH
+ options:E1
+computed:Ayan ISvarAH
+standard:Ayann ISvarAH
+========================================Problem at line 7
+   input:Ayan UcuH
+ options:E1
+computed:Ayan UcuH
+standard:Ayann UcuH
+========================================Problem at line 8
+   input:Ayan FkArAH
+ options:E1
+computed:Ayan FkArAH
+standard:Ayann FkArAH
+========================================Problem at line 9
+   input:Ayan XkArAH
+ options:E1
+computed:Ayan XkArAH
+standard:Ayann XkArAH
+========================================Test Results:
+Input: ../testfiles/Testnn.txt
+Standard: ../testfiles/TestnnOut.txt
+20 input lines were ok out of 30 total lines
+Test Results:
+Input: ../testfiles/TestSandhiC.txt
+Standard: ../testfiles/TestSandhiCOut.txt
+48 input lines were ok out of 48 total lines
+Test Results:
+Input: ../testfiles/PascalSandhiTest3-nl.txt
+Standard: ../testfiles/PascalSandhiTest3S-nl.txt
+2228 input lines were ok out of 2228 total lines

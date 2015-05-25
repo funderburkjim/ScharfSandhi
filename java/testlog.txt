@@ -1,0 +1,16 @@
+Test Results:
+Input: ../testfiles/TestIn.txt
+Standard: ../testfiles/TestOut.txt
+16 input lines were ok out of 16 total lines.
+Test Results:
+Input: ../testfiles/Testnn.txt
+Standard: ../testfiles/TestnnOut.txt
+30 input lines were ok out of 30 total lines.
+Test Results:
+Input: ../testfiles/TestSandhiC.txt
+Standard: ../testfiles/TestSandhiCOut.txt
+48 input lines were ok out of 48 total lines.
+Test Results:
+Input: ../testfiles/PascalSandhiTest3-nl.txt
+Standard: ../testfiles/PascalSandhiTest3S-nl.txt
+2228 input lines were ok out of 2228 total lines.
