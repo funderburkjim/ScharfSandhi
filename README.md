@@ -64,14 +64,14 @@ lines of text would be read from a file, and, after application of sandhi,
 would be written to another file.
 
 The conversions of the Pascal program were written so that the sandhi function
-would be 'callable' functions. There are two primary funcitonal entry points,
+would be 'callable'. There are two primary funcitonal entry points,
 `sandhioptions` and `sandhi`.  
 * `sandhioptions` sets `sandhi options` using four parameters.  This is 
   similar to the question/answer format of the Pascal program. Essentially,
   one set of options is used for compound sandhi, and another set for
   external sandhi.  As I recall, there are some option combinations (perhaps
-  related to isses of Vedic Sanskrit) which are not implemented in the
-  translations.
+  related to isses of Vedic Sanskrit) which are present in the Pascal program
+  but not implemented in the translations.
 * `sandhi`  which takes one string (line) of Sanskrit text, transforms the
   string according to the current sandhi options, and returns the transformed
   string.   The Sanskrit text is assumed to be presented in the SLP1 
@@ -95,10 +95,48 @@ version 2.7 of Python, but will likely work with other Python 2 versions.
 * Change to the `python` directory
 * python ScharfSandhiArg.py {sandhi-opt} "{string}"
   Same command-line options as for Java version
+* Example 1:
+  * python ScharfSandhiArg.py E "sitA ca rAmaH ca agacCatAm"
+  * sitA ca rAmaScAgacCatAm
+* Example 2:
+  * python ScharfSandhiArg.py C "aDas-upAsana"
+  * aDaupAsana
 
-There is currently no Perl version
+There is currently no Perl version of ScharfSandhiArg.
+
+## TODO 
+The current programs are functional, and ready to use.
+Of the versions available, I am most interested in doing further work with
+the Python version.  
+* The Python version was constructed in a two step process:
+  * scharfsandhi.py was first constructed from ScharfSandhi.java using the
+    java2python module: https://github.com/natural/java2python
+  * This conversion was incomplete in several ways.  By manual tinkering,
+    the current version came about.
+* As a byproduct, there are many awkward aspects of scharfsandhi.py:
+  * Many of Peter's comments were moved, and need to be put where they belong.
+  * Most routines are written as class functions, but need to be rewritten
+    as normal class methods.  
+* The 'logic' is quite complicated, and hard to understand.  For such an
+  important functionality as sandhi computations,  a clear documentation 
+  is desireable.
+* This documentation should include a fuller understanding of the import of
+  the sandhi options.
+* Some of the sandhi options available in the Pascal version may be missing
+  in the Java and Python versions. I think there are still other option choices
+  that are not implemented. (e.g., compound sandhi niH-sanDi -> nissanDi, but
+  maybe also niHsanDi is a valid option).
+* The test coverage is extensive, but is it complete?
+  Tests of each individual routine is a goal.
+* It should be able to extend the functionality so that sandhi can be
+  applied in other contexts, notably that of combining stems and endings in
+  inflections (declensions, conjugations).  
+* Bucknell describes sandhi in a quite different way, which may be amenable
+  to programmatic implementation. 
+* The program can be used to generate 'inverse sandhi' data. Scharf and I 
+  briefly worked on this at one time.  This should be brought into this form.
+* The program currently requires SLP1 data. Existing transcoding routines
+  can be incorporated so that sandhi of Devanagari text is easy.
 
 
 
-
-  
