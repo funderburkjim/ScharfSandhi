@@ -29,8 +29,6 @@ def diff_string(x, y):
  b = [c for c in x if c not in y]
  return (''.join(b))
 
- 
- 
 class ScharfSandhi(object):
  """ generated source for class ScharfSandhi """
 
@@ -481,666 +479,20 @@ class ScharfSandhi(object):
  Anunasika = bool()
  Padbound = str()
  dbg = False
-
- #  initialize Soundary
- #  currently this routine does nothing.
- # 
- #   * 
- #   * @param x 
- #   * @param y
- #   * @return a String containing those characters of x which
- #   * are not in y.
- #   
- #   print "diff_string: x="+x + ", y=" + y + ", ans="+ ans;
- #  c is a char ,implemented as a string of length 1
- #  set is a "set of char", implemented as a string.
- # 
- #   * It returns 0 (ok) or 4 (error)
- #   * @param compound_ans C for compound sandhi, E for External sandhi
- #   * @param vedic_ans  Y or N
- #   * @param closeSandhi_ans N,Y,S
- #   * @param despace_ans Y or N
- #   
- #  initialize external flags to false.
- # PMS 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
- # PMS 8.3.36.  vA Sari
- # PMS 8.3.37.  kupvoH XkXpau ca.
- # PMS 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
- # PMS 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
- # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
- #  process vedic answer
- #  print "Is this a Vedic text (chandas)?\n";
- #  print "Default no: ";
- #  readln(Answer);
- # -- closeSandhi_ans
- #  print "Do you want to exercise close sandhi options?\n";
- #  print ""N" or "n" to decline\n";
- #  print ""Y" or "y" to accept\n";
- #  print ""S" or "s" to follow standard editorial practice\n";
- #  print "Any other character to select options individually: ";
- #  readln(Answer);
- # PMS 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
- # PMS 8.3.36.  vA Sari
- # PMS 8.3.37.  kupvoH XkXpau ca.
- # PMS 8.4.63.  SaS cho "Ti. (jhayaH 62, anyatarasyAm 62)
- # PMS 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
- # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
- # PMS Close sandhi within compounds
- # PMS 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
- # PMS 8.3.36.  vA Sari
- # PMS technically, 8.3.37 should also apply but it is never seen
- # PMS 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
- # PMS 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
- # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
- # PMS display standard editorial practice for compound sandhi
- # PMS External: 8.4.63 and 8.4.45
- # PMS 8.4.63.  SaS cho "Ti. (jhayaH 62, anyatarasyAm 62)
- # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
- # print "The optional sandhi in the following sutras will apply:\n";
- # print "  8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)\n";
- # print "  8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62 ) . \n";
- # PMS disabled Close sandhi between upasargas and their following verb forms
- # PMS CloseUpasargaSandhi = true;
- # PMS print "Close sandhi will be observed between upasargas and their following verb forms\n";
- # PMS print "After the upasarga "sam",\n";
- # PMS print "  8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).\n";
- #  non-functioning. old code shown for possible reuse elsewhere
- # PMS peruse options
- # print "Choose sandhi options ("Y" or "y" to accept):\n";
- # print "6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71).\n";
- # print "  Pada final long vowel augmented with c before ch ? ";
- #   readln(Answer);
- #   if ( Answer eq "" ) {
- # Answer = "?";
- #   }
- #   if (Answer eq "Y") {
- # TukPadantat = true;
- #   }
- #   //print "8.3.36.  vA Sari.\n";
- #   print "  S, z or s before palatal, retroflex or dental stop respectively? ";
- # //  readln(Answer);
- #   if ( Answer eq "" ) {
- # Answer = "?";
- #   }
- #   if (Answer eq "Y") {
- # ScharSchari = true;
- #   }
- #   print "8.3.37.  kupvoH XkXpau ca.\n";
- #   print "   jihvamuliya, upadhmaniya before gutteral or labial stop respectively? ";
- # //  readln(Answer);
- #   if ( Answer eq "" ) {
- # Answer = "?";
- #   }
- #   if (Answer eq "Y") {
- # XkXpKupvoh = true;
- #   }
- #   print "8.4.63.  SaS cho "wi . (jhayaH 62, anyatarasyAm 62\n";
- #   print " ch after stops ? ";
- # //  readln(Answer);
- #   if ( Answer eq "" ) {
- # Answer = "?";
- #   }
- #   if (Answer eq "Y") {
- # ChAti = true;
- #   }
- #   print "8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).\n";
- #   print "  AnusvAra  stop homogenous with following stop? ";
- # //  readln(Answer);
- #   if ( Answer eq "" ) {
- # Answer = "?";
- #   }
- #   if (Answer eq "Y") {
- # ParaSavarna = true;
- #   }
- #   print "8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)\n";
- #   print "(At present the program does not handle nasalized semivowels)\n";
- #   print "(which, though rarely found in editions, go with this sandhi.)\n";
- #   print "  Stops  corresponding nasal before a nasal? ";
- # //  readln(Answer);
- #   if ( Answer eq "" ) {
- # Answer = "?";
- #   }
- #   if (Answer eq "Y") {
- # Anunasika = true;
- #   }
- #   if ( (not ParaSavarna) or (not Anunasika) ) {
- # print " Do you want to observe close sandhi after upasargas ? ";
- # //   readln(Answer);
- # if ( Answer eq "" ) {
- #  Answer = "?";
- # }
- # if (Answer eq "Y") {
- #  CloseUpasargaSandhi = true;
- # }
- #   }
- #   print "The optional sandhi in the following sutras will apply:\n";
- #   if ( TukPadantat ) {
- # print "  6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71).\n";
- #   }
- #   if ( ScharSchari ) {
- # print "  8.3.36.  vA Sari.\n";
- #   }
- #   if ( XkXpKupvoh ) {
- # print "  8.3.37.  kupvoH XkXpau ca.\n";
- #   }
- #   if ( ChAti ) {
- # print "  8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62 ) . \n";
- #   }
- #   if ( ParaSavarna ) {
- # print "  8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).\n";
- #   }
- #   if ( Anunasika ) {
- # print "  8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)\n";
- #   }
- #   if ( CloseUpasargaSandhi ) {
- # //PMS close upasarga sandhi
- # print "Close sandhi will be observed after upasargas\n";
- # if ( not ParaSavarna ) {
- #  print "After the upasarga "sam",\n";
- #  print "  8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).\n";
- #  }
- # if ( not Anunasika ) {
- #  print "After the upasarga "ud",\n";
- #  print "  8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)\n";
- #  }
- # } //PMS close upasarga sandhi
- # PMS peruse options
- # PMS Choose spacing options
- #   print "Hyphens will be deleted between compound elements.\n";
- # PMS spaceoptions
- #   print "Spaces will be deleted where a single vowel replaces final and initial vowels.\n";
- #   print "Do you wish to eliminate spaces between prefixes and verbs\n";
- #   print "and between final consonants and a following sound?\n";
- #   print "Y/y (yes) to delete spaces, any other character to keep.";
- #   readln(Answer);
- #   Answer = "Y"; //force despacing
- # PMS spaceoptions
- # 
- #   * returns position in Linary of the last character which is not a space;
- #   * returns 0 of all elements of Linary are spaces.
- #   
- # 
- #   * Searches Linary for either chtr or fldch. Returns of match.
- #   * Discounts trailing spaces.
- #   * @param chtr
- #   * @param fldch
- #   * @param istart
- #   * @return Returns -1 if istart is < 1 or > linmax
- #   *  Returns 0 if no match found in Linary
- #   *  Returns index (istart to linmax) of first match found.
- #   
- # 
- #   * Searches backward in Linary for first occurrence of given character
- #   * @param chtr character to search for
- #   * @param istart starting position
- #   * @return return -1 if istart is inappropriate
- #   * return 0 if chtr not found in Linary
- #   * return I if nearest occurrence (from istart down to 1) of chtr is at index I
- #   
- # error in conversion to Java  if (IEnd == 0){return 0;}
- # 
- #   * Insert character at given position in Linary.
- #   * If the position is prior to first position, it resets to first position
- #   * If position is after the last non-space position, it resets to first ending
- #   * non-space position.
- #   * Linary may be augmented by spaces, if necessary. Thus NoSpace will not be set to true.
- #   * @param chtr character to insert
- #   * @param index position of insertion
- #   
- #  add some more space to Linary
- # print "insertary: Augmenting Linary: linmax starts as " + linmax;
- #  this is what sandhimain modifies.
- #  print "insertary: linmax now " + linmax + ", IEnd= " + IEnd;
- # 
- #   * remove the character at position 'index' from Linary.
- #   * If index indexes a position after the last non-space, no character is deleted
- #   * @param index
- #   
- # 
- #   * Returns a substring of Linary consisting of (index1-index2)+1 characters beginning at index1
- #   * @param index1
- #   * @param index2
- #   * @return
- #   
- # 
- #   * Returns positions (Isthana and Iyatna) in Soundary matrix
- #   * where the character 'aksara' is found.
- #   * Returns (0,0) if not found.
- #   * @param aksara
- #   * @return
- #   
- # 
- #   * {1.1.9 vt. fkAra kArayoH savarRavidhiH}
- #   * uses globals Linary,Index.
- #   * May modify Linary,Isthana1,Isthana2
- #   
- # 
- #   * {6.1.101.  akaH savafRe dIrghaH}
- #   * Uses globals Linary,Index,Isthana1
- #   * Modifies Linary,EkahPurvaParayoh
- #   
- # {6.1.84.  ekaH pUrvaparayoH}
- # 
- #   * 6.1.88.  vfddhir eci
- #   * Uses globals Linary,Index,Isthana2
- #   * Modifies Linary,EkahPurvaParayoh
- #   
- # {6.1.84.  ekaH pUrvaparayoH}
- # 
- #   * 6..1.87.  Ad guRaH
- #   * Uses globals Linary,Index,Isthana2
- #   * Modifies Linary,EkahPurvaParayoh
- #   
- # {6.1.84.  ekaH pUrvaparayoH}
- # imurdhanya:
- # {1.1.51.  uraR raparaH}
- # idantya:
- # 
- #   * 6.1.77.  iko yaR aci
- #   * Uses globals Linary,Index,Isthana1
- #   * Modifies Linary
- #   
- # 
- #  * 6.1.109.  eNaH padAntAd ati
- #   * Uses globals Linary,Index
- #   * Modifies Linary
- #   
- # {}
- # 
- #  * 6.1.78.  eco 'yavAyAvaH
- #   * Uses globals Linary,Index
- #   * Modifies Linary,Index. May set Error
- #   
- # 
- #   * Uses globals Linary,Index,Isthana1,Isthana2
- #   * Modifies Linary,Index.
- #  * Calls: rlvarnayormithahsavarnyam, akahsavarnedirghah,vrddhireci,
- #  * adgunah,ikoyanaci,enahpadantadati,ecoyavayavah
- #   
- # {6.1.101.  akaH savafRe dIrghaH}
- # PMS: && Linary[Index+1] not in Avarna
- # PMS: 6.1.88  vfddhir eci
- # PMS: Linary[Index+1] in Ik
- # PMS: 6.1.87  Ad guRaH
- # PMS: Linary[Index-1] in Ik && not savarna with Linary[Index+1]
- # PMS: 6.1.77.  iko yaR aci
- # PMS: Linary[Index-1] in Ec
- # PMS: 6.1.109.  eNaH padAntAd ati
- # PMS: set_memberP(Linary[Index-1],Ec) && set_memberP(Linary[Index+1],Ic)
- # PMS: 6.1.78.  eco "yavAyAvaH
- # 
- #  * The substring of 'x' specified by idx1,idx2 is replaced by the string y.
- #  * @param x input string
- #  * @param idx1  first character position at which to replace (inclusive)
- #  * @param idx2  last character position at which to replace (exclusive)
- #  * @param y  string for replacement.
- #  * @return string resulting from replacement.
- #  
- # char[] ax = x.toCharArray();
- # 
- #  * Uses globals Pada1,Linary,Index
- #  * Modifies Pada1,Linary
- #  
- # 
- #  * 6.1.73.  che ca (tuk 71)
- #  * Uses globals Linary,Index,Iyatna1
- #  * Modifies Linary,Index,Error
- #  
- # 
- #  * 6.1.74.  ANmANoSca (che 73, tuk 71)
- #  * Uses globals Linary,Index,Pada1
- #  * Modifies Linary,Index,Error
- #  
- # PMS: you'll have to add the condition that these are AN && mAN when that info is available
- # 
- #  * 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
- #  * Uses globals Linary,Index,
- #  * Modifies Linary,Index,Error,Isthana1,Iyatna1
- #  
- # PMS: don"t want to do it if anmanosca just applied
- #  REPLACE exit(sandhi);
- # 
- #  * 6.1.132.  etattadoH sulopo "kor anaYsamAse hali
- #  * Uses globals Linary,Index,Pada1
- #  * Modifies Linary,Index
- #  
- # 
- #  * 8.2.39.  jhalAM jaSo 'nte
- #  * Uses globals Linary,Index,Pada1
- #  * Modifies Linary,Isthana1,Iyatna1
- #  
- # PMS: because ru =skts; I could choose another character
- # PMS: jhalamjasonte
- # 
- #  * Uses globals Linary,Index
- #  * Modifies Linary
- #  
- # PMS: 8.2.66.  sasajuzo ruH
- # PMS: exception to 8.2.39 so must apply before it
- # 
- #  * 8.2.68.  ahan
- #  * Uses globals Linary,Index,Pada1,Pada2
- #  * Modifies Linary
- #  
- # PMS: vArttika, but had to add rAtra 21045, rAtre 24028, rAtrARAm 33137
- # PMS: if ahan is termed pada && Pada2 in Sup, so that Linary[Index+1]=sktbh || skts, ditto
- # PMS: 8.2.69.  ro "supi
- # 
- #  * 8.2.70.  amnarUdharavarityubhayathA chandasi
- #  * Uses globals Linary,Index,Pada1
- #  * Modifies Linary
- #  
- # PMS: actually you get it both ways in chandas, ru too
- # 
- #  * 6.1.13.  ato ror aplutad aplute.  6.1.14.  haSi ca
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Index
- #  
- # PMS: Linary[Index-1=sktu; adguna
- # 
- #  * 8.3.7.  naS chavy apraSAn
- #  * Uses globals Linary,Index,Pada1
- #  * Modifies Linary,Index,Error
- #  
- # PMS: 8.3.4.  anunAsikAt paro "nusvAraH
- # 
- #  * 8.3.14.  ro ri
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Index,Dhralopa
- #  
- # 
- #  * 6.3.111.  qhralope pUrvasya dIrgho 'RaH
- #  * Uses globals Linary,Index,Dhralopa
- #  * Modifies Linary
- #  
- # 
- #  * 8.3.17.  bhobhagoaghoapUrvasya yo 'Si
- #  * Uses globals Linary,Index,Pada1
- #  * Modifies Linary
- #  
- # 
- #  * 8.3.15.  kharavasAnayor visarjanIyaH
- #  * Uses globals Linary,Index
- #  * Modifies Linary
- #  
- #  print "kharachk: '" + Linary[Index - 1] + "', '"+Linary[Index + 1]+"'" ;
- # 
- #  * 8.3.19.  lopaH SAkalyasya
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Index
- #  
- # 
- #  * 8.3.20.  oto gArgyasya
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Index
- #  
- # 
- #  * 8.3.23.  mo 'nusvAraH
- #  * Uses globals Linary,Index
- #  * Modifies Linary
- #  
- # 
- #  * 8.3.32.  Namo hrasvAd aci NamuR nityam
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Index,Error
- #  
- # 
- #  * 8.3.34.  visarjanIyasya saH
- #  * Uses globals Linary,Index
- #  * Modifies Linary
- #  
- #  type = boolean;
- # PMS: 8.3.35.  Sarpare visarjanIyaH.
- # PMS: 8.3.36.  vA Sari.  8.3.37.  kupvoH XkXpau ca.
- # 
- #  * 8.3.36.  vA Sari
- #  * Uses globals Linary,Index
- #  * Modifies Linary
- #  
- # 
- #  *  8.3.37.  kupvoH XkXpau ca (khari 15).
- #  *  8.3.41, 8.3.45 && 8.3.46 are apavAdas of this so must precede it.
- #  * Uses globals Linary,Index
- #  * Modifies Linary
- #  
- # PMS: by 8.3.15, kharavasAnayorvisarjanIyaH, visarga occurs before avasAna too.  but Xk && Xp don"t.
- # PMS: Hence, khari is understood here too
- # PMS: 8.3.35.  Sarpare visarjanIyaH.
- # 
- #  * 8.3.41.  idudupadhasya cApratyayasya (kupvoH 37, iRaH zaH 39
- #  * Uses globals Linary,Index,Pada1
- #  * Modifies Linary
- #  
- # PMS: exception to 8.3.36.  kupvoH XkaXpau ca, which is an exception to 8.3.34. visarjanIyasya saH,
- # PMS: so should accompany procedure visarjaniyasyasah.  Must follow 8.3.15.  kharavasAnayor visarjanIyaH
- # PMS: bahis, Avis =exception to 8.3.46
- # 
- #  * 8.3.45. nityamsamAse 'nutarapadasthasya
- #  * Uses globals Linary,Index
- #  * Modifies Linary
- #  
- # PMS: Pada1-u.p. [SOFT HYPHEN]
- # 
- #  * 8.3.46.  ataH kfkamikaMsakumbhapAtrakuSAkarRIzvanavyayasya (samAse 45)
- #  * Uses globals Linary,Index,Pada1,Pada2
- #  * Modifies Linary
- #  
- # PMS: miTas, namas, (tiraskAra by 8.3.42.  avaskara, namaskAra?) krtvasuc, suc, i.e. not avyaya
- # 
- #  * 8.4.40.  stoH ScunA ScuH
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Isthana1,Iyatna1,Isthana2,Iyatna2
- #  
- # PMS: 8.4.44.  SAt. (na, toH)
- # 
- #  * 8.4.41.  zwunA zwuH
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Isthana1,Iyatna1,Isthana2,Iyatna2
- #  
- # PMS: 8.4.42.  na padAntAwworanAm
- # PMS: 8.4.43.  toH zi. (na)
- # 
- #  * 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58)
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Isthana2,Iyatna2
- #  
- # PMS: don"t exercise the option for semivowels (yan) just now
- # 
- #  * 8.4.60.  tor li
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Isthana1,Iyatna1,Index,Error
- #  
- # 
- #  * 8.4.62.  jhayo ho 'nyatarasyAm
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Isthana1,Iyatna1
- #  
- # 
- #  * 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
- #  * Uses globals Linary,Index
- #  * Modifies Linary
- #  
- # PMS: vt. chatvamamIti vaktavyam:  Am instead of At.  tacchlokena, tacchmaSruRA
- # 
- #  * 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Isthana1,Iyatna1,Isthana2,Iyatna2
- #  
- # PMS: if ( set_memberP(Linary[Index - 1],Yar) && (Index + 2 < linmax) then
- # PMS: if (Iyatna2 eq isparsa5) || (Linary[Index + 2] == sktanunasika ) {
- # PMS: we wont exercise the nasalized option for the semivowels y, v && l; just for the stops
- # 
- #  * 8.4.55.  khari ca. (jhalAm 53, car 54)
- #  * Uses globals Linary,Index
- #  * Modifies Linary,Isthana1,Iyatna1
- #  
- # PMS: there is no final  "h" after jhalAm jaSo "nte, but there is skts by 8.3.34 visarjanIyasya saH
- # PMS: && sktsch && sktsh by 8.4.40-41 stoH ScunA scuH, zwunA zwuH so must exclude Sar
- # PMS: jhay=jhal-Sar
- # PMS: 8.4.56.  vavasane
- # 
- #  * 1.1.11. IdUdeddvivacanam pragfhyam
- #  * Uses globals Linary,Index,Pada1
- #  * Modifies Linary,Pragrhya
- #  
- # PMS: 1.1.11. IdUdeddvivacanam pragfhyam
- # PMS: 1.1.12.  adaso mAt
- # PMS: 1.1.15. ot
- # 
- #  * This routine inadequately documented
- # 
- # PMS: sa(u?ejf) is usually the pronoun tad [LATIN SMALL LETTER U WITH ACUTE]
- #  last character of Pada1.
- #  RiN change made 20090801, PMS.
- #  leave loop
- #  if (!PaninianText)
- # PMS (June 2010)The whole section of sandhiPrep up to "if Compound"
- #  is aimed specifically at the Astadhyayi and perhaps other texts of
- #   Paninian grammar and should be excluded from general sandhi.
- # PMS: purandrau
- # PMS: normal stem changes
- # PMS: aYc
- # PMS: ak
- # PMS: an-/in-
- #  noop
- # PMS: normal "an-"/"in-"
- # PMS: an-/in-
- # PMS: 82104
- # PMS: "pum"
- # PMS: no preparation necessary, normal sandhi will follow
- # PMS: case statement
- # PMS: astadhyayiSandhiPrep
- # PMS: sandhiprep
- # 
- #  * From a given input string, generate an array of strings.
- #  * The even elements (0,2,4...) of the array have value
- #  * "s" if the next array element is a string of Sanskrit characters
- #  * "o" if the next array element is a string of other non-Sanskrit characters
- #  * Sanskrit characters are according to the SLP1 spelling.
- #  * <p>
- #  * "- 'aAiIuUfFxXeEoOMHkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzshL|/"
- #  * <p>
- #  * Note that the '/' is an artificial 'Sandhi-blocking' character.
- # 
- #  Only non-alphabetic chars considered to be Sanskrit are
- #  - and space and apostrophe and "|" and "/"
- #  20090801, "/" is a sandhi-blocking character.
- #  String sanskrit_str = "- 'aAiIuUfFxXeEoOMHkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzshL|/";
- #  June 22: Added period to list of Sanskrit characters.
- #  state = OTHER
- #  should not occur
- # 
- #   * Prepare input for sandhimain
- #   * Accept string argument, to which sandhi is to be applied.
- #   * return a string argument as the answer
- #   * return a blank string if there is an error
- #   * print an informative message if there is an error.
- #  * Two special values of 's' are related to debugging: 'dbg' and 'off'
- # 
- #  this is what sandhimain modifies.
- #  change of June 22, 2010
- #  if ((Error != 0) && (!((NoSpace && (Error == 2))))){
- #  initialize some global variables
- #   initialize some local variables
- # PMS: the first character in Linary should not be a word boundary
- #  ejf.
- #   print "Index="+Index;
- # PMS: while a padbound character is found
- # PMS: PurvaPada, Pada1, Pada2
- # PMS: Pada1 is an uttarapada
- # PMS: first Pada1 in Linary
- # PMS: first Pada1 in Linary
- # July 2010.  On the first pass, Pada1 is known to begin with
- #  a blank, unless the following is done.
- # PMS: we've been through here before so
- # PMS: padbound=hyphen
- # PMS: not found so last word
- # PMS: for compound, Pada2, NxtPada1
- # PMS: now the next Pada1 when padbound =hyphen
- #  corrected
- # PMS: Pada2, NxtPada1 hyphen
- # PMS: end of PurvaPada, Pada1, Pada2
- # PMS: determine whether Pada1 is an upasarga
- # PMS: more likely karmapravacanIya than upasarga
- # to leave loop
- # PMS: stem final sound changes for compound sandhi && some special sandhi for grammatical technical terms
- # PMS: initialized in sandhiPrep
- # PMS: sandhi subroutines:  within compound && following an upasarga closer sandhi is observed when an option is allowed
- # PMS: otherwise (between syntactic units) looser sandhi is observed
- # PMS: kosher exceptions to sandhi
- # PMS: must precede 8.4.40.  stoH ScunA ScuH
- # PMS: 6.1.73.  che ca
- # PMS: 6.1.74.  ANmANoSca (che 73, tuk 71)
- # PMS: 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
- # PMS: must precede vowel sandhi
- # PMS: 6.1.132.  etattadoH sulopo "kor anaYsamAse hali
- # PMS: 8.2.70.  amnarUdharavarityubhayathA chandasi
- # PMS: 8.2.66.  sasajuzo ruH
- # PMS: exception in 63110
- # PMS: 8.2.68.  ahan
- # PMS: 6.1.13.  ato ror aplutad aplute.  6.1.14.  haSi ca.  Must precede 6.1.109.  eNaH padAntAd ati
- # PMS: 8.2.39.  jhalAM jaSo "nte
- # PMS: 8.3.7.  naS chavy apraSAn
- # PMS: 8.3.14.  ro ri  ejf: Dhralopa is global
- # PMS: 6.3.111.  qhralope pUrvasya dIrgho "RaH
- # PMS: 8.3.17.  bhobhagoaghoapUrvasya yo "Si
- # PMS: 8.3.15.  kharavasAnayor visarjanIyaH
- # PMS: 8.3.20.  oto gArgyasya.  This cannot precede vowel sandhi
- # PMS: 8.3.23.  mo "nusvAraH
- # PMS: 8.3.32.  Namo hrasvAd aci NamuR nityam
- # PMS: 8.3.34.  visarjanIyasya saH
- # PMS: 8.3.36.  vA Sari
- # PMS: 8.3.41, 8.3.45 && 8.3.46 are apavAdas of 8.3.37 so they must precede it
- # PMS: 8.3.41.  idudupadhasya cApratyayasya (kupvoH 37, iRaH zaH 39)
- # PMS: 8.3 .45. nitya samAse "nutarapadasthasya
- # PMS: 8.3.46.  ataH kfkamikaMsakumbhapAtrakuSAkarRIzvanavyayasya
- # PMS: 8.3.37.  kupvoH XkXpau ca (khari 15).
- # PMS: 8.4.40.  stoH ScunA ScuH
- # PMS: 8.4.41.  zwunA zwuH
- # PMS: 8.4.60.  tor li
- # PMS: 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
- # PMS: 8.4.62.  jhayo ho "nyatarasyAm
- # PMS: 8.4.55.  khari ca
- # PMS: 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
- # PMS: must follow vowel sandhi
- # PMS: 8.3.19.  lopaH SAkalyasya.  Must follow 6.1.78.  eco "yavAyAvaH
- # PMS: If made to include semivowels, 8.4.45 must follow 8.3.19-20.  In present form it needn"t.
- # PMS: 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
- # PMS: get rid of the space between words
- # PMS: EkahPurvaParayoh set in acsandhi in subroutines: akahsavarnedirghah, adgunah, vrddhireci
- # PMS: do the same steps if two padbounds in a row because last sandhi eliminated single char word
- # PMS: the search for the next padbound begins at Index+1
- # PMS: Removed "or Upasarga"
- # PMS: find the next pada boundary
- # PMS: conclude while loop when padbound character is not found (Index=0)
- # 
- #   * Accept string argument, to which sandhi is to be applied.
- #   * Return a string argument as the answer
- #   * Return a blank string if there is an error
- #   * Print an informative message if there is an error.
- # 
- #  the doubling '\\' is a Java quirk of string literals
- #  \s is whitespace
- # 
- #  * 
- #  * @param strings
- #  * @param separator
- #  * @return
- #  
- # 
- #   * a debugging routine. If global 'dbg' value is true, then
- #   * a debugging message is printed labeled with the parameter 's'
- #   * @param s
- #   
- # dbg=true;
+ 
  @classmethod
  def init(cls):
-  """ generated source for method init """
+  """ generated source for method init 
+      currently this routine does nothing.
+  """
 
 
  @classmethod
  def set_memberP(cls, c, s):
-  """ generated source for method set_memberP """
+  """ generated source for method set_memberP 
+  c is a char ,implemented as a string of length 1
+  s is a "set of char", implemented as a string.
+  """
   if c in s:
    return True
   else:
@@ -1152,26 +504,34 @@ class ScharfSandhi(object):
       This method returns a copy of the string, 
       with leading and trailing whitespace omitted.
   """
-  return x.strip() # x.trim()
+  return x.strip() 
 
  @classmethod
  def sandhioptions(cls, compound_ans, vedic_ans, closeSandhi_ans, despace_ans):
-  """ generated source for method sandhioptions """
+  """ generated source for method sandhioptions 
+  # 
+  #   * Returns 0 (ok) or 4 (error)
+  #   * @param compound_ans C for compound sandhi, E for External sandhi
+  #   * @param vedic_ans  Y or N
+  #   * @param closeSandhi_ans N,Y,S
+  #   * @param despace_ans Y or N
+  """
   #Answer = str()
   Yes = "Y"
   No = "N"
   error = 0
+  #  initialize external flags to false.
   cls.Despace = False
   cls.External = False
   cls.Compound = False
   cls.Chandas = False
   cls.CloseUpasargaSandhi = False
-  cls.TukPadantat = False
-  cls.ScharSchari = False
-  cls.XkXpKupvoh = False
-  cls.ChAti = False
-  cls.ParaSavarna = False
-  cls.Anunasika = False
+  cls.TukPadantat = False # PMS 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
+  cls.ScharSchari = False # PMS 8.3.36.  vA Sari
+  cls.XkXpKupvoh = False  # PMS 8.3.37.  kupvoH XkXpau ca.
+  cls.ChAti = False     # PMS 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
+  cls.ParaSavarna = False # PMS 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
+  cls.Anunasika = False # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
   Answer = compound_ans.upper()
   if Answer == "":
    Answer = "?"
@@ -1184,7 +544,10 @@ class ScharfSandhi(object):
   else:
    cls.Error = 4
    return cls.Error
-  #print "sandhioptions: Padbound='%s'" % cls.Padbound 
+  #  process vedic answer
+  #  print "Is this a Vedic text (chandas)?\n";
+  #  print "Default no: ";
+  #  readln(Answer);
   Answer = vedic_ans.upper()
   if Answer == "":
    Answer = "?"
@@ -1195,16 +558,23 @@ class ScharfSandhi(object):
   else:
    cls.Error = 4
    return cls.Error
+  # -- closeSandhi_ans
+  #  print "Do you want to exercise close sandhi options?\n";
+  #  print ""N" or "n" to decline\n";
+  #  print ""Y" or "y" to accept\n";
+  #  print ""S" or "s" to follow standard editorial practice\n";
+  #  print "Any other character to select options individually: ";
+  #  readln(Answer);
   Answer = closeSandhi_ans.upper()
   if Answer == "":
    Answer = "?"
   if Answer == "Y":
-   cls.TukPadantat = True
-   cls.ScharSchari = True
-   cls.XkXpKupvoh = True
-   cls.ChAti = True
-   cls.ParaSavarna = True
-   cls.Anunasika = True
+   cls.TukPadantat = True # PMS 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
+   cls.ScharSchari = True # PMS 8.3.36.  vA Sari
+   cls.XkXpKupvoh = True  # PMS 8.3.37.  kupvoH XkXpau ca.
+   cls.ChAti = True # PMS 8.4.63.  SaS cho "Ti. (jhayaH 62, anyatarasyAm 62)
+   cls.ParaSavarna = True # PMS 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
+   cls.Anunasika = True # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
   elif Answer == "N":
    cls.TukPadantat = False
    cls.ScharSchari = False
@@ -1214,22 +584,142 @@ class ScharfSandhi(object):
    cls.Anunasika = False
   elif Answer == "S":
    if cls.Compound:
-    cls.TukPadantat = True
-    cls.ScharSchari = True
-    cls.ChAti = True
-    cls.ParaSavarna = True
-    cls.Anunasika = True
+    # PMS Close sandhi within compounds
+    cls.TukPadantat = True # PMS 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
+    cls.ScharSchari = True # PMS 8.3.36.  vA Sari
+    # PMS technically, 8.3.37 should also apply but it is never seen
+    cls.ChAti = True # PMS 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
+    cls.ParaSavarna = True # PMS 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
+    cls.Anunasika = True # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
+    # PMS display standard editorial practice for compound sandhi
    else:
-    cls.ChAti = True
-    cls.Anunasika = True
-    #if cls.dbg:  // ejf commented out
-  else:
+    # PMS External: 8.4.63 and 8.4.45
+    cls.ChAti = True # PMS 8.4.63.  SaS cho "Ti. (jhayaH 62, anyatarasyAm 62)
+    cls.Anunasika = True # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
+     # if cls.dbg:  // ejf commented out
+     # print "The optional sandhi in the following sutras will apply:\n";
+     # print "  8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)\n";
+     # print "  8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62 ) . \n";
+     # PMS disabled Close sandhi between upasargas and their following verb forms
+     # PMS CloseUpasargaSandhi = true;
+     # PMS print "Close sandhi will be observed between upasargas and their following verb forms\n";
+     # PMS print "After the upasarga "sam",\n";
+     # PMS print "  8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).\n";
+  else:   #  non-functioning. old code shown for possible reuse elsewhere
+   # PMS peruse options
+   # print "Choose sandhi options ("Y" or "y" to accept):\n";
+   # print "6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71).\n";
+   # print "  Pada final long vowel augmented with c before ch ? ";
+   #   readln(Answer);
+   #   if ( Answer eq "" ) {
+   # Answer = "?";
+   #   }
+   #   if (Answer eq "Y") {
+   # TukPadantat = true;
+   #   }
+   #   //print "8.3.36.  vA Sari.\n";
+   #   print "  S, z or s before palatal, retroflex or dental stop respectively? ";
+   # //  readln(Answer);
+   #   if ( Answer eq "" ) {
+   # Answer = "?";
+   #   }
+   #   if (Answer eq "Y") {
+   # ScharSchari = true;
+   #   }
+   #   print "8.3.37.  kupvoH XkXpau ca.\n";
+   #   print "   jihvamuliya, upadhmaniya before gutteral or labial stop respectively? ";
+   # //  readln(Answer);
+   #   if ( Answer eq "" ) {
+   # Answer = "?";
+   #   }
+   #   if (Answer eq "Y") {
+   # XkXpKupvoh = true;
+   #   }
+   #   print "8.4.63.  SaS cho "wi . (jhayaH 62, anyatarasyAm 62\n";
+   #   print " ch after stops ? ";
+   # //  readln(Answer);
+   #   if ( Answer eq "" ) {
+   # Answer = "?";
+   #   }
+   #   if (Answer eq "Y") {
+   # ChAti = true;
+   #   }
+   #   print "8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).\n";
+   #   print "  AnusvAra  stop homogenous with following stop? ";
+   # //  readln(Answer);
+   #   if ( Answer eq "" ) {
+   # Answer = "?";
+   #   }
+   #   if (Answer eq "Y") {
+   # ParaSavarna = true;
+   #   }
+   #   print "8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)\n";
+   #   print "(At present the program does not handle nasalized semivowels)\n";
+   #   print "(which, though rarely found in editions, go with this sandhi.)\n";
+   #   print "  Stops  corresponding nasal before a nasal? ";
+   # //  readln(Answer);
+   #   if ( Answer eq "" ) {
+   # Answer = "?";
+   #   }
+   #   if (Answer eq "Y") {
+   # Anunasika = true;
+   #   }
+   #   if ( (not ParaSavarna) or (not Anunasika) ) {
+   # print " Do you want to observe close sandhi after upasargas ? ";
+   # //   readln(Answer);
+   # if ( Answer eq "" ) {
+   #  Answer = "?";
+   # }
+   # if (Answer eq "Y") {
+   #  CloseUpasargaSandhi = true;
+   # }
+   #   }
+   #   print "The optional sandhi in the following sutras will apply:\n";
+   #   if ( TukPadantat ) {
+   # print "  6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71).\n";
+   #   }
+   #   if ( ScharSchari ) {
+   # print "  8.3.36.  vA Sari.\n";
+   #   }
+   #   if ( XkXpKupvoh ) {
+   # print "  8.3.37.  kupvoH XkXpau ca.\n";
+   #   }
+   #   if ( ChAti ) {
+   # print "  8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62 ) . \n";
+   #   }
+   #   if ( ParaSavarna ) {
+   # print "  8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).\n";
+   #   }
+   #   if ( Anunasika ) {
+   # print "  8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)\n";
+   #   }
+   #   if ( CloseUpasargaSandhi ) {
+   # //PMS close upasarga sandhi
+   # print "Close sandhi will be observed after upasargas\n";
+   # if ( not ParaSavarna ) {
+   #  print "After the upasarga "sam",\n";
+   #  print "  8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).\n";
+   #  }
+   # if ( not Anunasika ) {
+   #  print "After the upasarga "ud",\n";
+   #  print "  8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)\n";
+   #  }
+   # } //PMS close upasarga sandhi
    cls.Error = 4
-   return (cls.Error)
+   return (cls.Error) # PMS peruse options
+  # PMS Choose spacing options
   if cls.Compound:
-   pass # ejf
+   #   print "Hyphens will be deleted between compound elements.\n";
+   pass 
   elif cls.External:
+   # PMS spaceoptions
+   #   print "Spaces will be deleted where a single vowel replaces final and initial vowels.\n";
+   #   print "Do you wish to eliminate spaces between prefixes and verbs\n";
+   #   print "and between final consonants and a following sound?\n";
+   #   print "Y/y (yes) to delete spaces, any other character to keep.";
+   #   readln(Answer);
    Answer = despace_ans
+   #   Answer = "Y"; //force despacing
    if Answer == "":
     Answer = "?"
    if Answer == "Y":
@@ -1239,12 +729,16 @@ class ScharfSandhi(object):
    else:
     cls.Error = 4
     return (cls.Error)
+  # PMS spaceoptions
   cls.Error = 0
   return cls.Error
 
  @classmethod
  def lengthary(cls):
-  """ generated source for method lengthary """
+  """ generated source for method lengthary
+   return position in Linary of the last character which is not a space;
+   return 0 if all elements of Linary are spaces.
+  """
   I = cls.linmax
   dbgPrint(False,"lengthary. Linary has length=%s, linmax=%s\nLinary=%s" %(len(cls.Linary),cls.linmax,cls.Linary))
   while 1 <= I:
@@ -1255,7 +749,16 @@ class ScharfSandhi(object):
 
  @classmethod
  def nxtposary(cls, chtr, fldch, istart):
-  """ generated source for method nxtposary """
+  """ generated source for method nxtposary
+  Searches Linary for either chtr or fldch. Returns of match.
+  Discounts trailing spaces.
+  @param chtr
+  @param fldch
+  @param istart
+  @return Returns -1 if istart is < 1 or > linmax
+   Returns 0 if no match found in Linary
+   Returns index (istart to linmax) of first match found.
+  """
   if istart < 1:
    return -1
   if istart > cls.linmax:
@@ -1275,11 +778,20 @@ class ScharfSandhi(object):
 
  @classmethod
  def lastposary(cls, chtr, istart):
-  """ generated source for method lastposary """
+  """ generated source for method lastposary
+  Searches backward in Linary for first occurrence of given character
+  @param chtr character to search for
+  @param istart starting position
+  @return return -1 if istart is inappropriate
+  return 0 if chtr not found in Linary
+  return I if nearest occurrence (from istart down to 1) of chtr is
+  at index I
+  """
   if istart < 1:
    return -1
   if istart > cls.linmax:
    return -1
+  # error in conversion to Java  if (IEnd == 0){return 0;}
   I = istart
   while 1 <= I:
    if cls.Linary[I] == chtr:
@@ -1289,10 +801,19 @@ class ScharfSandhi(object):
 
  @classmethod
  def insertary(cls, chtr, index):
-  """ generated source for method insertary """
+  """ generated source for method insertary
+  Insert character at given position in Linary.
+  If the position is prior to first position, it resets to first position
+  If position is after the last non-space position, it resets to first ending
+  non-space position.
+  Linary may be augmented by spaces, if necessary. Thus NoSpace will not be set to true.
+  @param chtr character to insert
+  @param index position of insertion
+   """
   cls.NoSpace = False
   IEnd = cls.lengthary()
   if IEnd == cls.linmax:
+   #  add some more space to Linary
    #print "insertary: Augmenting Linary: linmax starts as ", cls.linmax,len(cls.Linary)
    #print "Linary=",cls.Linary
    s1 = "".join(cls.Linary)
@@ -1300,6 +821,7 @@ class ScharfSandhi(object):
    #print "s1 length=",len(s1)
    s1 = s1 + "          "  # 10 spaces
    #print "s1 length (after padding)=",len(s1)
+   # cls.Linary  this is what sandhimain modifies.
    cls.Linary = [""] + list(s1) #s1.split("")
    #cls.Linary = list(s1) #s1.split("")
    #print "new length of Linary=",len(cls.Linary)
@@ -1326,7 +848,11 @@ class ScharfSandhi(object):
 
  @classmethod
  def deletary(cls, index):
-  """ generated source for method deletary """
+  """ generated source for method deletary
+  remove the character at position 'index' from Linary.
+  If index indexes a position after the last non-space, no character is deleted
+  @param index
+  """
   IEnd = cls.lengthary()
   if (index >= 1) and (index <= IEnd):
    I = index
@@ -1337,7 +863,12 @@ class ScharfSandhi(object):
 
  @classmethod
  def substrary(cls, index1, index2):
-  """ generated source for method substrary """
+  """ generated source for method substrary
+  Returns a substring of Linary consisting of (index1-index2)+1 characters beginning at index1
+  @param index1
+  @param index2
+  @return
+  """
   Tempstr = [] #StringBuffer()
   ans = ""
   IEnd = cls.lengthary()
@@ -1357,10 +888,14 @@ class ScharfSandhi(object):
 
  @classmethod
  def identify(cls, aksara):
-  """ generated source for method identify """
-  #I1 = int()
-  #I2 = int()
-  ans = [0,0] # " "*2 # ejf [None]*2
+  """ generated source for method identify
+  Returns positions (Isthana and Iyatna) in Soundary matrix
+  where the character 'aksara' is found.
+  Returns (0,0) if not found.
+  @param aksara
+  @return
+  """
+  ans = [0,0] 
   I1 = 1
   while I1 <= cls.maxsthana:
    I2 = 1
@@ -1377,7 +912,11 @@ class ScharfSandhi(object):
 
  @classmethod
  def rlvarnayormithahsavarnyam(cls):
-  """ generated source for method rlvarnayormithahsavarnyam """
+  """ generated source for method rlvarnayormithahsavarnyam
+  {1.1.9 vt. fkAra kArayoH savarRavidhiH}
+  uses globals Linary,Index.
+  May modify Linary,Isthana1,Isthana2
+  """
   if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Rvarna_and_Lvarna)) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Rvarna_and_Lvarna)):
    cls.Linary[cls.Index - 1] = cls.sktri
    cls.Linary[cls.Index + 1] = cls.sktri
@@ -1387,48 +926,72 @@ class ScharfSandhi(object):
 
  @classmethod
  def akahsavarnedirghah(cls):
-  """ generated source for method akahsavarnedirghah """
+  """ generated source for method akahsavarnedirghah
+  {6.1.101.  akaH savafRe dIrghaH}
+  Uses globals Linary,Index,Isthana1
+  Modifies Linary,EkahPurvaParayoh
+  """
   cls.Linary[cls.Index - 1] = cls.Soundary[cls.Isthana1][cls.idirgha]
-  cls.deletary(cls.Index + 1)
+  cls.deletary(cls.Index + 1) # {6.1.84.  ekaH pUrvaparayoH}
   cls.EkahPurvaParayoh = True
   cls.chk_point("akahsavarnedirghah")
 
  @classmethod
  def vrddhireci(cls):
-  """ generated source for method vrddhireci """
+  """ generated source for method vrddhireci
+  6.1.88.  vfddhir eci
+  Uses globals Linary,Index,Isthana2
+  Modifies Linary,EkahPurvaParayoh
+  """
   cls.Linary[cls.Index - 1] = cls.Soundary[cls.Isthana2][cls.ivrddhi]
-  cls.deletary(cls.Index + 1)
+  cls.deletary(cls.Index + 1) # {6.1.84.  ekaH pUrvaparayoH}
   cls.EkahPurvaParayoh = True
   cls.chk_point("vrddhireci")
 
  @classmethod
  def adgunah(cls):
-  """ generated source for method adgunah """
+  """ generated source for method adgunah
+  6..1.87.  Ad guRaH
+  Uses globals Linary,Index,Isthana2
+  Modifies Linary,EkahPurvaParayoh
+  """
   cls.Linary[cls.Index - 1] = cls.Soundary[cls.Isthana2][cls.iguna]
   if (cls.Isthana2 == cls.italavya) or (cls.Isthana2 == cls.iosthya):
-   cls.deletary(cls.Index + 1)
-  elif cls.Isthana2 == cls.imurdhanya:
-   cls.Linary[cls.Index + 1] = cls.sktr
-  elif cls.Isthana2 == cls.idantya:
+   cls.deletary(cls.Index + 1) # {6.1.84.  ekaH pUrvaparayoH}
+  elif cls.Isthana2 == cls.imurdhanya: # imurdhanya:
+   cls.Linary[cls.Index + 1] = cls.sktr # {1.1.51.  uraR raparaH}
+  elif cls.Isthana2 == cls.idantya: # idantya:
    cls.Linary[cls.Index + 1] = cls.sktl
   cls.EkahPurvaParayoh = True
   cls.chk_point("adgunah")
 
  @classmethod
  def ikoyanaci(cls):
-  """ generated source for method ikoyanaci """
+  """ generated source for method ikoyanaci
+  6.1.77.  iko yaR aci
+  Uses globals Linary,Index,Isthana1
+  Modifies Linary
+  """
   cls.Linary[cls.Index - 1] = cls.Soundary[cls.Isthana1][cls.iantahstha]
   cls.chk_point("ikoyanaci")
 
  @classmethod
  def enahpadantadati(cls):
-  """ generated source for method enahpadantadati """
+  """ generated source for method enahpadantadati
+  6.1.109.  eNaH padAntAd ati
+  Uses globals Linary,Index
+  Modifies Linary
+  """
   cls.Linary[cls.Index + 1] = cls.sktavagraha
   cls.chk_point("enahpadantadati")
 
  @classmethod
  def ecoyavayavah(cls):
-  """ generated source for method ecoyavayavah """
+  """ generated source for method ecoyavayavah
+  6.1.78.  eco 'yavAyAvaH
+  Uses globals Linary,Index
+  Modifies Linary,Index. May set Error
+  """
   if cls.Linary[cls.Index - 1] == cls.skte:
    cls.Linary[cls.Index - 1] = cls.skta
    cls.insertary(cls.skty, cls.Index)
@@ -1449,35 +1012,55 @@ class ScharfSandhi(object):
 
  @classmethod
  def acsandhi(cls):
-  """ generated source for method acsandhi """
+  """ generated source for method acsandhi
+  Uses globals Linary,Index,Isthana1,Isthana2
+  Modifies Linary,Index.
+  Calls: rlvarnayormithahsavarnyam, akahsavarnedirghah,vrddhireci,
+  adgunah,ikoyanaci,enahpadantadati,ecoyavayavah
+  """
   cls.rlvarnayormithahsavarnyam()
   cprev = cls.Linary[cls.Index - 1]
   cnext = cls.Linary[cls.Index + 1]
   if cls.set_memberP(cls.Linary[cls.Index - 1], cls.Ak):
    if (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Ak)) and (cls.Isthana1 == cls.Isthana2):
-    cls.akahsavarnedirghah()
+    cls.akahsavarnedirghah() # {6.1.101.  akaH savafRe dIrghaH}
    elif cls.set_memberP(cls.Linary[cls.Index - 1], cls.Avarna):
+    # PMS: && Linary[Index+1] not in Avarna
     if cls.set_memberP(cls.Linary[cls.Index + 1], cls.Ec):
-     cls.vrddhireci()
+     cls.vrddhireci() # PMS: 6.1.88  vfddhir eci
     else:
-     cls.adgunah()
+     # PMS: Linary[Index+1] in Ik
+     cls.adgunah() # PMS: 6.1.87  Ad guRaH
    else:
-    cls.ikoyanaci()
+    # PMS: Linary[Index-1] in Ik && not savarna with Linary[Index+1]
+    cls.ikoyanaci() # PMS: 6.1.77.  iko yaR aci
   else:
+   # PMS: Linary[Index-1] in Ec
    if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Ekn)) and (cls.Linary[cls.Index + 1] == cls.skta):
-    cls.enahpadantadati()
+    cls.enahpadantadati() # PMS: 6.1.109.  eNaH padAntAd ati
    else:
-    cls.ecoyavayavah()
+    # PMS: set_memberP(Linary[Index-1],Ec) && set_memberP(Linary[Index+1],Ic)
+    cls.ecoyavayavah() # PMS: 6.1.78.  eco "yavAyAvaH
   cls.chk_point("acsandhi")
 
  @classmethod
  def strReplace(cls, x, idx1, idx2, y):
   """ generated source for method strReplace 
-  'x' and 'y' are strings. Return a string
-This Java method replaces the characters in a substring of this StringBuffer with characters in the specified String.
-
-The substring begins at the specified start and extends to the character at index end - 1 or to the end of the StringBuffer if no such character exists. First the characters in the substring are removed and then the specified String is inserted at start.
+   The substring of 'x' specified by idx1,idx2 is replaced by the string y.
+   @param x input string
+   @param idx1  first character position at which to replace (inclusive)
+   @param idx2  last character position at which to replace (exclusive)
+   @param y  string for replacement.
+   @return string resulting from replacement.
+   'x' and 'y' are strings. Return a string
+   This Java method replaces the characters in a substring of this
+     StringBuffer with characters in the specified String.
+   The substring begins at the specified start and extends to the character
+   at index end - 1 or to the end of the StringBuffer if no such character
+   exists. First the characters in the substring are removed and then the
+   specified String is inserted at start.
   """
+  # char[] ax = x.toCharArray();
   #b = list(x)
   # b = b.replace(idx1, idx2, y)
   b0 = x[0:idx1]
@@ -1488,7 +1071,10 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def visargaprep(cls):
-  """ generated source for method visargaprep """
+  """ generated source for method visargaprep
+   Uses globals Pada1,Linary,Index
+   Modifies Pada1,Linary
+  """
   L = len(cls.Pada1)
   if (cls.Pada1 == "ahaH") or (cls.Pada1 == "svaH") or (cls.Pada1 == "antaH") or (cls.Pada1 == "prAtaH") or (cls.Pada1 == "punaH") or (cls.Pada1 == "mAtaH") or (cls.Pada1 == "kOsalyAmAtaH") or (cls.Pada1 == "sanutaH") or (cls.Pada1 == "catuH") or (cls.Pada1 == "prAduH"):
    cls.Linary[cls.Index - 1] = cls.sktr
@@ -1501,7 +1087,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def checa(cls):
-  """ generated source for method checa """
+  """ generated source for method checa
+   6.1.73.  che ca (tuk 71)
+   Uses globals Linary,Index,Iyatna1
+   Modifies Linary,Index,Error
+  """
   if (cls.Linary[cls.Index + 1] == cls.sktch) and (cls.Iyatna1 == cls.ihrasva):
    cls.insertary(cls.sktt, cls.Index)
    if cls.NoSpace:
@@ -1512,7 +1102,13 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def anmanosca(cls):
-  """ generated source for method anmanosca """
+  """ generated source for method anmanosca
+   6.1.74.  ANmANoSca (che 73, tuk 71)
+   Uses globals Linary,Index,Pada1
+   Modifies Linary,Index,Error
+     PMS: you'll have to add the condition that these are AN && mAN
+     when that info is available
+  """
   if (cls.Linary[cls.Index + 1] == cls.sktch) and ((cls.Pada1 == "A") or (cls.Pada1 == "mA")):
    cls.insertary(cls.sktt, cls.Index)
    if cls.NoSpace:
@@ -1523,7 +1119,12 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def padantadva(cls):
-  """ generated source for method padantadva """
+  """ generated source for method padantadva
+   6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
+   Uses globals Linary,Index,
+   Modifies Linary,Index,Error,Isthana1,Iyatna1
+  """
+  # PMS: don"t want to do it if anmanosca just applied
   temp = cls.identify(cls.Linary[cls.Index - 1])
   cls.Isthana1 = temp[0]
   cls.Iyatna1 = temp[1]
@@ -1531,13 +1132,17 @@ The substring begins at the specified start and extends to the character at inde
    cls.insertary(cls.sktt, cls.Index)
    if cls.NoSpace:
     cls.Error = 2
-    return
+    return #  REPLACE exit(sandhi);
    cls.Index = cls.Index + 1
   cls.chk_point("padantadva")
 
  @classmethod
  def etattadohsulopo(cls):
-  """ generated source for method etattadohsulopo """
+  """ generated source for method etattadohsulopo
+   6.1.132.  etattadoH sulopo "kor anaYsamAse hali
+   Uses globals Linary,Index,Pada1
+   Modifies Linary,Index
+  """
   if ((cls.Pada1 == "sas") or (cls.Pada1 == "ezas")) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Hal)):
    cls.deletary(cls.Index - 1)
    cls.Index = cls.Index - 1
@@ -1545,17 +1150,28 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def jhalamjasonte(cls):
-  """ generated source for method jhalamjasonte """
+  """ generated source for method jhalamjasonte
+   8.2.39.  jhalAM jaSo 'nte
+   Uses globals Linary,Index,Pada1
+   Modifies Linary,Isthana1,Iyatna1
+  """
   temp = cls.identify(cls.Linary[cls.Index - 1])
   cls.Isthana1 = temp[0]
   cls.Iyatna1 = temp[1]
   if cls.set_memberP(cls.Linary[cls.Index - 1], cls.Jhal_not_ru):
+   # PMS: because ru =skts; I could choose another character
    cls.Linary[cls.Index - 1] = cls.Soundary[cls.Isthana1][cls.isparsa3]
+   # PMS: jhalamjasonte
   cls.chk_point("jhalamjasonte")
 
  @classmethod
  def sasajusoruh(cls):
-  """ generated source for method sasajusoruh """
+  """ generated source for method sasajusoruh
+   Uses globals Linary,Index
+   Modifies Linary
+   PMS: 8.2.66.  sasajuzo ruH
+   PMS: exception to 8.2.39 so must apply before it
+  """
   if cls.Index > 5:
    if cls.substrary(cls.Index - 5, cls.Index - 1) == "sajuz":
     cls.Linary[cls.Index - 1] = cls.ru
@@ -1565,39 +1181,61 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def ahan(cls):
-  """ generated source for method ahan """
+  """ generated source for method ahan
+   8.2.68.  ahan
+   Uses globals Linary,Index,Pada1,Pada2
+   Modifies Linary
+  """
   if cls.Compound:
    if cls.Pada1 == "ahan":
     if (cls.Pada2 == "rUpa") or (cls.Pada2 == "rAtri") or (cls.Pada2 == "rAtra") or (cls.Pada2 == "rAtre") or (cls.Pada2 == "rAtrARAm") or (cls.Pada2 == "raTantara"):
+     # PMS: vArttika, but had to add rAtra 21045,
+     # rAtre 24028, rAtrARAm 33137
      cls.Linary[cls.Index - 1] = cls.ru
+     # PMS: if ahan is termed pada && Pada2 in Sup, 
+     # so that Linary[Index+1]=sktbh || skts, ditto
     else:
-     cls.Linary[cls.Index - 1] = cls.sktr
+     cls.Linary[cls.Index - 1] = cls.sktr # PMS: 8.2.69.  ro "supi
   cls.chk_point("ahan")
 
  @classmethod
  def amnarudharavar(cls):
-  """ generated source for method amnarudharavar """
+  """ generated source for method amnarudharavar
+   8.2.70.  amnarUdharavarityubhayathA chandasi
+   Uses globals Linary,Index,Pada1
+   Modifies Linary
+  """
   if cls.Chandas:
    if (cls.Pada1 == "amnas") or (cls.Pada1 == "UDas") or (cls.Pada1 == "avas"):
+    # PMS: actually you get it both ways in chandas, ru too
     cls.Linary[cls.Index - 1] = cls.sktr
   cls.chk_point("amnarudharavar")
 
  @classmethod
  def atororhasica(cls):
-  """ generated source for method atororhasica """
+  """ generated source for method atororhasica
+   6.1.13.  ato ror aplutad aplute.  6.1.14.  haSi ca
+   Uses globals Linary,Index
+   Modifies Linary,Index
+  """
   if cls.Index > 2:
    if (cls.Linary[cls.Index - 2] == cls.skta) and (cls.Linary[cls.Index - 1] == cls.ru):
     if cls.set_memberP(cls.Linary[cls.Index + 1], cls.Hasch_and_skta):
-     cls.Linary[cls.Index - 2] = cls.skto
+     cls.Linary[cls.Index - 2] = cls.skto # PMS: Linary[Index-1=sktu; adguna
      cls.deletary(cls.Index - 1)
      cls.Index = cls.Index - 1
   cls.chk_point("atororhasica")
 
  @classmethod
  def naschavyaprasan(cls):
-  """ generated source for method naschavyaprasan """
+  """ generated source for method naschavyaprasan 
+   8.3.7.  naS chavy apraSAn
+   Uses globals Linary,Index,Pada1
+   Modifies Linary,Index,Error
+  """
   if (cls.Linary[cls.Index - 1] == cls.sktn and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Chav)) and not (cls.Pada1 == "praSAn")):
    cls.Linary[cls.Index - 1] = cls.ru
+   # PMS: 8.3.4.  anunAsikAt paro "nusvAraH
    cls.insertary(cls.sktanusvara, cls.Index - 1)
    if cls.NoSpace:
     cls.Error = 2
@@ -1607,7 +1245,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def rori(cls):
-  """ generated source for method rori """
+  """ generated source for method rori 
+   8.3.14.  ro ri
+   Uses globals Linary,Index
+   Modifies Linary,Index,Dhralopa
+  """
   cls.Dhralopa = False
   if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.sktr_and_ru)) and (cls.Linary[cls.Index + 1] == cls.sktr):
    cls.deletary(cls.Index - 1)
@@ -1617,7 +1259,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def dhralope(cls):
-  """ generated source for method dhralope """
+  """ generated source for method dhralope 
+   6.3.111.  qhralope pUrvasya dIrgho 'RaH
+   Uses globals Linary,Index,Dhralopa
+   Modifies Linary
+  """
   if cls.Dhralopa:
    temp = cls.identify(cls.Linary[cls.Index - 1])
    cls.Isthana1 = temp[0]
@@ -1628,7 +1274,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def bhobhago(cls):
-  """ generated source for method bhobhago """
+  """ generated source for method bhobhago 
+   8.3.17.  bhobhagoaghoapUrvasya yo 'Si
+   Uses globals Linary,Index,Pada1
+   Modifies Linary
+  """
   if (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Asch)) and (cls.Index > 2):
    if (cls.Pada1 == "bhos") or (cls.Pada1 == "bhagos") or (cls.Pada1 == "aghos") or ((cls.set_memberP(cls.Linary[cls.Index - 2], cls.Avarna)) and (cls.Linary[cls.Index - 1] == cls.ru)):
     cls.Linary[cls.Index - 1] = cls.skty
@@ -1636,7 +1286,12 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def kharavasanayor(cls):
-  """ generated source for method kharavasanayor """
+  """ generated source for method kharavasanayor 
+   8.3.15.  kharavasAnayor visarjanIyaH
+   Uses globals Linary,Index
+   Modifies Linary
+  """
+  # print "kharachk: '" + Linary[Index - 1] + "', '"+Linary[Index + 1]+"'" ;
   if cls.set_memberP(cls.Linary[cls.Index - 1], cls.sktr_and_ru):
    if cls.set_memberP(cls.Linary[cls.Index + 1], cls.Khar_and_linend):
     cls.Linary[cls.Index - 1] = cls.sktvisarga
@@ -1646,7 +1301,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def lopahsakalyasya(cls):
-  """ generated source for method lopahsakalyasya """
+  """ generated source for method lopahsakalyasya 
+   8.3.19.  lopaH SAkalyasya
+   Uses globals Linary,Index
+   Modifies Linary,Index
+  """
   if (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Asch)) and (cls.Index > 2):
    if (cls.set_memberP(cls.Linary[cls.Index - 2], cls.Avarna)) and (cls.Linary[cls.Index - 1] == cls.skty):
     cls.deletary(cls.Index - 1)
@@ -1655,7 +1314,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def otogargyasya(cls):
-  """ generated source for method otogargyasya """
+  """ generated source for method otogargyasya 
+   8.3.20.  oto gArgyasya
+   Uses globals Linary,Index
+   Modifies Linary,Index
+  """
   if cls.set_memberP(cls.Linary[cls.Index + 1], cls.Asch):
    if ((cls.Pada1 == "bhos") or (cls.Pada1 == "bhagos") or (cls.Pada1 == "aghos")):
     cls.deletary(cls.Index - 1)
@@ -1664,14 +1327,22 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def monusvarah(cls):
-  """ generated source for method monusvarah """
+  """ generated source for method monusvarah 
+   8.3.23.  mo 'nusvAraH
+   Uses globals Linary,Index
+   Modifies Linary
+  """
   if (cls.Linary[cls.Index - 1] == cls.sktm) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Hal)):
    cls.Linary[cls.Index - 1] = cls.sktanusvara
   cls.chk_point("monusvarah")
 
  @classmethod
  def namohrasvad(cls):
-  """ generated source for method namohrasvad """
+  """ generated source for method namohrasvad 
+   8.3.32.  Namo hrasvAd aci NamuR nityam
+   Uses globals Linary,Index
+   Modifies Linary,Index,Error
+  """
   cls.chk_point("namohrasvad enters with Index=%s, NoSpace=%s" %(cls.Index, cls.NoSpace))
   if (cls.Index > 2):
    temp = cls.identify(cls.Linary[cls.Index - 2])
@@ -1696,35 +1367,51 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def visarjaniyasyasah(cls):
-  """ generated source for method visarjaniyasyasah """
-  Apavada = bool()
+  """ generated source for method visarjaniyasyasah 
+   8.3.34.  visarjanIyasya saH
+   Uses globals Linary,Index
+   Modifies Linary
+  """
+  Apavada = bool() #  type = boolean;
   if (cls.Linary[cls.Index - 1] == cls.sktvisarga) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Khar)):
    Apavada = False
    if (cls.Index + 2) < cls.linmax:
     if cls.set_memberP(cls.Linary[cls.Index + 2], cls.Schar):
-     Apavada = True
+     Apavada = True # PMS: 8.3.35.  Sarpare visarjanIyaH.
    if cls.set_memberP(cls.Linary[cls.Index + 1], cls.Ku_and_Pu_and_Schar):
-    Apavada = True
+    Apavada = True # PMS: 8.3.36.  vA Sari.  8.3.37.  kupvoH XkXpau ca.
    if not (Apavada):
     cls.Linary[cls.Index - 1] = cls.skts
   cls.chk_point("visarjaniyasyasah")
 
  @classmethod
  def vasari(cls):
-  """ generated source for method vasari """
+  """ generated source for method vasari 
+   8.3.36.  vA Sari
+   Uses globals Linary,Index
+   Modifies Linary
+  """
   if (cls.Linary[cls.Index - 1] == cls.sktvisarga) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Schar)):
    cls.Linary[cls.Index - 1] = cls.skts
   cls.chk_point("vasari")
 
  @classmethod
  def kupvohXkXpau(cls):
-  """ generated source for method kupvohXkXpau """
+  """ generated source for method kupvohXkXpau 
+    8.3.37.  kupvoH XkXpau ca (khari 15).
+    8.3.41, 8.3.45 && 8.3.46 are apavAdas of this so must precede it.
+   Uses globals Linary,Index
+   Modifies Linary
+  """
   Apavada = bool()
+  # PMS: by 8.3.15, kharavasAnayorvisarjanIyaH, visarga occurs
+  # before avasAna too.  but Xk && Xp don't.
   if (cls.Linary[cls.Index - 1] == cls.sktvisarga) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Khar)):
+   # PMS: Hence, khari is understood here too
    Apavada = False
    if (cls.Index + 2 < cls.linmax):
     if cls.set_memberP(cls.Linary[cls.Index + 2], cls.Schar):
-     Apavada = True
+     Apavada = True # PMS: 8.3.35.  Sarpare visarjanIyaH.
    if not (Apavada):
     if cls.set_memberP(cls.Linary[cls.Index + 1], cls.Ku):
      cls.Linary[cls.Index - 1] = sktjihvamuliya
@@ -1734,35 +1421,59 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def idudupadhasya(cls):
-  """ generated source for method idudupadhasya """
+  """ generated source for method idudupadhasya 
+   8.3.41.  idudupadhasya cApratyayasya (kupvoH 37, iRaH zaH 39
+   Uses globals Linary,Index,Pada1
+   Modifies Linary
+   PMS: exception to 8.3.36.  kupvoH XkaXpau ca, 
+        which is an exception to 8.3.34. visarjanIyasya saH,
+        so should accompany procedure visarjaniyasyasah.  
+        Must follow 8.3.15.  kharavasAnayor visarjanIyaH
+  """
   if (cls.Linary[cls.Index - 1] == cls.sktvisarga) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Ku_and_Pu)):
    if (cls.Pada1 == "nis") or (cls.Pada1 == "dus") or (cls.Pada1 == "bahis") or (cls.Pada1 == "Avis") or (cls.Pada1 == "catur") or (cls.Pada1 == "prAdur"):
-    cls.Linary[cls.Index - 1] = cls.sktsh
+    cls.Linary[cls.Index - 1] = cls.sktsh # PMS: bahis, Avis =exception to 8.3.46
   cls.chk_point("idudupadhasya")
 
  @classmethod
  def nityamsamase(cls):
-  """ generated source for method nityamsamase """
+  """ generated source for method nityamsamase 
+   8.3.45. nityamsamAse 'nutarapadasthasya
+   Uses globals Linary,Index
+   Modifies Linary
+  """
   if cls.Compound:
    if (cls.Linary[cls.Index - 1] == cls.sktvisarga) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Ku_and_Pu)) and (cls.Index > 2):
     if ((cls.Linary[cls.Index - 2] == cls.skti) or ((cls.Linary[cls.Index - 2] == cls.sktu) and (not cls.Uttarapada))):
+     # PMS: Pada1-u.p. [SOFT HYPHEN]
      cls.Linary[cls.Index - 1] = cls.sktsh
   cls.chk_point("nityamsamase")
 
  @classmethod
  def atahkrkamikamsa(cls):
-  """ generated source for method atahkrkamikamsa """
+  """ generated source for method atahkrkamikamsa 
+   8.3.46.  ataH kfkamikaMsakumbhapAtrakuSAkarRIzvanavyayasya (samAse 45)
+   Uses globals Linary,Index,Pada1,Pada2
+   Modifies Linary
+  """
   if cls.Compound:
    if (cls.Linary[cls.Index - 1] == cls.sktvisarga) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Ku_and_Pu)) and (cls.Index > 2):
     if (cls.Linary[cls.Index - 2] == cls.skta):
      if (cls.Pada2 == "kAra") or (cls.Pada2 == "kAma") or (cls.Pada2 == "kaMsa") or (cls.Pada2 == "kumBa") or (cls.Pada2 == "kumBI") or (cls.Pada2 == "pAtra") or (cls.Pada2 == "kuSA") or (cls.Pada2 == "karRI"):
       if not ((cls.Pada1 == "svar") or (cls.Pada1 == "antar") or (cls.Pada1 == "prAtar") or (cls.Pada1 == "punar") or (cls.Pada1 == "sanutar") or (cls.Pada1 == "hyas") or (cls.Pada1 == "Svas") or (cls.Pada1 == "avas") or (cls.Pada1 == "aDas")) and (not cls.Uttarapada):
        cls.Linary[cls.Index - 1] = cls.skts
+  # PMS: miTas, namas, (tiraskAra by 8.3.42.  avaskara, namaskAra?)
+  # krtvasuc, suc, i.e. not avyaya
+
   cls.chk_point("atahkrkamikamsa")
 
  @classmethod
  def stohscunascuh(cls):
-  """ generated source for method stohscunascuh """
+  """ generated source for method stohscunascuh 
+   8.4.40.  stoH ScunA ScuH
+   Uses globals Linary,Index
+   Modifies Linary,Isthana1,Iyatna1,Isthana2,Iyatna2
+  """
   Isthana = int()
   Iyatna = int()
   if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Tu_and_skts)) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Cu_and_sktsch)):
@@ -1776,6 +1487,7 @@ The substring begins at the specified start and extends to the character at inde
     if cls.Linary[cls.Index + 2] == cls.skts:
      cls.Linary[cls.Index + 1] = cls.sktsch
   elif (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Cu)) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Tu)):
+   # PMS: 8.4.44.  SAt. (na, toH)
    temp = cls.identify(cls.Linary[cls.Index + 1])
    cls.Isthana2 = temp[0]
    cls.Iyatna2 = temp[1]
@@ -1790,10 +1502,15 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def stunastuh(cls):
-  """ generated source for method stunastuh """
+  """ generated source for method stunastuh 
+   8.4.41.  zwunA zwuH
+   Uses globals Linary,Index
+   Modifies Linary,Isthana1,Iyatna1,Isthana2,Iyatna2
+  """
   Isthana = int()
   Iyatna = int()
   if ((cls.Linary[cls.Index - 1] == cls.sktsh) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Tu_and_skts))) or (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Retrotu) and (cls.Pada2 == "nAm")):
+   # PMS: 8.4.42.  na padAntAwworanAm
    temp = cls.identify(cls.Linary[cls.Index + 1])
    cls.Isthana2 = temp[0]
    cls.Iyatna2 = temp[1]
@@ -1806,6 +1523,7 @@ The substring begins at the specified start and extends to the character at inde
      cls.Linary[cls.Index + 1] = cls.Soundary[cls.imurdhanya][cls.Iyatna2]
      cls.Linary[cls.Index + 2] = cls.Soundary[cls.imurdhanya][Iyatna]
   elif (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Tu) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Retrotu))) or ((cls.Linary[cls.Index - 1] == cls.skts) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Retrotu_sktsh))):
+   # PMS: 8.4.43.  toH zi. (na)
    temp = cls.identify(cls.Linary[cls.Index - 1])
    cls.Isthana1 = temp[0]
    cls.Iyatna1 = temp[1]
@@ -1814,7 +1532,12 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def anusvarasya(cls):
-  """ generated source for method anusvarasya """
+  """ generated source for method anusvarasya 
+   8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58)
+   PMS: don"t exercise the option for semivowels (yan) just now
+   Uses globals Linary,Index
+   Modifies Linary,Isthana2,Iyatna2
+  """
   if (cls.Linary[cls.Index - 1] == cls.sktanusvara) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Yay_not_Yan)):
    temp = cls.identify(cls.Linary[cls.Index + 1])
    cls.Isthana2 = temp[0]
@@ -1824,7 +1547,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def torli(cls):
-  """ generated source for method torli """
+  """ generated source for method torli 
+   8.4.60.  tor li
+   Uses globals Linary,Index
+   Modifies Linary,Isthana1,Iyatna1,Index,Error
+  """
   if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Tu)) and (cls.Linary[cls.Index + 1] == cls.sktl):
    temp = cls.identify(cls.Linary[cls.Index - 1])
    cls.Isthana1 = temp[0]
@@ -1840,7 +1567,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def jhayoho(cls):
-  """ generated source for method jhayoho """
+  """ generated source for method jhayoho 
+   8.4.62.  jhayo ho 'nyatarasyAm
+   Uses globals Linary,Index
+   Modifies Linary,Isthana1,Iyatna1
+  """
   if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Jhay)) and (cls.Linary[cls.Index + 1] == cls.skth):
    temp = cls.identify(cls.Linary[cls.Index - 1])
    cls.Isthana1 = temp[0]
@@ -1850,18 +1581,32 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def saschoti(cls):
-  """ generated source for method saschoti """
+  """ generated source for method saschoti 
+   8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
+   Uses globals Linary,Index
+   Modifies Linary
+  """
   if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Jhay)) and ((cls.Index + 2) < cls.linmax):
    if (cls.Linary[cls.Index + 1] == cls.sktsch) and (cls.set_memberP(cls.Linary[cls.Index + 2], cls.At)):
+    # PMS: vt. chatvamamIti vaktavyam:  
+    # Am instead of At.  tacchlokena, tacchmaSruRA
     cls.Linary[cls.Index + 1] = cls.sktch
   cls.chk_point("saschoti")
 
  @classmethod
  def yaronunasike(cls):
-  """ generated source for method yaronunasike """
+  """ generated source for method yaronunasike 
+   8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
+   Uses globals Linary,Index
+   Modifies Linary,Isthana1,Iyatna1,Isthana2,Iyatna2
+  """
   temp = cls.identify(cls.Linary[cls.Index + 1])
   cls.Isthana2 = temp[0]
   cls.Iyatna2 = temp[1]
+  # PMS: if ( set_memberP(Linary[Index - 1],Yar) && (Index + 2 < linmax) then
+  # PMS: if (Iyatna2 eq isparsa5) || (Linary[Index + 2] == sktanunasika ) {
+  # PMS: we won't exercise the nasalized option for the semivowels 
+  #      y, v && l; just for the stops
   if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Jhay)) and (cls.Iyatna2 == cls.isparsa5):
    temp = cls.identify(cls.Linary[cls.Index - 1])
    cls.Isthana1 = temp[0]
@@ -1871,18 +1616,33 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def kharica(cls):
-  """ generated source for method kharica """
+  """ generated source for method kharica 
+   8.4.55.  khari ca. (jhalAm 53, car 54)
+   PMS: there is no final  "h" after jhalAm jaSo "nte, 
+     but there is skts by 8.3.34 visarjanIyasya saH
+     && sktsch && sktsh by 
+     8.4.40-41 stoH ScunA scuH, zwunA zwuH so must exclude Sar
+   Uses globals Linary,Index
+   Modifies Linary,Isthana1,Iyatna1
+  """
   if cls.set_memberP(cls.Linary[cls.Index - 1], cls.Jhay):
+   # PMS: jhay=jhal-Sar
    temp = cls.identify(cls.Linary[cls.Index - 1])
    cls.Isthana1 = temp[0]
    cls.Iyatna1 = temp[1]
    if cls.set_memberP(cls.Linary[cls.Index + 1], cls.Khar_and_linend):
+    # PMS: 8.4.56.  vavasane
     cls.Linary[cls.Index - 1] = cls.Soundary[cls.Isthana1][cls.isparsa1]
   cls.chk_point("kharica")
 
  @classmethod
  def idudeddvivacanampragrhyam(cls):
-  """ generated source for method idudeddvivacanampragrhyam """
+  """ generated source for method idudeddvivacanampragrhyam 
+   1.1.11. IdUdeddvivacanam pragfhyam
+   Uses globals Linary,Index,Pada1
+   Modifies Linary,Pragrhya
+  """
+  # PMS: 1.1.11. IdUdeddvivacanam pragfhyam
   cls.Pragrhya = False
   c = cls.Linary[cls.Index - 1]
   if cls.External:
@@ -1891,18 +1651,22 @@ The substring begins at the specified start and extends to the character at inde
      cls.Pragrhya = True
    elif c == cls.sktuu:
     if (cls.Pada1 == "amU"):
+     # PMS: 1.1.12.  adaso mAt
      cls.Pragrhya = True
    elif c == cls.skte:
     if (cls.Pada1 == "SAlInakOpIne") or (cls.Pada1 == "uBe"):
      cls.Pragrhya = True
    elif c == cls.skto:
     if (cls.Pada1 == "Aho") or (cls.Pada1 == "utAho"):
+     # PMS: 1.1.15. ot
      cls.Pragrhya = True
   cls.chk_point("idudeddvivacanampragrhyam")
 
  @classmethod
  def sandhiPrep(cls):
-  """ generated source for method sandhiPrep """
+  """ generated source for method sandhiPrep 
+      This routine inadequately documented
+  """
   L = int()
   IPada = int()
   NoPrep = bool()
@@ -1910,17 +1674,18 @@ The substring begins at the specified start and extends to the character at inde
   cls.NoKNam = False
   NoPrep = False
   cls.Exception = False
-  cls.Pronoun = True
+  cls.Pronoun = True # PMS: saú is usually the pronoun tad [LATIN SMALL LETTER U WITH ACUTE]
   cls.OtherCloseSandhi = False
   L = len(cls.Pada1)
   if L <= 1:
    return
-  c = cls.Pada1[L-1] # cls.Pada1.substring(L - 1, L)
+  c = cls.Pada1[L-1] #  last character of Pada1. # cls.Pada1.substring(L - 1, L)
   if cls.dbg:
    print "sandhiPrep: Pada1='" + cls.Pada1 + "', c=" + c
    print "Is c = skts? %s" % (c == cls.skts,)
    print "is Pada1 = us? %s" % (cls.Pada1 == "us",)
   if c == cls.sktkn:
+   #  RiN change made 20090801, PMS.
    if cls.Pada1 == "RiN":
     cls.Exception = True
   elif c == cls.sktc:
@@ -1928,7 +1693,7 @@ The substring begins at the specified start and extends to the character at inde
     if cls.Pada1 == cls.CAntaPadary[IPada]:
      NoPrep = True
      cls.NoStoh = True
-     IPada = cls.cantamax
+     IPada = cls.cantamax #  leave loop
     IPada += 1
   elif c == cls.sktj:
    if (cls.Pada1 == "tij"):
@@ -1948,6 +1713,10 @@ The substring begins at the specified start and extends to the character at inde
    if (cls.Pada1 == "Wan") or (cls.Pada1 == "tran") or (cls.Pada1 == "dozan") or (cls.Pada1 == "yakan") or (cls.Pada1 == "yUzan") or (cls.Pada1 == "Sakan") or (cls.Pada1 == "zWan") or (cls.Pada1 == "han"):
     NoPrep = True
    elif (cls.Pada1 == "Ayan") or (cls.Pada1 == "Gan"):
+    #  if (!PaninianText)
+    # PMS (June 2010)The whole section of sandhiPrep up to "if Compound"
+    #  is aimed specifically at the Astadhyayi and perhaps other texts of
+    #   Paninian grammar and should be excluded from general sandhi.
     if cls.PaninianText:
      NoPrep = True
      cls.NoKNam = True
@@ -1962,6 +1731,7 @@ The substring begins at the specified start and extends to the character at inde
     cls.Exception = True
    elif cls.Compound:
     if ((cls.Pada1 == "puram") and (cls.Pada2 == "dArO")):
+     # PMS: purandrau
      cls.OtherCloseSandhi = True
   elif c == cls.skty:
    if (cls.Pada1 == "ay") or (cls.Pada1 == "Ay"):
@@ -1981,11 +1751,13 @@ The substring begins at the specified start and extends to the character at inde
     cls.Exception = True
     cls.chk_point("sandhiPrep setting Exception to %s" % cls.Exception)
   if cls.Compound:
+   # PMS: normal stem changes
    if (not cls.Exception) and (not NoPrep):
     c = cls.Linary[cls.Index - 1]
     if c == cls.sktc:
      if cls.Pada1 == "aYc":
-      cls.Linary[cls.Index - 1] = cls.sktk
+      # PMS: aYc
+      cls.Linary[cls.Index - 1] = cls.sktk # PMS: ak
       cls.deletary(cls.Index - 2)
       cls.Index = cls.Index - 1
      else:
@@ -2002,11 +1774,15 @@ The substring begins at the specified start and extends to the character at inde
     elif c == cls.sktn:
      if cls.Index > 2:
       if (cls.Linary[cls.Index - 2] == cls.skta) or (cls.Linary[cls.Index - 2] == cls.skti):
+       # PMS: an-/in-
        if ((cls.Pada1 == "ahan") and (not cls.PurvaPada == "eka")):
+        #  noop
         pass
        else:
+        # PMS: normal "an-"/"in-"
         cls.deletary(cls.Index - 1)
         cls.Index = cls.Index - 1
+      # PMS: an-/in- (end)
     elif c == cls.sktr:
      if (cls.Pada1 == "pur") or (cls.Pada1 == "Dur"):
       cls.Linary[cls.Index - 2] = cls.sktuu
@@ -2020,23 +1796,42 @@ The substring begins at the specified start and extends to the character at inde
       cls.Linary[cls.Index - 1] = cls.sktk
     elif c == cls.skts:
      if (cls.Pada1 == "ASis"):
-      cls.Linary[cls.Index - 2] = cls.sktii
+      cls.Linary[cls.Index - 2] = cls.sktii # PMS: 82104
      elif cls.Pada1 == "pums":
+      # PMS: "pum"
       cls.deletary(cls.Index - 1)
       cls.Index = cls.Index - 1
     else:
+     # PMS: no preparation necessary, normal sandhi will follow
      pass
+    # PMS: case statement (end)
+   # PMS: astadhyayiSandhiPrep (end)
+  # PMS: sandhiprep
 
  @classmethod
  def sandhiSplit(cls, x):
   """ generated source for method sandhiSplit 
    'x' is a string
+   From a given input string, generate an array of strings.
+   The even elements (0,2,4...) of the array have value
+   "s" if the next array element is a string of Sanskrit characters
+   "o" if the next array element is a string of other non-Sanskrit characters
+   Sanskrit characters are according to the SLP1 spelling.
+   <p>
+   "- 'aAiIuUfFxXeEoOMHkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzshL|/"
+   <p>
+   Note that the '/' is an artificial 'Sandhi-blocking' character.
   """
   dbg = False
   a = [] # list of strings '' # list[] # ArrayList()
   INITIAL = 0
   SKT = 1
   OTHER = 2
+  #  Only non-alphabetic chars considered to be Sanskrit are
+  #  - and space and apostrophe and "|" and "/"
+  #  20090801, "/" is a sandhi-blocking character.
+  #  String sanskrit_str = "- 'aAiIuUfFxXeEoOMHkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzshL|/";
+  #  June 22: Added period to list of Sanskrit characters.
   sanskrit_str = "- '.aAiIuUfFxXeEoOMHkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzshL|/"
   #sanskrit_strs = sanskrit_str.split("")
   #sanskrit_strs_list = Arrays.asList(sanskrit_strs)
@@ -2069,6 +1864,7 @@ The substring begins at the specified start and extends to the character at inde
      y = c #.append(c)
      state = OTHER
    else:
+    #  state = OTHER
     if (c in sanskrit_set):
      a.append("o")
      a.append(y) # (str(y))
@@ -2086,6 +1882,7 @@ The substring begins at the specified start and extends to the character at inde
     a.append("o")
     a.append(y) # (str(y))
    else:
+    #  should not occur
     pass
   #temp = a.toArray()
   #l = len(temp)
@@ -2099,7 +1896,14 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def sandhi1(cls, s):
-  """ generated source for method sandhi1 """
+  """ generated source for method sandhi1 
+   Prepare input for sandhimain
+   Accept string argument, to which sandhi is to be applied.
+   return a string argument as the answer
+   return a blank string if there is an error
+   print an informative message if there is an error.
+   Two special values of 's' are related to debugging: 'dbg' and 'off'
+  """
   dbgPrint(False,"sandhi1. s=%s" % s)
   s1 = s.strip()
   if (s == "dbg") or (s == "off"):
@@ -2115,15 +1919,17 @@ The substring begins at the specified start and extends to the character at inde
   #cls.Linary = list(s1)
   # Java adds an empty string at the beginning with s1.split("")
   #print "sandhi1: s=%s, s1=%s" %(s,s1)
-  cls.Linary = [""] + list(s1)
+  cls.Linary = [""] + list(s1) #  this is what sandhimain modifies.
   cls.linmax = len(cls.Linary) - 1
   #print "Linary=[" + ",".join(cls.Linary) + "]"
   cls.chk_point("calling sandhimain with:'" + "".join(cls.Linary) + "'")
   cls.Error = 0
   cls.sandhimain()
   if cls.NoSpace and (cls.Error == 2):
+   #  change of June 22, 2010
    cls.Error = 0
   if cls.Error != 0:
+   #  if ((Error != 0) && (!((NoSpace && (Error == 2))))) ...
    print "Sandhi error: " + cls.Error + ", s = " + s
    return ""
   else:
@@ -2133,7 +1939,10 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def sandhimain(cls):
-  """ generated source for method sandhimain """
+  """ generated source for method sandhimain 
+ 
+  """
+  #  initialize some global variables
   cls.Isthana1 = 0
   cls.Isthana2 = 0
   cls.Iyatna1 = 0
@@ -2147,6 +1956,7 @@ The substring begins at the specified start and extends to the character at inde
   cls.Pragrhya = False
   cls.Uttarapada = False
   cls.NxtUttarapada = False
+  #   initialize some local variables
   Inext = 0
   Inextsp = 0
   IPrev = 0
@@ -2155,57 +1965,76 @@ The substring begins at the specified start and extends to the character at inde
   cls.PurvaPada = ""
   cls.Pada1 = ""
   cls.Pada2 = ""
+  # PMS: the first character in Linary should not be a word boundary
   cls.Index = cls.nxtposary(cls.Padbound, cls.FldChr, 2)
   cls.chk_point("sandhimain. Initial Index = %s" % cls.Index)
-  cls.Upasarga = False
+  cls.Upasarga = False #  ejf.
   while cls.Index > 0:
+   # print "Index="+Index;
+   # PMS: while a padbound character is found
    cls.EkahPurvaParayoh = False
+   # PMS: PurvaPada, Pada1, Pada2
    cls.Uttarapada = False
    if cls.NxtUttarapada:
-    cls.Uttarapada = True
+    cls.Uttarapada = True # PMS: Pada1 is an uttarapada
    cls.NxtUttarapada = False
+   # PMS: first Pada1 in Linary
    cls.PurvaPada = cls.Pada1
    if IPrev == 0:
+    # PMS: first Pada1 in Linary
     if cls.Compound:
      IPrev = cls.lastposary(cls.space, cls.Index - 1)
     else:
+     # July 2010.  On the first pass, Pada1 is known to begin with
+     #  a blank, unless the following is done.
      IPrev = cls.lastposary(cls.space, cls.Index - 1)
     cls.chk_point("sandhimain: Index=%s, IPrev=%s" %(cls.Index,IPrev))
     cls.Pada1 = cls.substrary(IPrev + 1, cls.Index - 1)
     cls.chk_point("sandhimain. Pada1='%s',  Compound=%s, IPrev=%s, Index=%s"  %(cls.Pada1,cls.Compound,IPrev, cls.Index))
    elif cls.External:
+    # PMS: we've been through here before so
     cls.Pada1 = cls.Pada2
    else:
+    # PMS: padbound=hyphen
     cls.Pada1 = cls.NxtPada1
    Inext = cls.nxtposary(cls.Padbound, cls.FldChr, cls.Index + 1)
    if Inext == 0:
+    # PMS: not found so last word
     Inext = cls.lengthary() + 1
    if cls.External:
     cls.Pada2 = cls.substrary(cls.Index + 1, Inext - 1)
    else:
+    # PMS: for compound, Pada2, NxtPada1
     Inextsp = cls.nxtposary(cls.space, cls.FldChr, cls.Index + 1)
     if (Inextsp > 0) and (Inextsp < Inext):
      cls.Pada2 = cls.substrary(cls.Index + 1, Inextsp - 1)
     else:
      cls.Pada2 = cls.substrary(cls.Index + 1, Inext - 1)
+    # PMS: now the next Pada1 when padbound =hyphen
     IPrevSpace = cls.lastposary(cls.space, Inext - 1)
     if IPrevSpace > cls.Index:
-     cls.NxtPada1 = cls.substrary(IPrevSpace + 1, Inext - 1)
+     cls.NxtPada1 = cls.substrary(IPrevSpace + 1, Inext - 1) #  corrected
     else:
      cls.NxtPada1 = cls.Pada2
      cls.NxtUttarapada = True
+   # PMS: Pada2, NxtPada1 hyphen (end)
+   # PMS: end of PurvaPada, Pada1, Pada2
+   # PMS: determine whether Pada1 is an upasarga
    cls.Upasarga = False
    if cls.External and (cls.Pada1 == "ut"):
     cls.Pada1 = "ud"
    if cls.Pada1 == "api":
-    pass # ejf
+    # PMS: more likely karmapravacanIya than upasarga
+    pass 
    else:
     i = 1
     while I <= cls.pradimax:
      if cls.Pada1 == cls.Pradi[I]:
       cls.Upasarga = True
-      I = cls.pradimax
+      I = cls.pradimax # to leave loop
      I += 1
+   # PMS: stem final sound changes for compound sandhi && some 
+   #      special sandhi for grammatical technical terms
    cls.sandhiPrep()
    doSandhi = True
    cls.chk_point("sandhimain, Exception =%s " % cls.Exception)
@@ -2213,8 +2042,11 @@ The substring begins at the specified start and extends to the character at inde
     doSandhi = False
    else:
     if cls.Upasarga and cls.CloseUpasargaSandhi:
-     cls.OtherCloseSandhi = True
-    cls.idudeddvivacanampragrhyam()
+     cls.OtherCloseSandhi = True # PMS: initialized in sandhiPrep
+    # PMS: sandhi subroutines:  within compound && following an upasarga 
+    # closer sandhi is observed when an option is allowed
+    # PMS: otherwise (between syntactic units) looser sandhi is observed
+    cls.idudeddvivacanampragrhyam() # PMS: kosher exceptions to sandhi
     if cls.Pragrhya:
      doSandhi = False
    if doSandhi:
@@ -2226,74 +2058,127 @@ The substring begins at the specified start and extends to the character at inde
     temp = cls.identify(cls.Linary[cls.Index + 1])
     cls.Isthana2 = temp[0]
     cls.Iyatna2 = temp[1]
-    cls.checa()
-    cls.anmanosca()
+    # PMS: must precede 8.4.40.  stoH ScunA ScuH
+    cls.checa() # PMS: 6.1.73.  che ca
+    cls.anmanosca() # PMS: 6.1.74.  ANmANoSca (che 73, tuk 71)
     if (cls.TukPadantat):
-     cls.padantadva()
+     cls.padantadva() # PMS: 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
+    # PMS: must precede vowel sandhi
     if cls.set_memberP(cls.Linary[cls.Index - 1], cls.sktn_and_sktsh_and_skts):
      if cls.Pronoun:
-      cls.etattadohsulopo()
-     cls.amnarudharavar()
+      # PMS: 6.1.132.  etattadoH sulopo "kor anaYsamAse hali
+      cls.etattadohsulopo() 
+     # PMS: 8.2.70.  amnarUdharavarityubhayathA chandasi
+     cls.amnarudharavar() 
+     # PMS: 8.2.66.  sasajuzo ruH
      cls.sasajusoruh()
      if not cls.NoStoh:
+      # PMS: exception in 63110
+      # PMS: 8.2.68.  ahan
       cls.ahan()
+     # PMS: 6.1.13.  ato ror aplutad aplute.  
+     #      6.1.14.  haSi ca.  Must precede 6.1.109.  eNaH padAntAd ati
      cls.atororhasica()
     if cls.set_memberP(cls.Linary[cls.Index - 1], cls.Ac) and cls.set_memberP(cls.Linary[cls.Index + 1], cls.Ac):
      cls.acsandhi()
     elif (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Hal_and_ru)) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Al_and_Linend)):
+     # PMS: 8.2.39.  jhalAM jaSo "nte
      cls.jhalamjasonte()
+     # PMS: 8.3.7.  naS chavy apraSAn
      cls.naschavyaprasan()
+     # PMS: 8.3.14.  ro ri  
      cls.rori()
+     # ejf: Dhralopa is global
+     # PMS: 6.3.111.  qhralope pUrvasya dIrgho "RaH
      cls.dhralope()
+     # PMS: 8.3.17.  bhobhagoaghoapUrvasya yo "Si
      cls.bhobhago()
+     # PMS: 8.3.15.  kharavasAnayor visarjanIyaH
      cls.kharavasanayor()
+     # PMS: 8.3.20.  oto gArgyasya.  This cannot precede vowel sandhi
      cls.otogargyasya()
+     # PMS: 8.3.23.  mo "nusvAraH
      cls.monusvarah()
      cls.chk_point("NoKNam = %s" % cls.NoKNam)
      if not cls.NoKNam:
+      # PMS: 8.3.32.  Namo hrasvAd aci NamuR nityam
       cls.namohrasvad()
+     # PMS: 8.3.34.  visarjanIyasya saH
      cls.visarjaniyasyasah()
      if cls.ScharSchari:
+      # PMS: 8.3.36.  vA Sari
       cls.vasari()
+     # PMS: 8.3.41, 8.3.45 && 8.3.46 are apavAdas of 8.3.37
+     # so they must precede it
+     # PMS: 8.3.41.  idudupadhasya cApratyayasya (kupvoH 37, iRaH zaH 39)
      cls.idudupadhasya()
+     # PMS: 8.3 .45. nitya samAse "nutarapadasthasya
      cls.nityamsamase()
+     # PMS: 8.3.46.  ataH kfkamikaMsakumbhapAtrakuSAkarRIzvanavyayasya
      cls.atahkrkamikamsa()
      if cls.XkXpKupvoh:
+      # PMS: 8.3.37.  kupvoH XkXpau ca (khari 15).
       cls.kupvohXkXpau()
      if not cls.NoStoh:
+      # PMS: 8.4.40.  stoH ScunA ScuH
       cls.stohscunascuh()
+      # PMS: 8.4.41.  zwunA zwuH
       cls.stunastuh()
+     # PMS: 8.4.60.  tor li
      cls.torli()
      if cls.ChAti:
+      # PMS: 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
       cls.saschoti()
+     # PMS: 8.4.62.  jhayo ho "nyatarasyAm
      cls.jhayoho()
+     # PMS: 8.4.55.  khari ca
      cls.kharica()
      if cls.ParaSavarna or cls.OtherCloseSandhi:
+      # PMS: 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
       cls.anusvarasya()
     if (cls.set_memberP(cls.Linary[cls.Index - 1], cls.Hal)) and (cls.set_memberP(cls.Linary[cls.Index + 1], cls.Al)):
+     # PMS: must follow vowel sandhi
+     # PMS: 8.3.19.  lopaH SAkalyasya.  Must follow 6.1.78.  eco "yavAyAvaH
      cls.lopahsakalyasya()
+     #  PMS: If made to include semivowels, 8.4.45 must follow 8.3.19-20. 
+     #   In present form it needn't.
      if cls.Anunasika or cls.OtherCloseSandhi:
+      # PMS: 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
       cls.yaronunasike()
    cls.chk_point("label7000a. Index=%s"%cls.Index)
+   # PMS: get rid of the space between words
    if cls.EkahPurvaParayoh:
+    # PMS: EkahPurvaParayoh set in acsandhi in subroutines: 
+    #   akahsavarnedirghah, adgunah, vrddhireci
+    # PMS: do the same steps if two padbounds in a row 
+    #   because last sandhi eliminated single char word
     cls.deletary(cls.Index)
+    # PMS: the search for the next padbound begins at Index+1
     cls.Index = cls.Index - 1
    elif (cls.Index > 1) and cls.Despace:
     if cls.set_memberP(cls.Linary[cls.Index - 1], cls.Hal):
+     # PMS: Removed "or Upasarga"
      cls.deletary(cls.Index)
    if cls.Linary[cls.Index] == cls.hyphen:
     cls.deletary(cls.Index)
     cls.Index = cls.Index - 1
    IPrev = cls.Index
    cls.chk_point("label7000b(0): Padbound=%s, FldChr=%s, Index=%s" %(cls.Padbound, cls.FldChr, cls.Index + 1))
+   # PMS: find the next pada boundary
    cls.Index = cls.nxtposary(cls.Padbound, cls.FldChr, cls.Index + 1)
    cls.chk_point("label7000b")
    if cls.dbg:
     print "label7000b(1) Index = %s" % cls.Index
+  # PMS: conclude while loop when padbound character is not found (Index=0)
 
  @classmethod
  def sandhi(cls, s):
-  """ generated source for method sandhi """
+  """ generated source for method sandhi 
+   Accept string argument, to which sandhi is to be applied.
+   Return a string argument as the answer
+   Return a blank string if there is an error
+   Print an informative message if there is an error.
+  """
   dbg = False
   dbgPrint(dbg,"sandhi. s=%s" % s)
   split = cls.sandhiSplit(s)
@@ -2304,6 +2189,8 @@ The substring begins at the specified start and extends to the character at inde
   whitebeg = ""
   ans = whitebeg
   i = 0
+  #  the doubling '\\' is a Java quirk of string literals
+  #  \s is whitespace
   #p1 = Pattern.compile("^(\\s+)(.*)$")
   #p2 = Pattern.compile("(.*?)(\\s+)")
   p1= re.compile(r"^(\s+)(.*)$")
@@ -2338,7 +2225,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def join(cls, strings, separator):
-  """ generated source for method join """
+  """ generated source for method join 
+   @param strings
+   @param separator
+   @return
+  """
   sb = StringBuffer()
   i = 0
   while len(strings):
@@ -2350,7 +2241,11 @@ The substring begins at the specified start and extends to the character at inde
 
  @classmethod
  def chk_point(cls, s):
-  """ generated source for method chk_point """
+  """ generated source for method chk_point 
+   a debugging routine. If global 'dbg' value is true, then
+   a debugging message is printed labeled with the parameter 's'
+   @param s
+  """
   if cls.dbg:
    out = "%s(%s,%s): %s:%s" %(s,cls.Index,cls.linmax,cls.NoSpace,"".join(cls.Linary))
    print out
