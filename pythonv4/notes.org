@@ -1,0 +1,272 @@
+
+These are notes on scharfsandhi.py (version 3)
+* Uttarapada , NxtUttarapada
+ - uttarapada (MW:  n. the last member of a compound word)
+ - Uttarapada is False, except (sandhimain) NxtUttarapada is True.
+
+* sandhiSplit s
+Splits s into Sanskrit parts and non-Sanskrit parts.
+Returns an array of even length, whose even elements
+are a code ('s' or 'o') indicating that the following list element
+is composed of Sanskrit characters or non-Sanskrit characters, respectively.
+Note that the hyphen (used for separation of padas in compounds) and the
+space (used for separation of words) are included as Sanskrit characters.
+* sandhi s
+ - split = sandhiSplit(s) , an array. 
+
+* Examples of ScharfSandhiArg
+** python ScharfSandhiArg.py E 'yuYjan na evam'
+sandhi: START="yuYjan na evam"
+sandhi1: START="yuYjan na evam"
+sandhimain: START Linary=" yuYjan na evam    "
+vrddhireci: Linary=" yuYjannE vam    "
+acsandhi: Linary=" yuYjannE vam    "
+sandhimain: Linary=" yuYjannEvam    "
+sandhi1: Linary=" yuYjannEvam    "
+sandhi: Linary=" yuYjannEvam    "
+('ScharfSandhiArg: ans=', 'yuYjannEvam')
+
+**  python ScharfSandhiArg.py C "  deva-arjuna "
+sandhi: START="  deva-arjuna "
+sandhi1: START="deva-arjuna"
+sandhimain: START Linary=" deva-arjuna    "
+akahsavarnedirghah: Linary=" devA-rjuna    "
+acsandhi: Linary=" devA-rjuna    "
+sandhimain: Linary=" devArjuna    "
+sandhi1: Linary=" devArjuna    "
+sandhi: Linary=" devArjuna    "
+ScharfSandhiArg: ans="  devArjuna "
+
+* self.External and self.Compound mutually exclusive
+  Enforced by sandhiOptions.
+* Add simple_sandhioptions to set 'standard' Compound or External options
+  Change ScharfSandhiArg.py to use this, also
+  Change ScharfSandhiTest.py to use this, also
+  
+  Parameters :
+  code   compound  vedic close  despace
+   C       C         N    S       N
+   E       E         N    S       Y
+   E1      E         N    S       N
+   compound  == C  self.Compound=True, self.Padbound=hyphen
+   compound  == E  self.External=True, self.Padbound=space
+   vedic == Y  self.Chandas=True
+            N  self.Chandas=False
+   close == Y  self.TukPadantat,ScharSchari, XkXpKupvoh, ChAti,
+               ParaSavarna, Anunasika all True
+         == N  All the above are False
+         == S  If Compound:
+                TukPadantat, ScharSchari, ChAti, ParaSavarna, Anunasika == True,
+                XkXpKupvoh == False
+               If External:
+                ChAti, Anunasika == True and
+                TukPadantat, ScharSchari, ParaSavarna, XkXpKupvoh == False
+   despace  If Compound, ignore parm, and self.Despace=True
+            If External,
+             == Y Despace=True
+             == N Despace=False
+Note: sandhioptions also sets
+  self.Padbound (hyphen Compound, space External)
+  self.CloseUpasargaSandhi = False   
+* Jul 27ff routines modified in pythonv4
+** __init__ : remove several instance variables
+  These are used only as local variables in sandhimain.  
+  These are commented out
+  self.Iprev, self.IPrevSpace, self.IEnd (also remove self.IEnd in sandhimain)
+  self.Inext, self.Inextsp
+  self.NxtUttarapada  (and change to NxtUttarapada in sandhimain)
+  self.NxtPada1 (and change to NxtPada1 in sandhimain)
+
+** FldChr  removed (nxtposary)
+  self.FldChr is never used.  Commment it out in __init__, and
+  remove it from the parameter list in calls to nxtposary, and
+  in the def of nxtposary
+** acsandhi  (cnext used)
+  Ac = Ak + Ec
+  Ak includes all simple vowels, long and short
+  Ec includes the 4 diphthongs
+** insertary
+ (a) keep prior as old_insertary  (Change mind, remove old_insertary)
+ (b) Use python list insertion 
+     Do less error checking.
+ (c) testsuite.sh still works fine.
+** self.NoSpace remove
+  This is a flag that the old insertary set (for some reason).
+  It is no longer required.  So Remove the flag along with the various
+  error tests involving it.
+
+** sandhimain
+*** i=1 -> I=1.  This is an error
+  before while I <= pradimax
+*** Odd duplication
+  IPrev has same formula in both cases.  
+    if self.Compound:
+     IPrev = self.lastposary(space, self.Index - 1)
+    else:
+     # July 2010.  On the first pass, Pada1 is known to begin with
+     #  a blank, unless the following is done.
+     IPrev = self.lastposary(space, self.Index - 1)
+
+*** self.Linary = [""] + list(s1) changed
+    self.Linary = [" "] + list(s1)
+*** upasarga check:
+old
+    I = 1
+    while I <= pradimax:
+     if self.Pada1 == Pradi[I]:
+      self.Upasarga = True
+      I = pradimax # to leave loop
+     I += 1
+new
+    if self.Pada1 in Pradi:
+     self.Upasarga = True
+*** THE END
+** sandhiPrep simplify
+ - Several instance variable flags are initialized to False:
+   NoStoh, NoKNam, Exception, Pronoun, OtherCloseSandhi
+ - Several conditions set self.Exception to True.  These are separated into
+   routing _sandhiPrepException
+ - Several conditions set (local) variable NoPrep to True, which has the
+   effect of voiding the various Compound adjustments of sandhiPrep.
+   Do this in method _sandhiPrepNoPrep
+ methods.
+ - 
+** idudeddvivacanampragrhyam simplify
+   uses a lookup into pragrhya set to set self.Pragrhya
+** visargaprep
+  - move 'if (self.Linary[self.Index - 1] == sktvisarga)' from
+    sandhimain to visargaprep, and change visargaprep accordingly
+  - visargaprep also reworked
+** amnarudharavar, sasajusoruh, ahan, atororhasica
+   moved to after  etattadohsulopo
+** sandhimain linearized 
+   This involved the 5 calls before vowel sandhi.  Conditions were
+   pushed into the routines where required.
+** make 'non_acsandhi' method, and move jhalamjasonte through anusvarasya
+   from sandhimain to non_acsandhi
+** the end
+* sandhimain comments
+This is the main controlling routine.  When it is entered
+** self.Index = self.nxtposary(self.Padbound,  2)
+ Why '2'? sandhimain is called by sandhi1 which is called by sandhi
+ '2' is the lowest index j for which Linary[j]!=space. This is by 
+ construction in sandhi and sandhi1.
+* pragfhya (exceptions to sandhi)
+  MW:  (in gram.) to be taken or pronounced separately, 
+       not subject to the rules of संधि (as the final ई, ऊ, and ए
+       of the dual terminations e.g. कवी एतौ, " these two poets ") 
+  Some of these recognized in routine idudeddvivacanampragrhyam(),
+   which sets variable self.Pragrhya (which in turn inhibits sandhi).
+  This idud.. method changed to do a simple lookup of cases.
+* Soundary constants
+# constants for first coord of Soundary
+ikanthya = 1 # kaRWya   (guttural)
+italavya = 2 # tAlavya  (palatal)
+imurdhanya = 3 # mUrDanya ('cerebral', retroflex)
+idantya = 4   #dantya (dental)
+iosthya = 5   #ozWya (labial)
+
+# second coord of Soundary
+ihrasva = 1  # hrasva (short vowel)
+idirgha = 2  # dIrGa  (long vowel)
+iguna = 3   # guRa (first gradation of a vowel)
+ivrddhi = 4 # vfdDi (second gradation of a vowel)
+  Note: sparSa refers to the 25 constants.
+isparsa1 = 5 # sparSa (hard-unaspirated)
+isparsa2 = 6 # sparSa (hard-aspirated)
+isparsa3 = 7 # sparSa (soft-unaspirated)
+isparsa4 = 8 # sparSa (soft-aspirated)
+isparsa5 = 9 # sparSa (nasal)
+iantahstha = 10 # antaHsTa (semivowels)
+iusmana = 11  # Uzman (sibilants and visarga, and a couple of others)
+
+* Notes on doSandhi section of sandhimain
+** checa 6.1.73.  che ca (tuk 71)
+   <ihrasva>,<Padbound>,C -> <ihrasva>,t,<Padbound>,C
+** anmanosca 6.1.74.  ANmANoSca (che 73, tuk 71)
+  ["A","mA"],<Padbound>,C -> ["A","mA"],t,<Padbound>,C
+** padantadva 6.1.76.  padAntAdvA (dIrghAt 75, che 73, tuk 71)
+   <idirgha>,<Padbound>,C -> <idirgha>,t,<Padbound>,C
+   Note: requires option flag TukPadantat, and this is normally True
+* move 'identify' to Module function
+  It depends only on the module constant Soundary
+  Change all 'self.identify' to identify
+* print_identify.txt
+  python print_identify.py print_identify.txt
+  For each alphabet letter, prints the (symbolic) isthana and iyatna value
+  of the letter.
+  e.g. a => ikanthya,ihrasva.
+
+* Hal
+Hal= yvrlYmNRnJBGQDjbgqdKPCWTcwtkpSzsh 33
+  What letters are missing?  I think just these 16:
+  Vowels: aAiIuUfFxXeEoO
+          MH
+  Maybe also avagraha: '
+* Removed some unused module constants
+star = "*"
+slash = "/"
+openparen = "("
+closeparen = ")"
+
+#constant sktudatta = "«"; #{opt e space.  It precedes the sound it accents}
+#constant sktudattaaa = "§";
+#constant sktudattaii = "ª";
+#constant sktudattauu = "²";
+#constant sktudattaau = "®";
+#constant sktsvaritaaa = "¥";
+#constant sktsvaritaii = "«";
+#constant sktsvaritauu = "³";
+#constant sktsvaritaai = "¦";
+#constant sktsvaritaau = "¯";
+
+An2 = Ac + skth + Yan
+# PMS vowels, h and semivowels
+In2 = diff_string(An2, Avarna) 
+
+* print_constants.txt
+python print_constants.py scharfsandhi.py print_constants.txt
+output prints (69) subsets of Sanskrit characters.
+These are used as conditions in many of the sandhi methods.
+
+The names of many of these sets are probably derived from the Siva Sutra;
+it would be helpful to document this.
+
+* TODO atahkrkamikamsa question
+  The condition on Pada2, as written, inhibits the application when
+  Pada2 is inflected.  For instance,
+  naBas-kAra  -> naBaH-kAra (kharavasanayor) 
+              -> naBas-kAra (atahkrkamikamsa)
+  But,
+  naBas-kAraH -> naBaH-kAraH (kharavasanayor) 
+              
+  Is this intended? or should it be
+  naBas-kAraH -> naBaH-kAraH (kharavasanayor) 
+              -> naBas-kAraH (atahkrkamikamsa)
+
+* DONE kupvohXkXpau
+ This routine replaces visarga (H) by sktjihvamuliya or sktupadhmaniya 
+ under certain conditions. These two replacement characters are
+ non-ascii in scharfsandhi (opt-k and opt-p on Macintosh).
+are these the current SLP1 definitions for
+ these two characters?
+ Answer: NO. In email from Peter Scharf of 9/22/2014, he states that the
+ SLP1 uses Z and V (capitalized) respectively for jihvAmUlIya and upaDmAnIya.
+ I have changed scharfsandhi.py accordingly.
+* TODO stohscunascuh
+The second section is oddly repetitive. Is there a bug here?
+   self.Linary[self.Index + 1] = sktsch # ?
+   if (self.Index + 2 < self.linmax):
+    if self.Linary[self.Index + 2] == skts:
+     self.Linary[self.Index + 1] = sktsch
+* TODO stunastuh
+ Finish documentation, think of examples
+* TODO torli  nasalization
+  Example: E: "rAjan lajjati" -> "rAja~l lajjati"
+  To be consisten with current SLP1, the nasalaization should go AFTER the
+  'l':   "rAjal~ lajjati"   Is this the final form?
+   Better example would take a present participle, like yuYjan (1ms) and
+   some noun, like lakzmaRaH
+   yuYjan lakzmaRaH -> yuYjal~ lakzmaRaH
+
+* THE END 

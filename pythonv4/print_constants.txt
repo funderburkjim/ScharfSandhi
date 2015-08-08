@@ -1,0 +1,276 @@
+ru = skts
+ru = s
+ru = s
+
+Avarna = skta + sktaa
+Avarna = aA
+Avarna = aA
+
+Ivarna = skti + sktii
+Ivarna = iI
+Ivarna = iI
+
+Uvarna = sktu + sktuu
+Uvarna = uU
+Uvarna = uU
+
+Rvarna = sktri + sktrii
+Rvarna = fF
+Rvarna = fF
+
+Lvarna = sktlri + sktlrii
+Lvarna = xX
+Lvarna = xX
+
+Ku = sktk + sktkh + sktg + sktgh + sktkn
+Ku = kKgGN
+Ku = kKgGN
+
+Cu = sktc + sktch + sktj + sktjh + sktcn
+Cu = cCjJY
+Cu = cCjJY
+
+Retrotu = sktretrot + sktretroth + sktretrod + sktretrodh + sktretron
+Retrotu = wWqQR
+Retrotu = wWqQR
+
+Tu = sktt + sktth + sktd + sktdh + sktn
+Tu = tTdDn
+Tu = tTdDn
+
+Pu = sktp + sktph + sktb + sktbh + sktm
+Pu = pPbBm
+Pu = pPbBm
+
+An = Avarna + Ivarna + Uvarna
+An = aAiIuU
+An = aAiIuU
+
+Ak = Avarna + Ivarna + Uvarna + Rvarna + Lvarna
+Ak = aAiIuUfFxX
+Ak = aAiIuUfFxX
+
+Ik = Ivarna + Uvarna + Rvarna + Lvarna
+Ik = iIuUfFxX
+Ik = iIuUfFxX
+
+Uk = Uvarna + Rvarna + Lvarna
+Uk = uUfFxX
+Uk = uUfFxX
+
+Ekn = skte + skto
+Ekn = eo
+Ekn = eo
+
+Ec = skte + skto + sktai + sktau
+Ec = eoEO
+Ec = eEoO
+
+Aic = sktai + sktau
+Aic = EO
+Aic = EO
+
+Ac = Ak + Ec
+Ac = aAiIuUfFxXeoEO
+Ac = aAiIuUfFxXeEoO
+
+Ic = diff_string(Ac, Avarna)
+Ic = iIuUfFxXeoEO
+Ic = iIuUfFxXeEoO
+
+At = Ac + skth + skty + sktv + sktr
+At = aAiIuUfFxXeoEOhyvr
+At = aAiIuUfFxXeEoOyrvh
+
+Yan = skty + sktv + sktr + sktl
+Yan = yvrl
+Yan = yrlv
+
+Yam = skty + sktv + sktr + sktl + sktcn + sktm + sktkn + sktretron + sktn
+Yam = yvrlYmNRn
+Yam = NYRnmyrlv
+
+Am = Ac + skth + Yam
+Am = aAiIuUfFxXeoEOhyvrlYmNRn
+Am = aAiIuUfFxXeEoONYRnmyrlvh
+
+KNam = sktkn + sktretron + sktn
+KNam = NRn
+KNam = NRn
+
+Yacn = Yam + sktjh + sktbh
+Yacn = yvrlYmNRnJB
+Yacn = NJYRnBmyrlv
+
+Jhash = sktjh + sktbh + sktgh + sktretrodh + sktdh
+Jhash = JBGQD
+Jhash = GJQDB
+
+Bhash = sktbh + sktgh + sktretrodh + sktdh
+Bhash = BGQD
+Bhash = GQDB
+
+Jasch = sktj + sktb + sktg + sktretrod + sktd
+Jasch = jbgqd
+Jasch = gjqdb
+
+Basch = sktb + sktg + sktretrod + sktd
+Basch = bgqd
+Basch = gqdb
+
+Jhasch = sktjh + sktbh + sktgh + sktretrodh + sktdh + sktj + sktb + sktg + sktretrod + sktd
+Jhasch = JBGQDjbgqd
+Jhasch = gGjJqQdDbB
+
+Hasch = skth + Yam + Jhasch
+Hasch = hyvrlYmNRnJBGQDjbgqd
+Hasch = gGNjJYqQRdDnbBmyrlvh
+
+Vasch = diff_string(Hasch, skth + skty)
+Vasch = vrlYmNRnJBGQDjbgqd
+Vasch = gGNjJYqQRdDnbBmrlv
+
+Asch = Ac + Hasch
+Asch = aAiIuUfFxXeoEOhyvrlYmNRnJBGQDjbgqd
+Asch = aAiIuUfFxXeEoOgGNjJYqQRdDnbBmyrlvh
+
+Chav = sktch + sktretroth + sktth + sktc + sktretrot + sktt
+Chav = CWTcwt
+Chav = cCwWtT
+
+Khay = sktkh + sktph + sktch + sktretroth + sktth + sktc + sktretrot + sktt + sktk + sktp
+Khay = KPCWTcwtkp
+Khay = kKcCwWtTpP
+
+Jhay = Jhasch + Khay
+Jhay = JBGQDjbgqdKPCWTcwtkp
+Jhay = kKgGcCjJwWqQtTdDpPbB
+
+Yay = Yam + Jhay
+Yay = yvrlYmNRnJBGQDjbgqdKPCWTcwtkp
+Yay = kKgGNcCjJYwWqQRtTdDnpPbBmyrlv
+
+May = sktm + sktkn + sktretron + sktn + Jhay
+May = mNRnJBGQDjbgqdKPCWTcwtkp
+May = kKgGNcCjJwWqQRtTdDnpPbBm
+
+Cay = sktc + sktretrot + sktt + sktk + sktp
+Cay = cwtkp
+Cay = kcwtp
+
+Khar = sktkh + sktph + sktch + sktretroth + sktth + sktc + sktretrot + sktt + sktk + sktp + sktsch + sktsh + skts
+Khar = KPCWTcwtkpSzs
+Khar = kKcCwWtTpPSzs
+
+Car = sktc + sktretrot + sktt + sktk + sktp + sktsch + sktsh + skts
+Car = cwtkpSzs
+Car = kcwtpSzs
+
+Schar = sktsch + sktsh + skts
+Schar = Szs
+Schar = Szs
+
+Jhar = Jhay + Schar
+Jhar = JBGQDjbgqdKPCWTcwtkpSzs
+Jhar = kKgGcCjJwWqQtTdDpPbBSzs
+
+Yar = Yam + Jhay + Schar
+Yar = yvrlYmNRnJBGQDjbgqdKPCWTcwtkpSzs
+Yar = kKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzs
+
+Schal = sktsch + sktsh + skts + skth
+Schal = Szsh
+Schal = Szsh
+
+Jhal = Jhay + Schal
+Jhal = JBGQDjbgqdKPCWTcwtkpSzsh
+Jhal = kKgGcCjJwWqQtTdDpPbBSzsh
+
+Hal = skty + sktv + sktr + sktl + sktcn + sktm + sktkn + sktretron + sktn + sktjh + sktbh + sktgh + sktretrodh + sktdh + sktj + sktb + sktg + sktretrod + sktd + sktkh + sktph + sktch + sktretroth + sktth + sktc + sktretrot + sktt + sktk + sktp + sktsch + sktsh + skts + skth
+Hal = yvrlYmNRnJBGQDjbgqdKPCWTcwtkpSzsh
+Hal = kKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzsh
+
+Ral = diff_string(Hal, skty + sktv)
+Ral = rlYmNRnJBGQDjbgqdKPCWTcwtkpSzsh
+Ral = kKgGNcCjJYwWqQRtTdDnpPbBmrlSzsh
+
+Val = diff_string(Hal, skty)
+Val = vrlYmNRnJBGQDjbgqdKPCWTcwtkpSzsh
+Val = kKgGNcCjJYwWqQRtTdDnpPbBmrlvSzsh
+
+Al = Ac + Hal
+Al = aAiIuUfFxXeoEOyvrlYmNRnJBGQDjbgqdKPCWTcwtkpSzsh
+Al = aAiIuUfFxXeEoOkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzsh
+
+Guna = skta + skte + skto
+Guna = aeo
+Guna = aeo
+
+Vrddhi = sktaa + sktai + sktau
+Vrddhi = AEO
+Vrddhi = AEO
+
+Sounds = Al + sktvisarga + sktanusvara
+Sounds = aAiIuUfFxXeoEOyvrlYmNRnJBGQDjbgqdKPCWTcwtkpSzshHM
+Sounds = aAiIuUfFxXeEoOMHkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzsh
+
+Linend = space + comma + semicolon + colon + period
+Linend =  ,;:.
+Linend =  ,.:;
+
+Rvarna_and_Lvarna = Rvarna + Lvarna
+Rvarna_and_Lvarna = fFxX
+Rvarna_and_Lvarna = fFxX
+
+Jhal_not_ru = diff_string(Jhal, ru)
+Jhal_not_ru = JBGQDjbgqdKPCWTcwtkpSzh
+Jhal_not_ru = kKgGcCjJwWqQtTdDpPbBSzh
+
+Hasch_and_skta = Hasch + skta
+Hasch_and_skta = hyvrlYmNRnJBGQDjbgqda
+Hasch_and_skta = agGNjJYqQRdDnbBmyrlvh
+
+sktr_and_ru = sktr + ru
+sktr_and_ru = rs
+sktr_and_ru = rs
+
+Khar_and_linend = Khar + Linend
+Khar_and_linend = KPCWTcwtkpSzs ,;:.
+Khar_and_linend =  ,.:;kKcCwWtTpPSzs
+
+Ku_and_Pu_and_Schar = Ku + Pu + Schar
+Ku_and_Pu_and_Schar = kKgGNpPbBmSzs
+Ku_and_Pu_and_Schar = kKgGNpPbBmSzs
+
+Ku_and_Pu = Ku + Pu
+Ku_and_Pu = kKgGNpPbBm
+Ku_and_Pu = kKgGNpPbBm
+
+Tu_and_skts = Tu + skts
+Tu_and_skts = tTdDns
+Tu_and_skts = tTdDns
+
+Cu_and_sktsch = Cu + sktsch
+Cu_and_sktsch = cCjJYS
+Cu_and_sktsch = cCjJYS
+
+Retrotu_sktsh = Retrotu + sktsh
+Retrotu_sktsh = wWqQRz
+Retrotu_sktsh = wWqQRz
+
+Yay_not_Yan = diff_string(Yay, Yan)
+Yay_not_Yan = YmNRnJBGQDjbgqdKPCWTcwtkp
+Yay_not_Yan = kKgGNcCjJYwWqQRtTdDnpPbBm
+
+sktn_and_sktsh_and_skts = sktn + sktsh + skts
+sktn_and_sktsh_and_skts = nzs
+sktn_and_sktsh_and_skts = nzs
+
+Hal_and_ru = Hal + ru
+Hal_and_ru = yvrlYmNRnJBGQDjbgqdKPCWTcwtkpSzshs
+Hal_and_ru = kKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzssh
+
+Al_and_Linend = Al + Linend
+Al_and_Linend = aAiIuUfFxXeoEOyvrlYmNRnJBGQDjbgqdKPCWTcwtkpSzsh ,;:.
+Al_and_Linend =  ,.:;aAiIuUfFxXeEoOkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzsh
+

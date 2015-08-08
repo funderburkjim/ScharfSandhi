@@ -51,6 +51,8 @@ translated programs work in current computer environments.
   * External sandhi: TestIn.txt, TestOut.txt
   * External sandhi variant: Testnn.txt, TestnnOut.txt
 
+* See the `Further Work` section below 
+
 ## Current status of tests
 The Java and Python versions 'pass' all the tests of the testsuite.
 The Perl program passes *almost all* of the tests.
@@ -140,3 +142,30 @@ the Python version.
 
 
 
+## Further Work
+
+### August 2015
+
+Directories pythonv1, pythonv2, pythonv3 and pythonv4 refine the Python
+version.  The versions in pythonv1, pythonv2, and pythonv3 are created by
+a 'refactor' program.  The intentions are:
+* reposition the comments which the java2python conversion misplaced
+* Change class methods to class instance methods
+* Represent many class constants as module constants
+* Add a 'wrapper' decorator to the instance methods.  This wrapper can
+  be used to provide 'history' information.
+
+All of these first three versions should be viewed as intermediate steps
+with probably little independent interest now that they are completed.
+They all give the same results to the testsuite as does the initial version
+in the python directory.
+
+The pythonv4 version of scharfsandhi.py began with the pythonv3 version, and
+was changed manually in many ways. For the most part, these changes 
+involved adding comments to the methods.  However,  some refactoring was
+also done to make the extremely complex logic somewhat less complex.
+In a small number of spots, some details were changed by way of corrections.
+These are mentioned in the notes.org file, and will be further mentioned
+in the Issues.
+
+I am making this commit now because it is at a good pause point.  
