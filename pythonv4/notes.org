@@ -244,7 +244,7 @@ it would be helpful to document this.
   naBas-kAraH -> naBaH-kAraH (kharavasanayor) 
               -> naBas-kAraH (atahkrkamikamsa)
 
-* DONE kupvohXkXpau
+* DONE kupvohXkXpau - bring SLP1 up to date
  This routine replaces visarga (H) by sktjihvamuliya or sktupadhmaniya 
  under certain conditions. These two replacement characters are
  non-ascii in scharfsandhi (opt-k and opt-p on Macintosh).
@@ -268,5 +268,33 @@ The second section is oddly repetitive. Is there a bug here?
    Better example would take a present participle, like yuYjan (1ms) and
    some noun, like lakzmaRaH
    yuYjan lakzmaRaH -> yuYjal~ lakzmaRaH
+
+* Input assumptions
+  The separator is an instance variable, Padbound.
+  1. For External sandhi, the separator is one 'space'.  Note that
+     multiple spaces between words does not work.
+  2. For Compound sandhi, the separator is one 'hyphen'.
+  3. There can be extra spaces or punctuation before or after the text
+  4. There can be multiple instances.  E.g., For external sandhi, 
+     multiple words (such as a verse or a sentence) can be input.
+  5. To apply both compound sandhi and external sandhi, two passes are
+     required. The first pass should do compound sandhi, and the second
+     pass should do external sandhi.
+* ScharfSandhiTest2.py  
+A slightly different version of the test suite. Used with comparison of
+Bucknell's rules
+* BUCKNELL
+In bucknell directory,
+(a) python prep_vowel.py E vowel_test.txt
+(a') python prep_vowel.py E2 vowel_test2.txt
+(b) in pythonv4 directory,
+python ScharfSandhiTest2.py bucknell/vowel_test.txt > bucknell/log_vowel_test.txt
+(b')python ScharfSandhiTest2.py bucknell/vowel_test2.txt > bucknell/log_vowel_test2.txt
+
+(c) python prep_consonant.py E1 consonant_test.txt
+
+(d) in pythonv4 directory,
+python ScharfSandhiTest2.py bucknell/consonant_test.txt > bucknell/log_consonant_test.txt
+
 
 * THE END 

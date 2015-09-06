@@ -3,7 +3,8 @@ Software to apply sandhi to Sanskrit text.
 
 
 ## History
-Approximately in 1992-2000, Peter Scharf [sanskritlibrary.org](http://sanskritlibrary.org/) wrote a computer program in the Pascal language to 'do sandhi'. This is the base form of the sandhi programs in this repository.
+Approximately in 1992-2000, Peter Scharf [sanskritlibrary.org](http://sanskritlibrary.org/) wrote a computer program in the Pascal language to 'do sandhi'. This is the base form of the sandhi programs in this repository. See also
+[paniniSandhi](http://sanskritlibrary.org/software/paniniSandhi.html).
 
 In 2009, I (Jim Funderburk) translated the Pascal programs to first Perl and
 then to Java.  Recently (May 2015), I further translated the Java sandhi programs to Python (version 2.7).
@@ -144,7 +145,7 @@ the Python version.
 
 ## Further Work
 
-### August 2015
+### August/Sep 2015 pythonv4 
 
 Directories pythonv1, pythonv2, pythonv3 and pythonv4 refine the Python
 version.  The versions in pythonv1, pythonv2, and pythonv3 are created by
@@ -168,4 +169,117 @@ In a small number of spots, some details were changed by way of corrections.
 These are mentioned in the notes.org file, and will be further mentioned
 in the Issues.
 
-I am making this commit now because it is at a good pause point.  
+### Usage of pythonv4 version
+
+* To be called by another program:
+```
+# Both scharfsandhi.py and scharfsandhiWrapper.py modules are require;
+# the latter is imported by the former and provides a Python 'decorator'.
+# See discussion of ScharfSandhiArg.py for more on the wrapper decorator.
+# ScharfSandhi is a class implementing the sandhi methods.
+from scharfsandhi import ScharfSandhi
+# instantiate the class
+sandhi = ScharfSandhi()
+# Options control various details of the sandhi logic.  Some useful
+# collections of these options are provided by the
+# simple_sandhioptions method, which takes one argument, a string, which
+# as of this writing (Sep 6, 2015) should be one of:
+# C compound sandhi, applied at the '-' separator
+# E External sandhi, applied at the ' ' (space) separator
+# E1 A variant of External sandhi
+# E2 Another variant of External sandhi, tailored to agree with Bucknell
+# So, for instance:
+err = sandhi.simple_sandhioptions('E2')  # non-zero code indicates code problem
+# Now, apply sandhi to whatever Sanskrit strings are of interest.
+# The Sanskrit must be encoded in the SLP1 transliteration.
+# For instance,
+s = 'rAmaH gacCati'
+s1 = sandhi.sandhi(s)  # answer: rAmo gacCati
+```
+
+* ScharfSandhiArg.py
+  This command-line program does a single example, 
+  given a sandhi option and a string.
+  For instance:
+```
+$ python ScharfSandhiArg.py 'E' 'rAmaH gacCati'
+sandhi: START: "rAmaH gacCati"
+sandhimain: START: "rAmaH gacCati"
+visargaprep: "rAmas gacCati"
+atororhasica: "rAmo gacCati"
+sandhimain: DONE: "rAmo gacCati"
+sandhi: DONE: "rAmo gacCati"
+ScharfSandhiArg: ans="rAmo gacCati"
+
+$ python ScharfSandhiArg.py 'C' 'deva-fzi'
+sandhi: START: "deva-fzi"
+sandhimain: START: "deva-fzi"
+adgunah: "deva-rzi"
+sandhimain: DONE: "devarzi"
+sandhi: DONE: "devarzi"
+ScharfSandhiArg: ans="devarzi"
+```
+ The output shows us that the `visargaprep` method changes the
+ visarga 'H' to 's' at the end of 'rAmaH', and then
+ the method 'atororhasica' changes 'rAmas' to 'rAmo'.
+ This information is provided by the particular choice of the Python
+ decorator function 'wrapper' in module scharfsandhiWrapper.py.
+ I hope to enhance this wrapper into a pedogical tools to help myself
+ and others better understand the way Paninian grammer is thinking of
+ the sandhi process.
+
+* ScharfSandhiTest.py
+This program permits testing of a batch of known examples.  Several 
+instances of it are in the shell script testsuite.sh.
+
+The usage is as follows:
+
+```
+python ScharfSandhiTest.py <sandhioption> <input> <answer>
+where
+<sandhioption> is one of the simple sandhi options mentioned above (C, E, etc.)
+<input> is a text file of examples, one per line, to which the particular
+   sandhi option is to be applied
+<answer> is a text file of answers, one per line.  Applying the particular
+  sandhi option to a given line from <input> should give the result shown
+  on the corresponding line of from <answer>
+The two files, <input> and <answer>, must be supplied by the user.
+Information regarding sucessful and unsuccessful test results is printed
+to stdout.
+```
+
+* ScharfSandhiTest2.py
+This provides an alternate method for batch testing of the sandhi methods.
+The usage is as follows:
+
+```
+python ScharfSandhiTest2.py <testfile>
+where <testfile> is a file of lines with a test and its result on each line.
+The format of a line is that of three colon-delimited fields:
+<sandhioption>:<test>:<answer>
+where,
+<sandhioption> is one of the simple sandhi options (C, E, etc.)
+<test> is the example to which the sandhi option is to be applied
+<answer> is the desired result of applying the sandhi option to the example.
+
+Results are printed to stdout.
+
+This program was used to compare scharfsandhi to Bucknell's table. For
+instance,
+$ python ScharfSandhiTest2.py bucknell/vowel_test2.txt > bucknell/log_vowel_tes
+t2.txt
+
+The test file, in this case vowel_test2.txt, was constructed by another
+program, using Bucknell's tables.
+
+```
+
+### External sandhi comparisons to Bucknell  (
+Aug/Sep, 2015
+
+The `Sanskrit Manual` by Roderick Bucknell succinctly describes external
+sandhi rules in a tabular form that facilitates comparison.  Programs were
+developed to do this comparison.  With very few exceptions, the analysis
+shows that scharfsandhi.py computes results identical to those of Bucknell.  
+See the [bucknell readme](https://github.com/funderburkjim/ScharfSandhi/tree/master/pythonv4/scharfsandhi_bucknell.md) for a description of the analysis.
+

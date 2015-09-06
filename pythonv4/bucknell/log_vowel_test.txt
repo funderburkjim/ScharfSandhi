@@ -1,0 +1,62 @@
+Problem at case 21
+ options: E
+   input: o A
+computed: avA
+standard: a A
+========================================
+Problem at case 32
+ options: E
+   input: o i
+computed: avi
+standard: a i
+========================================
+Problem at case 43
+ options: E
+   input: o I
+computed: avI
+standard: a I
+========================================
+Problem at case 54
+ options: E
+   input: o u
+computed: avu
+standard: a u
+========================================
+Problem at case 65
+ options: E
+   input: o U
+computed: avU
+standard: a U
+========================================
+Problem at case 76
+ options: E
+   input: o f
+computed: avf
+standard: a f
+========================================
+Problem at case 87
+ options: E
+   input: o e
+computed: ave
+standard: a e
+========================================
+Problem at case 98
+ options: E
+   input: o E
+computed: avE
+standard: a E
+========================================
+Problem at case 109
+ options: E
+   input: o o
+computed: avo
+standard: a o
+========================================
+Problem at case 120
+ options: E
+   input: o O
+computed: avO
+standard: a O
+========================================
+Test Results for file: bucknell/vowel_test.txt
+111 input case were ok out of 121 total cases.

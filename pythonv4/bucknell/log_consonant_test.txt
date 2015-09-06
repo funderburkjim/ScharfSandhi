@@ -1,0 +1,20 @@
+Problem at case 104
+ options: E1
+   input: t S
+computed: c S
+standard: c C
+========================================
+Problem at case 108
+ options: E1
+   input: n S
+computed: Y S
+standard: Y C
+========================================
+Problem at case 448
+ options: E1
+   input: n l
+computed: l~ l
+standard: M l
+========================================
+Test Results for file: bucknell/consonant_test.txt
+694 input case were ok out of 697 total cases.

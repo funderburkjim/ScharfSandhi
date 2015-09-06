@@ -29,7 +29,7 @@ def testfile(filein,fileknown,sopt):
    ok = "PROBLEM"
    print "Problem at line",i
    print "   input:",line
-   print " options:",soptPrint
+   print " options:",sopt
    print "computed:",out
    print "standard:",known
    print "========================================"

@@ -1,0 +1,121 @@
+E:a a:A
+E:A a:A
+E:i a:ya
+E:I a:ya
+E:u a:va
+E:U a:va
+E:f a:ra
+E:O a:Ava
+E:E a:A a
+E:e a:e '
+E:o a:o '
+E:a A:A
+E:A A:A
+E:i A:yA
+E:I A:yA
+E:u A:vA
+E:U A:vA
+E:f A:rA
+E:O A:AvA
+E:E A:A A
+E:e A:a A
+E:o A:a A
+E:a i:e
+E:A i:e
+E:i i:I
+E:I i:I
+E:u i:vi
+E:U i:vi
+E:f i:ri
+E:O i:Avi
+E:E i:A i
+E:e i:a i
+E:o i:a i
+E:a I:e
+E:A I:e
+E:i I:I
+E:I I:I
+E:u I:vI
+E:U I:vI
+E:f I:rI
+E:O I:AvI
+E:E I:A I
+E:e I:a I
+E:o I:a I
+E:a u:o
+E:A u:o
+E:i u:yu
+E:I u:yu
+E:u u:U
+E:U u:U
+E:f u:ru
+E:O u:Avu
+E:E u:A u
+E:e u:a u
+E:o u:a u
+E:a U:o
+E:A U:o
+E:i U:yU
+E:I U:yU
+E:u U:U
+E:U U:U
+E:f U:rU
+E:O U:AvU
+E:E U:A U
+E:e U:a U
+E:o U:a U
+E:a f:ar
+E:A f:ar
+E:i f:yf
+E:I f:yf
+E:u f:vf
+E:U f:vf
+E:f f:F
+E:O f:Avf
+E:E f:A f
+E:e f:a f
+E:o f:a f
+E:a e:E
+E:A e:E
+E:i e:ye
+E:I e:ye
+E:u e:ve
+E:U e:ve
+E:f e:re
+E:O e:Ave
+E:E e:A e
+E:e e:a e
+E:o e:a e
+E:a E:E
+E:A E:E
+E:i E:yE
+E:I E:yE
+E:u E:vE
+E:U E:vE
+E:f E:rE
+E:O E:AvE
+E:E E:A E
+E:e E:a E
+E:o E:a E
+E:a o:O
+E:A o:O
+E:i o:yo
+E:I o:yo
+E:u o:vo
+E:U o:vo
+E:f o:ro
+E:O o:Avo
+E:E o:A o
+E:e o:a o
+E:o o:a o
+E:a O:O
+E:A O:O
+E:i O:yO
+E:I O:yO
+E:u O:vO
+E:U O:vO
+E:f O:rO
+E:O O:AvO
+E:E O:A O
+E:e O:a O
+E:o O:a O

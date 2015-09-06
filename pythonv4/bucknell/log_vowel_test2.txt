@@ -1,0 +1,2 @@
+Test Results for file: bucknell/vowel_test2.txt
+121 input case were ok out of 121 total cases.

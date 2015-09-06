@@ -6,8 +6,12 @@
     the sutra spelling in the comment.
     Minor question: in derivation, of 'Bos atra' to 'Bo atra', Katre
     gives the last step as 8.3.19, while this code gives as 8.3.20.
+    Sep 6, 2015.  Make the 'wrapper' decorator reside in 
+    module scharfsandhiWrapper, rather than in 'wrapper'.  A slight
+    namespace improvement.  Use of Python 'package' might be better,
+    but I'm not sure how to do this.
 """
-from wrapper import wrapper
+from scharfsandhiWrapper import wrapper
 import re
 
 def set_memberP( c, s):
@@ -631,6 +635,9 @@ class ScharfSandhi(object):
    self.sandhioptions("E","N","S","Y")
   elif (code == 'E1'):
    self.sandhioptions("E","N","S","")
+  elif (code == 'E2'):
+   self.sandhioptions("E","N","S","Y")
+   self.lopah_v=True
   else:
    self.Error = 5
   return self.Error
@@ -644,6 +651,7 @@ class ScharfSandhi(object):
   #   * @param vedic_ans  Y or N
   #   * @param closeSandhi_ans N,Y,S
   #   * @param despace_ans Y or N
+  #  Sep 5, 2015. set flag lopah_v=False. (used by lopahsakalyasya method)
   """
   #Answer = ""
   Yes = "Y"
@@ -661,6 +669,7 @@ class ScharfSandhi(object):
   self.ChAti = False     # PMS 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
   self.ParaSavarna = False # PMS 8.4.59.  vA padAntasya (anusvArasya yayi parasavarRaH 58).
   self.Anunasika = False # PMS 8.4.45.  yaro "nunAsike "nunAsiko vA. (padAnta 42)
+  self.lopah_v = False
   Answer = compound_ans.upper()
   if Answer == "":
    Answer = "?"
@@ -1096,11 +1105,13 @@ class ScharfSandhi(object):
    self.insertary(sktv, self.Index)
   self.Index = self.Index + 1
 
- @wrapper
+ @wrapper  
  def acsandhi(self):
   """ method acsandhi
   Uses globals Linary,Index,Isthana1,Isthana2
   vowel + vowel
+  # acsandhi makes no direct changes itself, but rather orchestrates
+  # calls to other methods
   (aAiIuUfFxXeEoO,aAiIuUfFxXeEoO)
   (fFxX,fFxX) -> (f,f) rlvarnayormithahsavarnyam  (continue)
   (aA,aA) -> (A,) akahsavarnedirghah set EkahPurvaParayoh
@@ -1502,9 +1513,21 @@ class ScharfSandhi(object):
    (_[aA]y,[aAiIuUfFxXeEoOgGNjJYqQRdDnbBmyrlvh]) -> (__,_)  # drop the 'y'
    Uses globals Linary,Index
    Modifies Linary,Index
+   Sep 5, 2015. Use lopah_v flag, to remove 'v' if this flag is True
+   Sep 6, 2015. Use lopah_v flag, to remove 'v' if this flag is True AND if
+                preceding vowel is 'a'.  This is to 
+                force agreement with Bucknell.
+   (_[aA]y,[aAiIuUfFxXeEoOgGNjJYqQRdDnbBmyrlvh]) -> (__,_)  # drop the 'y'
+     and
+   (_[a]v,[aAiIuUfFxXeEoOgGNjJYqQRdDnbBmyrlvh]) -> (__,_)  # drop the 'v'
+                
+                
   """
   if (set_memberP(self.Linary[self.Index + 1], Asch)) and (self.Index > 2):
    if (set_memberP(self.Linary[self.Index - 2], Avarna)) and (self.Linary[self.Index - 1] == skty):
+    self.deletary(self.Index - 1)
+    self.Index = self.Index - 1
+   elif (set_memberP(self.Linary[self.Index - 2], [skta])) and (self.Linary[self.Index - 1] == sktv) and self.lopah_v:
     self.deletary(self.Index - 1)
     self.Index = self.Index - 1
 
@@ -1793,7 +1816,8 @@ class ScharfSandhi(object):
    self.Iyatna1 = temp[1]
    self.Linary[self.Index - 1] = sktl
    if self.Iyatna1 == isparsa5:
-    self.insertary(sktnasalization, self.Index - 1)
+    #self.insertary(sktnasalization, self.Index - 1)
+    self.insertary(sktnasalization, self.Index) # ~ AFTER sktl
     self.Index = self.Index + 1
 
  @wrapper
@@ -2031,42 +2055,6 @@ class ScharfSandhi(object):
   self.sandhiPrepCompoundAdjust()
 
  @wrapper
- def sandhi1(self, s):
-  """ method sandhi1 
-   Prepare input for sandhimain
-   Accept string argument, to which sandhi is to be applied.
-   return a string argument as the answer
-   return a blank string if there is an error
-   print an informative message if there is an error.
-   Two special values of 's' are related to debugging: 'dbg' and 'off'
-  """
-
-  s1 = s.strip() 
-  if (s == "dbg") or (s == "off"):
-   if not self.dbg:
-
-    self.dbg = True
-   else:
-
-    self.dbg = False
-   return ""
-  s1 = " " + s1 + "    "
-
-  self.Linary = [" "] + list(s1) #  was [""] Jul 29, 2015
-  self.linmax = len(self.Linary) - 1
-
-  self.Error = 0
-  self.sandhimain()
-  if self.Error != 0:
-   #  if ((Error != 0) && (!((NoSpace && (Error == 2))))) ...
-
-   return ""
-  else:
-   ans = "".join(self.Linary)
-   ans = ans.strip()
-   return (ans)
-
- @wrapper
  def sandhimain(self):
   """ method sandhimain 
  
@@ -2268,8 +2256,42 @@ class ScharfSandhi(object):
   # PMS: conclude while loop when padbound character is not found (Index=0)
 
  @wrapper
+ def sandhi1(self, s):
+  """ method sandhi1 
+   Prepare input for sandhimain
+   Accept string argument, to which sandhi is to be applied.
+   return a string argument as the answer
+   return a blank string if there is an error
+   print an informative message if there is an error.
+   Two special values of 's' are related to debugging: 'dbg' and 'off'
+  """
+
+  s1 = s.strip() 
+  if (s == "dbg") or (s == "off"):
+   # kludgy addition by ejf. Probably should be removed. (Aug 9, 2015)
+   if not self.dbg:
+    self.dbg = True
+   else:
+    self.dbg = False
+   return ""
+  s1 = " " + s1 + "    "
+
+  self.Linary = [" "] + list(s1) #  was [""] Jul 29, 2015
+  self.linmax = len(self.Linary) - 1
+
+  self.Error = 0
+  self.sandhimain()
+  if self.Error != 0:
+   #  if ((Error != 0) && (!((NoSpace && (Error == 2))))) ...
+   return ""
+  else:
+   ans = "".join(self.Linary)
+   ans = ans.strip()
+   return (ans)
+
+ @wrapper
  def sandhi(self, s):
-  """ method sandhi 
+  """ method sandhi Main entry
    Accept string argument, to which sandhi is to be applied.
    Return a string argument as the answer
    Return a blank string if there is an error
