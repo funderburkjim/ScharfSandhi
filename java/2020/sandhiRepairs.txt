@@ -1,0 +1,14 @@
+tasmAt liKati	tasmAlliKati
+tasmin liKati	tasmil~liKati	[tilde after l = nasalized l]
+tasmAt Socati	tasmAcCocati
+tasmin Socati	tasmiYCocati	[C not S]
+tasmAt SfRoti	tasmAcCfRoti
+tasmin SfRoti	tasmiYCfRoti	[C not S]
+tasmAt SlAGaH	tasmAcClAGaH	[C not S]
+tasmin SlAGaH	tasmiYClAGaH	[C not S]
+
+8.3.28.  NRoH kukwuk Sari	nnohkuktuksari
+8.3.31.  Si tuk	situk
+8.4.40 stoH ScunA ScuH	stohscunascuh
+8.4.63 vt. 964 chatvamamIti vaktavyam	chatvamami
+8.4.65 Jaro Jari savarRe	jharojharisavarne
