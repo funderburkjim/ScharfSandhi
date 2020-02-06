@@ -34,6 +34,7 @@ translated programs work in current computer environments.
     sandhi transformation (See below).
   * ScharfSandhiString.java is a second simple command-line program, that
     applies compound sandhi and then external sandhi to an input string
+  * The 2020 directory contains revised ScharfSandhi.java and ScharfSandhiArg.java as described in sandhiRepairs.txt
 
 * `Python` contains the translation to Python.
   * scharfsandhi.py is the Python module.  It was generated from the Java code.
@@ -92,6 +93,7 @@ To use the Java version, you need to have a Java runtime installed.
     * C (Compound Sandhi)  Use hyphen '-' to separate compound fragments
     * E (External Sandhi)  use space ' ' to separate words
   * string:  Code Sanskrit in SLP1 transliteration. Use '-' and ' ' as noted
+* 2020/ScharfSandhiArg.java is designed to be called as a function, for example from XSLT.
 
 The use of the Python version is similar.  This has been tested only with
 version 2.7 of Python, but will likely work with other Python 2 versions.
@@ -282,4 +284,31 @@ sandhi rules in a tabular form that facilitates comparison.  Programs were
 developed to do this comparison.  With very few exceptions, the analysis
 shows that scharfsandhi.py computes results identical to those of Bucknell.  
 See the [bucknell readme](https://github.com/funderburkjim/ScharfSandhi/tree/master/pythonv4/scharfsandhi_bucknell.md) for a description of the analysis.
+
+### Scharf revisions to the java code January 2020
+I have revised the Scharf Sandhi Java routines by adding several subroutines to handle sandhi where there is a following S.  I also fixed nasalized l to have tilde following rather than preceding in accordance with SLP1.
+
+Input	Desired output
+tasmAt liKati	tasmAlliKati
+tasmin liKati	tasmil~liKati	[tilde after l = nasalized l]
+tasmAt Socati	tasmAcCocati
+tasmin Socati	tasmiYCocati	[C not S]
+tasmAt SfRoti	tasmAcCfRoti
+tasmin SfRoti	tasmiYCfRoti	[C not S]
+tasmAt SlAGaH	tasmAcClAGaH	[C not S]
+tasmin SlAGaH	tasmiYClAGaH	[C not S]
+
+Sutras	Subroutines added
+8.3.28.  NRoH kukwuk Sari	nnohkuktuksari
+8.3.31.  Si tuk	situk
+8.4.40 stoH ScunA ScuH	stohscunascuh
+8.4.63 vt. 964 chatvamamIti vaktavyam	chatvamami
+8.4.65 Jaro Jari savarRe	jharojharisavarne
+
+A note on the comparison with Bucknell.  His sandhi of tasmin liKati > tasmiM liKati:
+
+In scharfsandhi_bucknell.md Funderburk summarize the differences in comparison of Buknell sandhi with ScharfSandhi on lines 419--427.  The revised java program gives the same results as Bucknell for footnotes 1, 2, and 4.  Footnote 3 produces the same result as the nasalized l option of Bucknell.  The other option, namely, n l -> M l (Bucknell) is not correct.  I suspect that Bucknell wrote candrabindu l as the result mimicking a common fault of Devanagari typeface: putting the candrabindu on the preceding vowel instead of on the consonant l.  This is just a fault of limited font flexibility and not a correct sandhi.
+
+# Future work
+It would now be desirable to bring these revisions to the Java into the latest Python.  A comparison of the old java with the revised would reveal the precise revisions to the java.  I did not insert the detailed options for these revisions I had put in the original Pascal code however.  I just wrote the code assuming the standard package of options for external sandhi.
 
