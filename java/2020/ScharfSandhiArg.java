@@ -21,4 +21,13 @@ public final class ScharfSandhiArg {
    return ans;
   } else return "Error: " + err;
  }
+ public static String csandhi(String s){
+  String sopt = "C";
+  int err;
+  err=ScharfSandhi.sandhioptions("C","N","S","");
+  if (err == 0) {
+   String ans = ScharfSandhi.sandhi(s);
+   return ans;
+  } else return "Error: " + err;
+ }
 }
