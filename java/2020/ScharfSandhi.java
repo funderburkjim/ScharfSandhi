@@ -142,7 +142,7 @@ public class ScharfSandhi {
  CAntaPadary[27] = "zWac";
  }
  // Pradi array of strings: preverbs
- private static final int pradimax = 27;
+ private static final int pradimax = 21;
  private static final String[] Pradi = new String[1+pradimax];
  static {
  Pradi[1] = "pra";
@@ -2152,8 +2152,8 @@ private static void sandhimain() {
    deletary(Index);
    Index = Index - 1; //PMS: the search for the next padbound begins at Index+1
   }else if ( (Index > 1) && Despace ) {
-   if ( set_memberP(Linary[Index - 1],Hal) || Linary[Index - 1].equals(sktnasalization) ) {
-    //PMS: Removed "or Upasarga"
+   if ( set_memberP(Linary[Index - 1],Hal) || Linary[Index - 1].equals(sktnasalization) || Upasarga ) {
+    //PMS: Restored "or Upasarga"
     deletary(Index);
    }
   }
@@ -2286,8 +2286,8 @@ public static String join(String[] strings, String separator) {
    if (0 == 0){
     dbg=true;
     dbg=false;
-    sandhioptions("E","N","S","N");
-    String s = "tasmAt Socati";
+    sandhioptions("E","N","S","Y");
+    String s = "apa harati";
     System.out.println("-----------test of "+s);
     String s1 = sandhi(s);
     System.out.println(s + " => " + s1);
