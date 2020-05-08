@@ -2152,7 +2152,7 @@ private static void sandhimain() {
    deletary(Index);
    Index = Index - 1; //PMS: the search for the next padbound begins at Index+1
   }else if ( (Index > 1) && Despace ) {
-   if ( set_memberP(Linary[Index - 1],Hal) || Linary[Index - 1].equals(sktnasalization) || Upasarga ) {
+   if ( ( (set_memberP(Linary[Index - 1],Hal) || Linary[Index - 1].equals(sktnasalization)) && (set_memberP(Linary[Index + 1],Al)) ) || Upasarga ) {
     //PMS: Restored "or Upasarga"
     deletary(Index);
    }
