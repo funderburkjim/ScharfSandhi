@@ -10,13 +10,6 @@
     module scharfsandhiWrapper, rather than in 'wrapper'.  A slight
     namespace improvement.  Use of Python 'package' might be better,
     but I'm not sure how to do this.
-    PMS: 8.3.19 applies after avarRa, not after o; 8.3.20 applies after o.
-    PMS: 9 May 2020: added the following
-    8.3.28.  NRoH kukwuk Sari: nnohkuktuksari
-    8.3.31.  Si tuk: situk
-    An addition to 8.4.40 stoH ScunA ScuH: stohscunascuh
-    8.4.63 vt. 964 chatvamamIti vaktavyam: chatvamami
-    8.4.65 Jaro Jari savarRe: jharojharisavarne
 """
 from scharfsandhiWrapper import wrapper
 import re
@@ -1236,10 +1229,6 @@ class ScharfSandhi(object):
   if self.XkXpKupvoh:
    # PMS: 8.3.37.  kupvoH XkXpau ca (khari 15).
    self.kupvohXkXpau()
-  # PMS: 8.3.28.  NRoH kukwuk Sari
-  self.nnohkuktuksari()
-  # PMS: 8.3.31.  Si tuk
-  self.situk()
   if not self.NoStoh:
    # PMS: 8.4.40.  stoH ScunA ScuH
    self.stohscunascuh()
@@ -1250,12 +1239,8 @@ class ScharfSandhi(object):
   if self.ChAti:
    # PMS: 8.4.63.  SaS cho "wi. (jhayaH 62, anyatarasyAm 62)
    self.saschoti()
-   # PMS: 8.4.63 vt. 964 chatvamamIti vaktavyam
-   self.chatvamami()
   # PMS: 8.4.62.  jhayo ho "nyatarasyAm
   self.jhayoho()
-  # PMS: 8.4.65 Jaro Jari savarRe
-  self.jharojharisavarne()
   # PMS: 8.4.55.  khari ca
   self.kharica()
   if self.ParaSavarna or self.OtherCloseSandhi:
@@ -1572,33 +1557,6 @@ class ScharfSandhi(object):
    self.Linary[self.Index - 1] = sktanusvara
 
  @wrapper
- def nnohkuktuksari(self):
-  """
-   8.3.28.  NRoH kukwuk Sari (vA 26)
-   Uses globals Linary,Index
-   Modifies Linary,Index,Error
-   The following two rules 8.3.28 and 31 are optional, but implemented in standard sandhi.  To be consistent with 1991 procedure, we'd have a boolean to select the option and test for the boolean here.
-  """
-  if set_memberP(self.Linary[self.Index + 1], Schar):
-   if self.Linary[self.Index - 1] == sktkn:
-    self.insertary(sktk, self.Index)
-    self.Index = self.Index + 1
-   elif (self.Linary[self.Index - 1] == sktretron):
-    self.insertary(sktretrot, self.Index)
-    self.Index = self.Index + 1
-
- @wrapper
- def situk(self):
-  """
-   8.3.31.  Si tuk (naH 30, Sari 28, vA 26)
-   Uses globals Linary,Index
-   Modifies Linary,Index,Error
-  """
-  if (self.Linary[self.Index - 1] == sktn) and (self.Linary[self.Index + 1] == sktsch):
-   self.insertary(sktt, self.Index)
-   self.Index = self.Index + 1
-
- @wrapper
  def namohrasvad(self):
   """ method namohrasvad 
    8.3.32.  Namo hrasvAd aci NamuR nityam
@@ -1775,14 +1733,8 @@ class ScharfSandhi(object):
    self.Isthana1 = temp[0]
    self.Iyatna1 = temp[1]
    self.Linary[self.Index - 1] = Soundary[italavya][self.Iyatna1]
-   # Test to see whether the penultimate dental also need to be palatalized, e.g. BavAn Sete (8.3.31)-> BavAnt Sete (8.4.40)-> BavAYc Sete (8.4.63)-> BavAYcCete (8.4.65)-> BavAYCete """
-   if (set_memberP(self.Linary[self.Index - 2], Tu_and_skts)) and (set_memberP(self.Linary[self.Index - 1], Cu_and_sktsch)):
-    temp = identify(self.Linary[self.Index - 2])
-    self.Isthana1 = temp[0]
-    self.Iyatna1 = temp[1]
-    self.Linary[self.Index - 2] = Soundary[italavya][self.Iyatna1]
   elif (set_memberP(self.Linary[self.Index - 1], Cu_and_sktsch)) and (self.Linary[self.Index + 1] == skts):
-   self.Linary[self.Index + 1] = sktsch
+   self.Linary[self.Index + 1] = sktsch # ?
    if (self.Index + 2 < self.linmax):
     if self.Linary[self.Index + 2] == skts:
      self.Linary[self.Index + 1] = sktsch
@@ -1893,35 +1845,9 @@ class ScharfSandhi(object):
   """
   if (set_memberP(self.Linary[self.Index - 1], Jhay)) and ((self.Index + 2) < self.linmax):
    if (self.Linary[self.Index + 1] == sktsch) and (set_memberP(self.Linary[self.Index + 2], At)):
+    # PMS: vt. chatvamamIti vaktavyam:  
+    # Am instead of At.  tacchlokena, tacchmaSruRA
     self.Linary[self.Index + 1] = sktch
-
- @wrapper
- def chatvamami(self):
-  """8.4.63 vt [964].  Catvam amIti vaktavyam.
-   Am instead of At.
-   E.g. tacchlokena, tacchmaSruRA
-   Uses globals Linary,Index
-   Modifies Linary
-  """
-  if (set_memberP(self.Linary[self.Index - 1], Jhay)) and ((self.Index + 2) < self.linmax):
-   if (self.Linary[self.Index + 1] == sktsch) and (set_memberP(self.Linary[self.Index + 2], Am)):
-    self.Linary[self.Index + 1] = sktch
-
- @wrapper
- def jharojharisavarne(self):
-  """8.4.65.  Jaro Jari savarRe (halaH 64).
-   Uses globals Linary,Index,Isthana1,Isthana2
-   Modifies Linary
-  """
-  if (self.Index + 2) < self.linmax:
-   if (set_memberP(self.Linary[self.Index - 2], Hal)) and (set_memberP(self.Linary[self.Index - 1], Jhar)) and (set_memberP(self.Linary[self.Index + 1], Jhar)):
-    temp = identify(self.Linary[self.Index - 1])
-    self.Isthana1 = temp[0]
-    temp = identify(self.Linary[self.Index + 1])
-    self.Isthana2 = temp[0]
-    if (self.Isthana1 == self.Isthana2):
-     self.deletary(self.Index - 1)
-     self.Index = self.Index - 1
 
  @wrapper
  def yaronunasike(self):
@@ -2314,8 +2240,8 @@ class ScharfSandhi(object):
     # PMS: the search for the next padbound begins at Index+1
     self.Index = self.Index - 1
    elif (self.Index > 1) and self.Despace:
-    if ((set_memberP(self.Linary[self.Index - 1], Hal) or self.Linary[self.Index - 1] == sktnasalization) and (set_memberP(self.Linary[self.Index + 1],Al))) or self.Upasarga:
-       # PMS: Restored "or Upasarga"
+    if set_memberP(self.Linary[self.Index - 1], Hal):
+     # PMS: Removed "or Upasarga"
      self.deletary(self.Index)
    # PMS: get rid of the hyphen between words
    if self.Linary[self.Index] == hyphen:
