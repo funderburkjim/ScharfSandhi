@@ -2,3 +2,5 @@
 *~
 # python compiled
 *.pyc
+.DS_Store
+__pycache__
