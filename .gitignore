@@ -4,3 +4,5 @@
 *.pyc
 .DS_Store
 __pycache__
+# don't track any file (or directory) starting with 'temp'
+temp*
