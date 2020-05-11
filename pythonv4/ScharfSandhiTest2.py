@@ -7,7 +7,7 @@
   field1 =  (sandhi options, usu. C or E)
   field2 = input of the test
   field3 = expected output of the test
- 
+ May 11, 2020. Change print statements for python3 
 """
 from scharfsandhi import ScharfSandhi
 import re
@@ -30,8 +30,8 @@ def testfile2(filein):
   (sopt,line,known) = (case.sopt,case.input,case.answer)
   err = sandhi.simple_sandhioptions(sopt)
   if err != 0: 
-   print "ERROR",err," sopt must be E, E1, or C, not",sopt
-   print "line",icase,"of file",filein
+   print("ERROR",err," sopt must be E, E1, or C, not",sopt)
+   print("line",icase,"of file",filein)
    exit(1)
   out = sandhi.sandhi(line)
   ok = "?"
@@ -40,15 +40,15 @@ def testfile2(filein):
    nok = nok+1
   else:
    ok = "PROBLEM"
-   print "Problem at case",i
-   print " options:",sopt
-   print "   input:",line
-   print "computed:",out
-   print "standard:",known
-   print "========================================"
+   print("Problem at case",i)
+   print(" options:",sopt)
+   print("   input:",line)
+   print("computed:",out)
+   print("standard:",known)
+   print("========================================")
   i = i + 1
- print "Test Results for file:",filein
- print nok,"input case were ok out of",len(cases),"total cases."
+ print("Test Results for file:",filein)
+ print(nok,"input case were ok out of",len(cases),"total cases.")
 
 if __name__ == '__main__':
  import sys

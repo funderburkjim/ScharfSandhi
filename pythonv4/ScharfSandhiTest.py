@@ -1,6 +1,7 @@
 """
  ScharfSandhiTest.py  May 22, 2015
  Jul 20, 2015
+ May 11, 2020. Revise for python3
  
 """
 from scharfsandhi import ScharfSandhi
@@ -13,7 +14,7 @@ def testfile(filein,fileknown,sopt):
  sandhi = ScharfSandhi()
  err = sandhi.simple_sandhioptions(sopt)
  if err != 0: 
-  print "ERROR",err," sopt must be E, E1, or C, not",sopt
+  print("ERROR",err," sopt must be E, E1, or C, not",sopt)
   exit(1)
 
  i=0
@@ -27,17 +28,17 @@ def testfile(filein,fileknown,sopt):
    nok = nok+1
   else:
    ok = "PROBLEM"
-   print "Problem at line",i
-   print "   input:",line
-   print " options:",sopt
-   print "computed:",out
-   print "standard:",known
-   print "========================================"
+   print("Problem at line",i)
+   print("   input:",line)
+   print(" options:",sopt)
+   print("computed:",out)
+   print("standard:",known)
+   print("========================================")
   i = i + 1
- print "Test Results:"
- print "Input:",filein
- print "Standard:",fileknown
- print nok,"input lines were ok out of",len(lines),"total lines."
+ print("Test Results:")
+ print("Input:",filein)
+ print("Standard:",fileknown)
+ print(nok,"input lines were ok out of",len(lines),"total lines.")
 
 if __name__ == '__main__':
  import sys
