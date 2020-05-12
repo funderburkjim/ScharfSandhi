@@ -36,11 +36,14 @@ translated programs work in current computer environments.
     applies compound sandhi and then external sandhi to an input string
   * The 2020 directory contains revised ScharfSandhi.java and ScharfSandhiArg.java as described in sandhiRepairs.txt
 
-* `Python` contains the translation to Python.
+* `python` contains the translation to Python.
+  * This is the FIRST translation to Python.
   * scharfsandhi.py is the Python module.  It was generated from the Java code.
   * ScharfSandhiTest.py, testlog.txt, and testsuite.sh are Python analogs of 
     the tests, as described above.
   * ScharfSandhiArg.py is the Python analogue of ScharfSandhiArg.java.
+  * `sh testsuite.sh` runs the various tests with this version.
+    * this version requires python2 and uses TestSandhiCOutv0.txt. Ref #5.
 
 * `testfiles`  contains 4 pairs of files. In each pair of files, the two
    files contain the same number of lines; when sandhi is applied to a line
@@ -52,6 +55,13 @@ translated programs work in current computer environments.
   * Compound sandhi: TestSandhiC.txt, TestSandhiCOut.txt
   * External sandhi: TestIn.txt, TestOut.txt
   * External sandhi variant: Testnn.txt, TestnnOut.txt
+
+* `pythonv1` refactors programs in `python`
+   This passes the tests according to testsuite.sh.  Ref #5.
+* `pythonv2` refactors programs in `pythonv1`
+  This passes the tests according to testsuite.sh.  Ref #5.
+* `pythonv3` refactors programs in `pythonv2`
+  This passes the tests according to testsuite.sh.  Ref #5.
 
 * See the `Further Work` section below 
 
