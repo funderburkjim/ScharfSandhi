@@ -1971,6 +1971,7 @@ class ScharfSandhi(object):
    Uses globals Linary,Index,Pada1
    Modifies Linary,Pragrhya
   """
+  self.Pragrhya = False
   # PMS: 1.1.11. IdUdeddvivacanam pragfhyam
   if self.External and self.Pada1 in pragrhya_set:
    self.Pragrhya = True
