@@ -628,6 +628,26 @@ class ScharfSandhi(object):
   self.Padbound = ""
 
   self.dbg = False
+  
+ @wrapper
+ def simple_sandhioptions(self,code):
+  """  method simple_sandhioptions
+    code should be one of a preconfigured set of options.
+    Set a 'Standard' set of options for each.
+    Set self.Error and return same
+  """
+  if (code == 'C'):
+   self.sandhioptions("C","N","S","")
+  elif (code == 'E'):
+   self.sandhioptions("E","N","S","Y")
+  elif (code == 'E1'):
+   self.sandhioptions("E","N","S","")
+  elif (code == 'E2'):
+   self.sandhioptions("E","N","S","Y")
+   self.lopah_v=True
+  else:
+   self.Error = 5
+  return self.Error
 
  @wrapper
  def sandhioptions(self, compound_ans, vedic_ans, closeSandhi_ans, despace_ans):

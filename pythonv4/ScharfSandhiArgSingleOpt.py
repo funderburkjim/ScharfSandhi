@@ -8,15 +8,14 @@ from scharfsandhi import ScharfSandhi
 
 if __name__ == '__main__':
  import sys
- ec = sys.argv[1]
- despace = sys.argv[2]
- s = sys.argv[3]
+ sopt = sys.argv[1]
+ s = sys.argv[2]
  sandhi = ScharfSandhi()
  sandhi.history=[] # init history.  It is modified by wrapper
  sandhi.dbg=True
- err = sandhi.sandhioptions(ec, "N", "S", despace)
+ err = sandhi.simple_sandhioptions(sopt)
  if err != 0:
-  print("ERROR: options must be E or C, Y or N, not:", ec, despace)
+  print("ERROR: sopt must be E, E1, or C, not",sopt)
   exit(1)
  ans = sandhi.sandhi(s)
  for h in sandhi.history:
