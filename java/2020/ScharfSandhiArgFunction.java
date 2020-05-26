@@ -15,18 +15,13 @@
  */
 
 import java.util.*;
-import java.io.*;
-public class ScharfSandhiArg {
- public static void main(String[] args){
-  String ec = args[0];
-  String despace = args[1];
-  String s = args[2];
+public final class ScharfSandhiArgFunction {
+ public static String sandhi(String ec, String despace, String s){
   int err;
   err=ScharfSandhi.sandhioptions(ec,"N","S",despace);
   if (err == 0) {
    String ans = ScharfSandhi.sandhi(s);
-   // print result to console
-   System.out.println(ans + "\n");
-  } else System.out.println("Error: " + err);
+   return ans;
+  } else return "Error: " + err;
  }
 }
