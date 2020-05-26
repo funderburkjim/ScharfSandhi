@@ -3,9 +3,11 @@
 ## scharfsandhiPreSandhiRepairs.py
   Version of scharfsandhi.py at 
   Almost the same as scharfsandhi.py at commit 0cfbe848  of Fri May 8, 2020.
+
   scharfsandhiPreSandhiRepairs.py has python3 compatibility adjustments 
 
 git show 0cfbe848582e58a1da6d488bb1dcb2ff6fbffe7e:../scharfsandhi.py > temp.py
+
 diff -w scharfsandhiPreSandhiRepairs.py temp.py
 
 ```
@@ -37,14 +39,18 @@ diff -w scharfsandhiPreSandhiRepairs.py temp.py
 
 ## scharfsandhiSingleOpt.py
 Same as scharfsandhi.py at commit 3ff9768986c9f72f7dfac5ebea0df6aad5000b99
+
 git show 3ff9768986c9f72f7dfac5ebea0df6aad5000b99:../scharfsandhi.py > temp.py
+
 diff -w scharfsandhiSingleOpt.py temp.py
 
 `No output. files are identical`
 
 ## ScharfSandhiArgSingleOpt.py
 Same as ScharfSandhiArg.py at commit 93b44f1c7aa8612974838e61b312e1243c12cb31
+
 git show 93b44f1c7aa8612974838e61b312e1243c12cb31:../ScharfSandhiArg.py > temp.py
+
 diff -w ScharfSandhiArgSingleOpt.py temp.py
 
 `No output. files are identical`
