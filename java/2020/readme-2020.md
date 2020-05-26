@@ -3,7 +3,10 @@
 (in the following, 'I' == Peter Scharf)
 
 I have revised the Scharf Sandhi Java routines by adding several subroutines to handle sandhi where there is a following S.  I also fixed nasalized l to have tilde following rather than preceding in accordance with SLP1.
-
+Both a command-line program ScharfSandhiArg and a function ScharfSandhiArgFunction now take three arguments:
+1. E/C external or compound sandhi
+2. Y/N despace or not
+3. The string to which to do sandhi
 ```
 Input	Desired output
 tasmAt liKati	tasmAlliKati
