@@ -1,5 +1,8 @@
 # ScharfSandhi/java/2020
 
+ See [readme-2020](https://github.com/funderburkjim/ScharfSandhi/tree/master/java/2020/readme-2020.md)
+ for discussion of the differences between the 2020 version and earlier versions.
+
  2020/ScharfSandhiArg.java is *currently* designed to be called as a function, 
  for example from XSLT.  Thus, as of this writing, the following description is
  not correct. See https://github.com/funderburkjim/ScharfSandhi/issues/8.

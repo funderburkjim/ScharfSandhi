@@ -67,7 +67,7 @@ translated programs work in current computer environments.
 * **pythonv4**  This is the latest python version. [see](https://github.com/funderburkjim/ScharfSandhi/blob/master/pythonv4/readme.md)
   * now compatible with python3 (version 3 of the Python language)
   * slight adjustment of the 'standard' regarding test suites.  Ref [#6](https://github.com/funderburkjim/ScharfSandhi/issues/6).
-  * [Reference]
+  * [Reference](https://github.com/funderburkjim/ScharfSandhi/tree/master/pythonv4)
 
 ## Current status of tests
 The Java and Python versions 'pass' all the tests of the testsuite.
@@ -112,88 +112,10 @@ There is currently no Perl version of ScharfSandhiArg.
 See [readme-todo.md](https://github.com/funderburkjim/ScharfSandhi/tree/master/readme-todo.md) for some thoughts on
 additional possible additional improvements.
 
+## Tests
+See [readme-tests](https://github.com/funderburkjim/ScharfSandhi/tree/master/pythonv4/readme-tests.md).
 
-
-
-* ScharfSandhiTest.py
-This program permits testing of a batch of known examples.  Several 
-instances of it are in the shell script testsuite.sh.
-
-The usage is as follows:
-
-```
-python ScharfSandhiTest.py <sandhioption> <input> <answer>
-where
-<sandhioption> is one of the simple sandhi options mentioned above (C, E, etc.)
-<input> is a text file of examples, one per line, to which the particular
-   sandhi option is to be applied
-<answer> is a text file of answers, one per line.  Applying the particular
-  sandhi option to a given line from <input> should give the result shown
-  on the corresponding line of from <answer>
-The two files, <input> and <answer>, must be supplied by the user.
-Information regarding sucessful and unsuccessful test results is printed
-to stdout.
-```
-
-* ScharfSandhiTest2.py
-This provides an alternate method for batch testing of the sandhi methods.
-The usage is as follows:
-
-```
-python ScharfSandhiTest2.py <testfile>
-where <testfile> is a file of lines with a test and its result on each line.
-The format of a line is that of three colon-delimited fields:
-<sandhioption>:<test>:<answer>
-where,
-<sandhioption> is one of the simple sandhi options (C, E, etc.)
-<test> is the example to which the sandhi option is to be applied
-<answer> is the desired result of applying the sandhi option to the example.
-
-Results are printed to stdout.
-
-This program was used to compare scharfsandhi to Bucknell's table. For
-instance,
-$ python ScharfSandhiTest2.py bucknell/vowel_test2.txt > bucknell/log_vowel_tes
-t2.txt
-
-The test file, in this case vowel_test2.txt, was constructed by another
-program, using Bucknell's tables.
-
-```
-
-### External sandhi comparisons to Bucknell  (
-Aug/Sep, 2015
-
-The `Sanskrit Manual` by Roderick Bucknell succinctly describes external
-sandhi rules in a tabular form that facilitates comparison.  Programs were
-developed to do this comparison.  With very few exceptions, the analysis
-shows that scharfsandhi.py computes results identical to those of Bucknell.  
-See the [bucknell readme](https://github.com/funderburkjim/ScharfSandhi/tree/master/pythonv4/scharfsandhi_bucknell.md) for a description of the analysis.
-
-### Scharf revisions to the java code January 2020
-I have revised the Scharf Sandhi Java routines by adding several subroutines to handle sandhi where there is a following S.  I also fixed nasalized l to have tilde following rather than preceding in accordance with SLP1.
-
-Input	Desired output
-tasmAt liKati	tasmAlliKati
-tasmin liKati	tasmil~liKati	[tilde after l = nasalized l]
-tasmAt Socati	tasmAcCocati
-tasmin Socati	tasmiYCocati	[C not S]
-tasmAt SfRoti	tasmAcCfRoti
-tasmin SfRoti	tasmiYCfRoti	[C not S]
-tasmAt SlAGaH	tasmAcClAGaH	[C not S]
-tasmin SlAGaH	tasmiYClAGaH	[C not S]
-
-Sutras	Subroutines added
-8.3.28.  NRoH kukwuk Sari	nnohkuktuksari
-8.3.31.  Si tuk	situk
-8.4.40 stoH ScunA ScuH	stohscunascuh
-8.4.63 vt. 964 chatvamamIti vaktavyam	chatvamami
-8.4.65 Jaro Jari savarRe	jharojharisavarne
-
-A note on the comparison with Bucknell.  His sandhi of tasmin liKati > tasmiM liKati:
-
-In scharfsandhi_bucknell.md Funderburk summarize the differences in comparison of Buknell sandhi with ScharfSandhi on lines 419--427.  The revised java program gives the same results as Bucknell for footnotes 1, 2, and 4.  Footnote 3 produces the same result as the nasalized l option of Bucknell.  The other option, namely, n l -> M l (Bucknell) is not correct.  I suspect that Bucknell wrote candrabindu l as the result mimicking a common fault of Devanagari typeface: putting the candrabindu on the preceding vowel instead of on the consonant l.  This is just a fault of limited font flexibility and not a correct sandhi.
-
-# Future work
-It would now be desirable to bring these revisions to the Java into the latest Python.  A comparison of the old java with the revised would reveal the precise revisions to the java.  I did not insert the detailed options for these revisions I had put in the original Pascal code however.  I just wrote the code assuming the standard package of options for external sandhi.
+## Scharf revisions to the java code January 2020
+See [readme-2020](https://github.com/funderburkjim/ScharfSandhi/tree/master/java/2020/readme-2020.md) for Scharf's 
+notes on the January 2020 changes.
 
