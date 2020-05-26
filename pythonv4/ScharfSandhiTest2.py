@@ -11,6 +11,21 @@
 """
 from scharfsandhi import ScharfSandhi
 import re
+
+def simple_sandhioptions(code,sandhi):
+  if (code == 'C'):
+   sandhi.sandhioptions("C","N","S","")
+  elif (code == 'E'):
+   sandhi.sandhioptions("E","N","S","Y")
+  elif (code == 'E1'):
+   sandhi.sandhioptions("E","N","S","")
+  elif (code == 'E2'):
+   sandhi.sandhioptions("E","N","S","Y")
+   sandhi.lopah_v=True
+  else:
+   sandhi.Error = 5
+  return sandhi.Error
+
 class Case(object):
  def __init__(self,line):
   line = line.rstrip('') # remove ending whitespace
@@ -28,9 +43,10 @@ def testfile2(filein):
  for case in cases:
   icase=icase+1
   (sopt,line,known) = (case.sopt,case.input,case.answer)
-  err = sandhi.simple_sandhioptions(sopt)
+  err = simple_sandhioptions(sopt,sandhi)
+  #err = sandhi.simple_sandhioptions(sopt)
   if err != 0: 
-   print("ERROR",err," sopt must be E, E1, or C, not",sopt)
+   print("ERROR",err," sopt must be E, E1, E2, or C, not",sopt)
    print("line",icase,"of file",filein)
    exit(1)
   out = sandhi.sandhi(line)

@@ -6,13 +6,28 @@
 """
 from scharfsandhi import ScharfSandhi
 
+def simple_sandhioptions(code,sandhi):
+  if (code == 'C'):
+   sandhi.sandhioptions("C","N","S","")
+  elif (code == 'E'):
+   sandhi.sandhioptions("E","N","S","Y")
+  elif (code == 'E1'):
+   sandhi.sandhioptions("E","N","S","")
+  elif (code == 'E2'):
+   sandhi.sandhioptions("E","N","S","Y")
+   sandhi.lopah_v=True
+  else:
+   sandhi.Error = 5
+  return sandhi.Error
+
 def testfile(filein,fileknown,sopt):
  with open(filein,"r") as f:
   lines = [l.rstrip('\r\n ') for l in f]
  with open(fileknown,"r") as f:
   correct = [l.rstrip('\r\n ') for l in f]
  sandhi = ScharfSandhi()
- err = sandhi.simple_sandhioptions(sopt)
+ err = simple_sandhioptions(sopt,sandhi)
+ #err = sandhi.simple_sandhioptions(sopt)
  if err != 0: 
   print("ERROR",err," sopt must be E, E1, or C, not",sopt)
   exit(1)
