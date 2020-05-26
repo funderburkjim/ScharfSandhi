@@ -1,8 +1,26 @@
+Problem at case 28
+ options: E1
+   input: N z
+computed: Nk z
+standard: N z
+========================================
+Problem at case 29
+ options: E1
+   input: N s
+computed: Nk s
+standard: N s
+========================================
 Problem at case 104
  options: E1
    input: t S
 computed: c S
 standard: c C
+========================================
+Problem at case 106
+ options: E1
+   input: N S
+computed: Nk S
+standard: N S
 ========================================
 Problem at case 108
  options: E1
@@ -17,4 +35,4 @@ computed: l~ l
 standard: M l
 ========================================
 Test Results for file: bucknell/consonant_test.txt
-694 input case were ok out of 697 total cases.
+691 input case were ok out of 697 total cases.
