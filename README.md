@@ -4,7 +4,7 @@ Software to apply sandhi to Sanskrit text.
 
 ## History
 Approximately in 1992-2000, Peter Scharf [sanskritlibrary.org](http://sanskritlibrary.org/) wrote a computer program in the Pascal language to 'do sandhi'. This is the base form of the sandhi programs in this repository. See also
-[paniniSandhi](http://sanskritlibrary.org/software/paniniSandhi.html).
+[paniniSandhi](https://sanskritlibrary.org/software/paniniSandhi.html).
 
 In 2009, I (Jim Funderburk) translated the Pascal programs to first Perl and
 then to Java.  Recently (May 2015), I further translated the Java sandhi programs to Python (version 2.7).
@@ -35,6 +35,7 @@ translated programs work in current computer environments.
   * ScharfSandhiString.java is a second simple command-line program, that
     applies compound sandhi and then external sandhi to an input string
 * `java/2020` contains revised ScharfSandhi.java and ScharfSandhiArg.java as described in sandhiRepairs.txt
+  * See [readme-2020](https://github.com/funderburkjim/ScharfSandhi/tree/master/java/2020/readme-2020.md) for Scharf's notes on the January 2020 changes.
   * As of May 25, 2020,  there is a slight incompatibility between ScharfSandhiArg.java and the python4 version.
   * See [readme.md](https://github.com/funderburkjim/ScharfSandhi/tree/master/java/2020/). 
     
@@ -64,16 +65,17 @@ translated programs work in current computer environments.
   This passes the tests according to testsuite.sh.  Ref [#5](https://github.com/funderburkjim/ScharfSandhi/issues/5).
 * `pythonv3` refactors programs in `pythonv2`
   This passes the tests according to testsuite.sh.  Ref [#5](https://github.com/funderburkjim/ScharfSandhi/issues/5).
-* **pythonv4**  This is the latest python version. [see](https://github.com/funderburkjim/ScharfSandhi/blob/master/pythonv4/readme.md)
+* [**pythonv4**](https://github.com/funderburkjim/ScharfSandhi/blob/master/pythonv4/readme.md) is the latest python version.
   * now compatible with python3 (version 3 of the Python language)
+  * See [readme-tests](https://github.com/funderburkjim/ScharfSandhi/tree/master/pythonv4/readme-tests.md).
   * slight adjustment of the 'standard' regarding test suites.  Ref [#6](https://github.com/funderburkjim/ScharfSandhi/issues/6).
-  * [Reference](https://github.com/funderburkjim/ScharfSandhi/tree/master/pythonv4)
 
 ## Current status of tests
 The Java and Python versions 'pass' all the tests of the testsuite.
 The Perl program passes *almost all* of the tests.
 Currently, I am not interested in discovering how the Perl program differs
 from the Java and Python versions.
+Some variations to the 'standard' were made so that the pythonv4 tests would *pass*.
 
 ## Very brief description of the programs
 The Pascal program was written as a command-line program. A user would first
@@ -111,11 +113,4 @@ There is currently no Perl version of ScharfSandhiArg.
 ## TODO 
 See [readme-todo.md](https://github.com/funderburkjim/ScharfSandhi/tree/master/readme-todo.md) for some thoughts on
 additional possible additional improvements.
-
-## Tests
-See [readme-tests](https://github.com/funderburkjim/ScharfSandhi/tree/master/pythonv4/readme-tests.md).
-
-## Scharf revisions to the java code January 2020
-See [readme-2020](https://github.com/funderburkjim/ScharfSandhi/tree/master/java/2020/readme-2020.md) for Scharf's 
-notes on the January 2020 changes.
 
