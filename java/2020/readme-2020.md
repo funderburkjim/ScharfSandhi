@@ -7,6 +7,39 @@ Both a command-line program ScharfSandhiArg and a function ScharfSandhiArgFuncti
 1. E/C external or compound sandhi
 2. Y/N despace or not
 3. The string to which to do sandhi
+
+## Examples using ScharfSandhiArg
+In your command-line termibal, cd to the 'classes' directory.
+
+### Example 1: compound sandhi
+Note the despace option is not relevant for Compound Sandhi.
+It may be set to 'N' (the default) or 'Y'.
+
+`java ScharfSandhiArg C N deva-fzi`   
+```
+devarzi
+```
+
+## Example 2: external sandhi without despacing
+`java ScharfSandhiArg E N 'tasmAt liKati'`
+
+```
+tasmAl liKati
+```
+
+## Example 3: external sandhi with despacing
+`java ScharfSandhiArg E Y 'tasmAt liKati'`
+```
+tasmAlliKati
+```
+
+
+
+
+## Summary of further changes. 
+These examples are run with `java ScharfSandhiArg E Y <Input>`
+
+
 ```
 Input	Desired output
 tasmAt liKati	tasmAlliKati
@@ -35,3 +68,4 @@ In scharfsandhi_bucknell.md Funderburk summarize the differences in comparison o
 ## Future work
 It would now be desirable to bring these revisions to the Java into the latest Python.  A comparison of the old java with the revised would reveal the precise revisions to the java.  I did not insert the detailed options for these revisions I had put in the original Pascal code however.  I just wrote the code assuming the standard package of options for external sandhi.
 
+Note:  These changes ARE present in pythonv4 versions as of 05-27-2020.
