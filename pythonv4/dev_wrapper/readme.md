@@ -13,6 +13,6 @@ version in the parent (pythonv4) directory.
 python ScharfSandhiArg.py <C or E> <Y or N> 'Devanagari in SLP1 transliteration'
 
 
-See [issue 8](https://github.com/funderburkjim/ScharfSandhi/issues/8)
+See [issue 8](https://github.com/funderburkjim/ScharfSandhi/issues/10)
 for discussion and examples.
 
