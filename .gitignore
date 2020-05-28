@@ -6,3 +6,5 @@
 __pycache__
 # don't track any file (or directory) starting with 'temp'
 temp*
+pythonv4/dev_wrapper/scharfsandhi.py
+pythonv4/dev_wrapper/ScharfSandhiArg.py
