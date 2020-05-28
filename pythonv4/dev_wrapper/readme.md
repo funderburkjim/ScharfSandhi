@@ -10,7 +10,7 @@ version in the parent (pythonv4) directory.
   * cp ../ScharfSandhiArg.py .
 * Run ScharfSandhiArg program.  
 
-python ScharfSandhiArg.py <C or E> <Y or N> 'Devanagari in SLP1 transliteration'
+python ScharfSandhiArg.py `<C or E>` `<Y or N>` 'Devanagari in SLP1 transliteration'
 
 
 See [issue 8](https://github.com/funderburkjim/ScharfSandhi/issues/10)
