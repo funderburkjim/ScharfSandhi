@@ -76,7 +76,7 @@ def sandhiSplit( x):
  #  20090801, "/" is a sandhi-blocking character.
 
  #  June 22: Added period to list of Sanskrit characters.
- sanskrit_str = "- '.aAiIuUfFxXeEoOMHkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzshL|/"
+ sanskrit_str = "~- '.aAiIuUfFxXeEoOMHkKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzshL|/"
  #sanskrit_strs = sanskrit_str.split("")
  #sanskrit_strs_list = Arrays.asList(sanskrit_strs)
  sanskrit_set = set(sanskrit_str)
