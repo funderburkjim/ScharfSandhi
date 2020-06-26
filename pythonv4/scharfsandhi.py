@@ -1834,7 +1834,7 @@ class ScharfSandhi(object):
   """ method torli 
    8.4.60.  tor li
    ([tTdD],l) -> (l,l)
-   (n,l) -> (~l,l)    See notes.org for question about the placement of nasalization
+   (n,l) -> (l~,l)    See notes.org for question about the placement of nasalization
    Uses globals Linary,Index
    Modifies Linary,Isthana1,Iyatna1,Index,Error
   """
